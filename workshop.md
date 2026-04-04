@@ -200,7 +200,19 @@ The conversation itself is data. Agent transcripts contain decisions made, mista
 
 **Workshop moment:** Show a real example — an agent transcript from a coding session, then a skill that reads it and extracts the key decisions and mistakes. "The conversation you just had is the most honest record of how the work actually went."
 
-#### 10. Eval-Driven Improvement
+#### 10. Success Criteria — What to Measure
+
+Before you can eval, you need to know what "better" means. Anthropic's recommended metrics:
+
+**Quantitative:** Does the skill trigger on 90%+ of relevant queries? Does it complete the workflow in fewer tool calls than without? Zero failed API/script calls per run?
+
+**Qualitative:** Can a user complete the task without correcting Claude? Are results consistent across 3-5 runs of the same request? Does Claude need fewer clarifying questions?
+
+**How to test triggering:** Run 10-20 test queries that should trigger the skill, plus 5-10 that shouldn't. Track hit/miss rates. The debugging question ("When would you use this skill?") is the fast version. A systematic trigger test suite is the production version.
+
+These are aspirational benchmarks, not precise thresholds. Even rough measurement beats pure intuition.
+
+#### 11. Eval-Driven Improvement
 Run each test case WITH and WITHOUT the skill. Measure the delta. Hard gates: no negative delta, hallucination reduction ≥ 50%.
 
 **Source:** The skills eval framework runs 42 cases, compares outputs, measures improvement. Human labels can override. Calibration gate ensures scorer agrees with human judgment ≥ 80%.
@@ -217,6 +229,20 @@ Every run (success or failure) feeds back into the system. Failures become const
 **First-person:** Case's retrospective agent noticed the verifier repeatedly failed to confirm that example apps actually used new code paths. It proposed an amendment to the verifier's prompt. After review, the next run caught a false positive that would have shipped. The feedback loop: agent fails → fix the system → next agent succeeds. When the same issue appears 3+ times in a repo's learnings, the retrospective escalates. (See: [Case Statement](https://nicknisi.com/posts/case-statement/))
 
 **Why it works:** This is the "making your system smarter" narrative. A skill is a point-in-time snapshot. A self-improving system is a flywheel. Each failure makes the next run better.
+
+### Skill Pattern Archetypes (Reference)
+
+Anthropic identifies five recurring structural patterns. Naming them helps attendees recognize what they're building and choose the right architecture:
+
+| Pattern | When to use | Example |
+|---------|------------|---------|
+| **Sequential workflow** | Multi-step processes in a specific order | Onboard customer: create account → setup payment → create subscription → send welcome email |
+| **Multi-source coordination** | Workflows spanning multiple tools/services | Design handoff: export from Figma → upload to Drive → create tasks in Linear → notify Slack |
+| **Iterative refinement** | Output quality improves with iteration | Generate report → validate with script → fix issues → re-validate → finalize |
+| **Context-aware tool selection** | Same outcome, different approach depending on context | File storage: large files → cloud, collaborative docs → Notion, code → GitHub |
+| **Domain-specific intelligence** | Skill adds specialized knowledge beyond tool access | Payment processing with compliance checks, sanctions screening, audit trails |
+
+Our workshop primarily builds patterns 1 (sequential workflow via phases) and 3 (iterative refinement via confidence scoring). The others are "where this goes next" material.
 
 ---
 
@@ -274,7 +300,9 @@ From building Case — a multi-agent harness for 20+ repos — I learned this th
 
 That's the same principle behind a good skill. Don't tell the model what to do. Tell it what it must never do, and point it at the real source of truth. (See: [Case Statement](https://nicknisi.com/posts/case-statement/))
 
-**Before they write anything — the description matters:** The skill's name and description are the only things loaded at startup. Claude uses the description to decide whether to activate a skill from potentially 100+ available. A vague description ("helps with repos") means the skill never fires. A good description includes what it does AND when to use it: "Analyzes repository health by running git and file-system scripts. Use when the user asks for a repo assessment, health check, or code quality review." Teach this as a 2-minute beat before they start writing.
+**Before they write anything — the description matters:** The skill's name and description are the only things loaded at startup. Claude uses the description to decide whether to activate a skill from potentially 100+ available. A vague description ("helps with repos") means the skill never fires. A good description includes what it does AND when to use it: "Analyzes repository health by running git and file-system scripts. Use when the user asks for a repo assessment, health check, or code quality review." You can also add negative triggers to prevent over-firing: "Do NOT use for simple file lookups or general git questions." Teach this as a 2-minute beat before they start writing.
+
+**Debug it by asking Claude.** After writing the description, have attendees ask Claude: "When would you use the [skill name] skill?" Claude quotes the description back and explains its reasoning. If it can't articulate when to use the skill, the description needs work. If it fires on things it shouldn't, add negative triggers. This is a 30-second exercise that turns description-writing from abstract to testable. When in doubt about whether your skill works, just ask the model — they're surprisingly good at debugging themselves.
 
 **What they start with:** A bad skill — vague, positive instructions, no guardrails.
 
@@ -402,7 +430,7 @@ Pull up someone's skill from the room. Run the skill-reviewer on it live. Get st
 
 Show the production eval framework briefly: 42 test cases, with/without comparison, composite scoring across 7 dimensions, hard gates on regression. Then the scorer bug story — 13 apparent regressions that were actually scorer bugs. Even the eval can be wrong. That's why you calibrate against human judgment.
 
-The message: start with the skill-reviewer today. Graduate to eval when skills become load-bearing. Either way — measure, don't vibe.
+The message: start with the skill-reviewer today. Graduate to eval when skills become load-bearing. Anthropic themselves acknowledge that "there will be an element of vibes-based assessment" — measurement is the direction, not an absolute. But even lightweight measurement beats pure intuition. A before/after comparison on three test cases is better than "it feels right."
 
 #### Show: Context Detection
 
