@@ -11,9 +11,9 @@
 
 Skills at Scale
 
-Write once, run in Claude, Codex, Cursor, and your own agents
+Portable skills for Claude Code, Codex, Cursor, and your own agents
 
-Every developer using AI tools has the same problem: they prompt the same way, for the same tasks, over and over. Skills fix this. A skill is a portable unit of agent behavior that teaches any AI tool how to do a specific job. Write one, drop it into your editor, and it just works. Across tools. Across teams.
+Every developer using AI tools has the same problem: they prompt the same way, for the same tasks, over and over. Skills fix this. A skill is a portable unit of agent behavior — a markdown file that teaches any AI tool how to do a specific job. The same core artifact travels across tools and teams; the execution context adapts.
 
 Most people don't know this primitive exists. In this hands-on workshop, you'll write a real skill, test it live in coding tools, and see how the same core skill artifact can travel across Claude Code, Cursor, Codex, and other agent environments — with execution context varying by tool.
 
@@ -52,7 +52,7 @@ A clear sense of when a skill is enough and when you need a larger agent system
 
 ### Core Promise
 
-**You're leaving with one reusable skill for a real task you do every week.**
+**You're leaving with one reusable skill — and the pattern to build the next one for any task you do every week.**
 
 Technique-first workshop. Each act layers techniques onto one shared skill — Repo Roast. The techniques transfer to any domain. We teach the guitar, not the song.
 
@@ -70,7 +70,7 @@ Not everything is live curriculum. The [handbook](handbook.md) is the full refer
 
 | Delivery | Techniques |
 |----------|-----------|
-| **Hands-on (attendees build)** | Constraints > instructions, source of truth, structure, scripts (inline `!` calls), progressive disclosure, confidence scoring |
+| **Hands-on (attendees build)** | Constraints > instructions, structure, scripts (inline `!` calls), progressive disclosure, confidence scoring |
 | **Stage demo / proof (presenters)** | Audience adaptation / context detection, composition in a production system, lightweight eval framing |
 | **Closing / handbook / next steps** | Transcript reflection, memory, hooks, folder-based skills, model-specific tuning, Desktop/Cowork nuances, skill-creator |
 
@@ -116,7 +116,7 @@ To ensure everyone finishes, attendees start from a prebuilt Repo Roast starter 
 
 ### Act 1: Build the Foundation — Constraints & Structure
 
-**Technique focus:** Constraints > instructions, source of truth discipline, structure, scripts.
+**Technique focus:** Constraints > instructions, structure, scripts. (Source of truth discipline is baked into the constraints — "trust the repo over assumptions" — rather than taught as a separate beat.)
 
 **The story that opens this act:**
 
@@ -156,6 +156,8 @@ Recent contributors: !`git log --format="%an" --since="3 months ago" | sort | un
 - Every finding must include: what's wrong, evidence, severity, recommendation
 - Never recommend "rewrite from scratch"
 - Maximum 10 findings, ordered by severity
+- Prefer script output over assumptions. If evidence from the repo conflicts with prior knowledge, trust the repo.
+- Only make findings backed by observed repo evidence
 
 ## Structure
 1. One-line health verdict (with overall score)
@@ -174,6 +176,10 @@ Recent contributors: !`git log --format="%an" --since="3 months ago" | sort | un
 - **Scripts:** The `!` backtick syntax runs a shell command inline and injects its output into the skill. This is what makes skills more than prompt templates. The skill now gathers its own context from the real environment — it doesn't guess, it checks.
 - **Constraints > instructions:** "The specificity is the skill." Don't tell the model what to do. Tell it what it must never do. But watch the railroading trap — over-constraining kills adaptability. Tight on fragile operations, loose on creative work. (See [handbook](handbook.md#1-constraints--instructions-degrees-of-freedom) for the full degrees-of-freedom framework.)
 - **Most public skills are shallow** — viral threads with millions of views share names and one-liners, no constraints, no scripts, no phases. That's the gap this workshop fills.
+
+**Canonical first-run prompt:** "Roast this repo" or "Give me a repo health check." Specify the exact prompt so the room moves together.
+
+**Script failure fallback:** Add to the skill: "If any script returns no output or errors, skip that signal and note 'no data available.' Do not guess." This keeps the skill resilient on sparse repos or edge-case environments.
 
 **What they see change:** Run the same prompt with the bad skill and the constrained skill. The difference is immediate — "Your code looks pretty good overall" vs "Health score: 4/10. Your largest file is `handler.ts` at 2,847 lines. You have 14 TODO comments, the oldest from March 2023. Your README references `yarn start` but your lockfile is `pnpm-lock.yaml`."
 
