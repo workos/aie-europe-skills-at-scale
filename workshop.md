@@ -100,6 +100,8 @@ Negative constraints close specific failure modes. Positive instructions leave t
 
 **Why it works:** Models are better at avoiding known-bad patterns than discovering ideal patterns from scratch. A constraint like "never use absolute positioning" is more enforceable than "use responsive layout."
 
+**The railroading trap:** Constraints are powerful, but over-constraining is a different failure mode. Anthropic internally warns against "railroading Claude" — being so specific that the skill can't adapt to situations you didn't anticipate. The sweet spot: tight constraints on fragile/destructive operations, loose guidance on creative/analytical work. A code review skill needs room to adapt; a database migration skill needs exact steps. If every instruction is a constraint, you've built a script, not a skill.
+
 **Workshop moment:** Show a bloated skill (100+ lines of instructions) vs a tight skill (20 lines of constraints). Run the same task with both. The constraint-based skill wins.
 
 #### 2. Source of Truth Discipline
@@ -228,6 +230,24 @@ We teach the guitar, not the song. Each act teaches transferable techniques. Att
 - **Debugging from stage requires a shared structure.** Everyone's skill has the same sections (constraints, workflow, self-assessment) even if the domain differs.
 - **The recording needs a through-line.** The YouTube arc is: naive skill → constrained → self-aware → part of a system. That story works regardless of domain.
 
+### Skill Categories (Reference for Domain Selection)
+
+Anthropic internally catalogs skills into nine recurring categories. Sharing this helps attendees recognize what type of skill they're building and pick a domain faster:
+
+| Category | What it does | Example |
+|----------|-------------|---------|
+| **Library & API Reference** | How to correctly use a library/CLI/SDK. Gotchas, snippets, edge cases. | `billing-lib`, `frontend-design` |
+| **Product Verification** | Test/verify code works. Paired with playwright, tmux, assertions. | `signup-flow-driver`, `checkout-verifier` |
+| **Data Fetching & Analysis** | Connect to data/monitoring stacks. Credentials, dashboard IDs, query patterns. | `funnel-query`, `grafana` |
+| **Business Process Automation** | Automate repetitive workflows into one command. | `standup-post`, `weekly-recap` |
+| **Code Scaffolding & Templates** | Generate framework boilerplate for your codebase. | `new-migration`, `create-app` |
+| **Code Quality & Review** | Enforce code quality. May run via hooks or CI. | `adversarial-review`, `testing-practices` |
+| **CI/CD & Deployment** | Fetch, push, deploy. Monitor PRs, rollbacks, cherry-picks. | `babysit-pr`, `deploy-service` |
+| **Runbooks** | Symptom → investigation → structured report. | `oncall-runner`, `log-correlator` |
+| **Infrastructure Operations** | Routine maintenance with guardrails for destructive actions. | `dependency-management`, `cost-investigation` |
+
+The best skills fit cleanly into one category. The more confusing ones straddle several. Use this as a lens, not a cage.
+
 ### Starter Domains (Pick One)
 
 We provide 3-4 starter skeletons. Each has the same structure (constraints, workflow, self-assessment) with domain-specific defaults. Attendees pick one and customize, or bring their own domain using the same skeleton.
@@ -354,6 +374,8 @@ Show this live: an agent transcript from a previous session, then a skill that r
 
 Then show Claude Code's auto-memory: every session already teaches the next session something. The tool persists learnings to memory files (`~/.claude/projects/*/memory/`) across sessions — the self-improving system pattern at the individual level. You don't even need a skill for this. It's already happening.
 
+**Skills can persist their own state too.** Beyond Claude Code's auto-memory, skills themselves can store data — append-only log files, JSON, even SQLite. Anthropic's internal `standup-post` skill keeps a `standups.log` so the next run knows what changed since yesterday. Config files in the skill directory (`config.json`) can store setup info like which Slack channel to post to. Use `${CLAUDE_PLUGIN_DATA}` for stable storage that survives skill upgrades.
+
 **Why demo, not hands-on:** This technique requires having a past transcript to reflect on. The attendees just started — they don't have one yet. But after running their skill a few times post-workshop, they will. Plant the seed now; they'll harvest it later.
 
 The message: most people treat every AI session as stateless. The unlock is realizing transcripts and memory are a flywheel — work → reflect → extract → apply → better work.
@@ -397,6 +419,10 @@ Their skill solves one problem. Skills composed together are a system.
 - The WorkOS CLI: framework detection routes to the right installation skill, which uses validation-driven retry loops to self-correct.
 - 15 framework integrations, each a skill composed with others, wired into an agent via the Claude Agent SDK.
 - That's production code, shipping today.
+
+#### Note: Skills Are Folders, Not Just Files
+
+In the workshop, attendees build a single SKILL.md. But production skills are folders — scripts, reference files, config, assets. Anthropic's internal skills include helper libraries Claude composes at runtime, template files in `assets/`, and reference docs split by domain. On-demand hooks are another power feature: a skill can register session-scoped hooks that only activate when invoked. Examples: `/careful` blocks `rm -rf`, `DROP TABLE`, and force-push via a PreToolUse matcher. `/freeze` blocks edits outside a specific directory. These are too opinionated to run always, but invaluable when you need them. The single-file skill they build today is the seed. The folder pattern is where it grows.
 
 #### Note: Model-Dependent Behavior
 
