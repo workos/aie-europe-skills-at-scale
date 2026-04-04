@@ -103,7 +103,7 @@ This is the core definition. Say the three-part distinction now and repeat it th
 
 "A skill is just a file. The tool runs it. Scripts give it real data."
 
-Don't over-explain portability yet — that's Act 3.
+Don't over-explain portability yet — that's "Why this scales."
 -->
 
 ---
@@ -174,7 +174,7 @@ We teach the guitar, not the song. The techniques transfer to any domain.
 
 "We all build the same skill so debugging from stage works and the recording has a clear through-line."
 
-TIMING: Finish the Open by 5:00. Hard stop. Transition to Act 1.
+TIMING: Finish the Open by 5:00. Hard stop. Transition to setup + Build the Foundation.
 -->
 
 ---
@@ -263,9 +263,10 @@ description: Analyzes repository health by running git and
 # Repo Roast
 
 ## Context
-Stale TODOs: !`grep -rn "TODO\|FIXME\|HACK" . --include="*.*" | head -20`
+Stale TODOs: !`grep -rn "TODO\|FIXME\|HACK" . --include="*.*"
+  --exclude-dir=node_modules --exclude-dir=dist --exclude-dir=.git | head -20`
 Hotspot files: !`git log --pretty=format: --name-only
-  --since="6 months ago" | sort | uniq -c | sort -rn | head -10`
+  --since="6 months ago" | grep -v '^$' | sort | uniq -c | sort -rn | head -10`
 Largest files: !`git ls-files | xargs wc -l 2>/dev/null
   | sort -rn | head -10`
 README freshness: !`git log -1 --format="%ar" -- README.md`
@@ -296,7 +297,7 @@ Walk through the transformation slowly. Four sections:
 
 4. STRUCTURE — "What the output looks like. A specific format, not 'be helpful.'"
 
-Don't rush this slide. It's the centerpiece of Act 1.
+Don't rush this slide. It's the centerpiece of "Build the Foundation."
 -->
 
 ---
@@ -304,7 +305,8 @@ Don't rush this slide. It's the centerpiece of Act 1.
 # The `!` backtick: evidence, not guesses
 
 ```markdown
-Stale TODOs: !`grep -rn "TODO\|FIXME\|HACK" . --include="*.*" | head -20`
+Stale TODOs: !`grep -rn "TODO\|FIXME\|HACK" . --include="*.*"
+  --exclude-dir=node_modules --exclude-dir=dist | head -20`
 ```
 
 The skill runs the command and injects the output.
@@ -402,7 +404,7 @@ Start with the **starter skill file** — customize, don't write from scratch.
 
 <div class="mt-4 text-sm opacity-60">
 
-Don't have a repo? Use the demo repo: `[URL TBD]`
+Behind? Catch up: `cp checkpoints/1-starter.md .claude/skills/repo-roast/SKILL.md`
 
 </div>
 
@@ -417,7 +419,7 @@ Support presenter gives explicit checkpoint language:
 
 Driver walks the room. Most common issue: the ! backtick syntax.
 
-If someone is behind: "Stop where you are and use the starter content for the rest. The goal is a successful run, not perfect customization."
+If someone is behind: "Copy the checkpoint file and keep going. Run: cp checkpoints/1-starter.md .claude/skills/repo-roast/SKILL.md"
 
 If someone is ahead: "Add one extra script or tune your tone for a specific audience." Do NOT open multiple extension paths.
 
@@ -449,7 +451,7 @@ If a script fails: "If your script failed, leave it as-is and keep going. The sk
 
 Repeat the through-line: "You now have a working skill. You're leaving with one reusable skill for a real task you do every week."
 
-TIMING: Act 1 should wrap by ~25:00.
+TIMING: "Build the Foundation" should wrap by ~25:00.
 -->
 
 ---
@@ -623,7 +625,9 @@ Add two sections to your skill:
 1. **Workflow** — 2-3 phases with stop points between each
 2. **Self-Assessment** — dimensions that matter for YOUR domain
 
-Then **run it again** on the same repo. Compare to your Act 1 output.
+Then **run it again** on the same repo. Compare to your first output.
+
+Behind? `cp checkpoints/2-with-phases.md .claude/skills/repo-roast/SKILL.md`
 
 </div>
 
@@ -638,11 +642,13 @@ Explicit checkpoint language:
 
 Most common issue: people make phases too granular. Three phases is plenty.
 
-If behind: "Use the exact workflow and self-assessment blocks from the slide. Customize later."
+If behind: "Copy the checkpoint: cp checkpoints/2-with-phases.md .claude/skills/repo-roast/SKILL.md"
 
 Walk the room. Narrate: "Notice how Phase 1 is just a triage now — you get to decide where to go deeper before committing."
 
-TIMING: Act 2 should wrap by ~50:00.
+Side quest opportunity: tell the "we didn't follow our own process" meta-lesson story here. See workshop.md.
+
+TIMING: "Make it smarter" should wrap by ~50:00.
 -->
 
 ---
@@ -651,9 +657,9 @@ TIMING: Act 2 should wrap by ~50:00.
 
 <div class="text-xl">
 
-**Act 1:** One-shot dump — take it or leave it
+**Before:** One-shot dump — take it or leave it
 
-**Act 2:** Phased, self-assessed, collaborative
+**After:** Phased, self-assessed, collaborative
 
 Same skill. Same repo. The techniques made the difference.
 
@@ -680,7 +686,7 @@ Transition: "You built a working, self-correcting skill. Now: three proof points
 
 Fast-paced. No new hands-on. Three proofs: ~6 min each.
 
-TIMING: Act 3 runs from ~50:00 to ~70:00.
+TIMING: "Why this scales" runs from ~50:00 to ~70:00.
 -->
 
 ---
@@ -707,7 +713,7 @@ Pause. Let it land.
 
 # 1. Same skill, different audiences
 
-The **star** of Act 3. Same findings, three deliveries.
+The **star** of this section. Same findings, three deliveries.
 
 ```markdown
 ## Audience Detection
@@ -780,7 +786,7 @@ Your skill solves one problem. Skills composed together are a system.
 
 That's production code, shipping today.
 
-The same techniques from Act 1 and Act 2 power this system.
+The same techniques you just learned power this system.
 
 </v-clicks>
 
@@ -821,7 +827,7 @@ Brief. Don't belabor eval methodology.
 
 The negative-skill story is the hook; the framework is the proof. Keep the balance toward story.
 
-TIMING: ~5 min. Act 3 should wrap by ~70:00.
+TIMING: ~5 min. "Why this scales" should wrap by ~70:00.
 -->
 
 ---
@@ -842,11 +848,11 @@ Repeat: "You're leaving with one reusable skill for a real task you do every wee
 
 # What you built
 
-| Act | Technique | What changed |
+| Step | Technique | What changed |
 |-----|-----------|-------------|
-| **1** | Constraints, scripts, structure | Generic noise → evidence-backed, focused output |
-| **2** | Phases, confidence scoring | One-shot dump → collaborative, self-correcting |
-| **3** | Audience adaptation, composition, eval | One skill → adapted, composed, measured |
+| **Build the foundation** | Constraints, scripts, structure | Generic noise → evidence-backed, focused output |
+| **Make it smarter** | Phases, confidence scoring | One-shot dump → collaborative, self-correcting |
+| **Why this scales** | Audience adaptation, composition, eval | One skill → adapted, composed, measured |
 
 <v-click>
 
@@ -857,7 +863,7 @@ Repeat: "You're leaving with one reusable skill for a real task you do every wee
 <!--
 Quick recap. Don't belabor — they lived it.
 
-"Act 1 turned vague advice into forensic findings. Act 2 made it collaborative. Act 3 showed where it goes."
+"Step 1 turned vague advice into forensic findings. Step 2 made it collaborative. Step 3 showed where it goes."
 -->
 
 ---
@@ -865,17 +871,18 @@ Quick recap. Don't belabor — they lived it.
 # Install your skill
 
 ```bash
-# Claude Code
-~/.claude/skills/repo-roast/SKILL.md
+# Make it available globally (not just this repo)
+cp -r .claude/skills/repo-roast ~/.claude/skills/repo-roast
 
-# Cursor
-.cursor/rules/repo-roast.mdc
+# Or for Codex
+cp -r .claude/skills/repo-roast ~/.agents/skills/repo-roast
 
-# Codex
-codex-config/skills/repo-roast/SKILL.md
+# Or use the setup script
+./setup.sh            # install
+./setup.sh --cleanup  # remove
 ```
 
-Same skill. Different tools. No changes needed.
+Same skill file. Same format. Just different directories per tool.
 
 **Share it:** push to a repo, tell a teammate to pull it. Skills are just files.
 
@@ -927,11 +934,11 @@ class: text-center
 
 # Skills at Scale
 
-**Workshop resources:** `[URL TBD]`
+**Workshop resources:** `github.com/nicknisi/aie-europe`
 
 <div class="mt-8 opacity-70">
 
-Handbook · Starter skill · Demo repo · Blog posts
+GUIDE.md · Handbook · Checkpoints · setup.sh
 
 </div>
 
