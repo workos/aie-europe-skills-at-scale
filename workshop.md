@@ -15,7 +15,7 @@ Write once, run in Claude, Codex, Cursor, and your own agents
 
 Every developer using AI tools has the same problem: they prompt the same way, for the same tasks, over and over. Skills fix this. A skill is a portable unit of agent behavior that teaches any AI tool how to do a specific job. Write one, drop it into your editor, and it just works. Across tools. Across teams.
 
-Most people don't know this primitive exists. In this hands-on workshop, you'll write real skills, test them live, and see how one file can power Claude.ai, Claude Code, Cursor, and Codex without changing a line.
+Most people don't know this primitive exists. In this hands-on workshop, you'll write a real skill, test it live in coding tools, and see how the same core skill artifact can travel across Claude Code, Cursor, Codex, and other agent environments — with execution context varying by tool.
 
 Then we'll go deeper. You'll see how the WorkOS CLI uses this same pattern to power 15 framework
 integrations — each one a skill composed with others, wired into an agent that installs and configures
@@ -23,20 +23,28 @@ AuthKit in under 60 seconds. That's not a demo. That's production code, shipping
 
 What you'll do:
 
-Write 2+ skills for tasks you actually do at work
-Install and test them across AI tools in real time
-Learn the craft of good skill writing — specificity, constraints, composability
-See how skills compose and scale inside a real CLI powered by the Claude Agent SDK
+Build a Repo Roast / Repo Health Check skill step by step
+Add scripts, constraints, phased workflow, and confidence checks
+Test it in a local coding tool on a real repo
+See how the same patterns scale into production agent systems
 
 
 What you'll leave with:
 
-Working skills installed in your AI tools, ready to use Monday morning
-A repeatable pattern for turning any recurring task into a portable skill
-The mental model for when a skill is enough and when you need a full agent
+One working skill you can reuse and adapt
+A repeatable pattern for turning recurring work into portable skills
+A clear sense of when a skill is enough and when you need a larger agent system
 
+### Prerequisites
 
-No repos to clone. No dependencies to install. Bring a laptop with Claude Code or Claude.ai and something you're tired of doing manually.
+**Bring:**
+- A coding agent with local shell access: Claude Code, Cursor, Codex, or similar
+- A local git repo you're comfortable analyzing — or use the provided demo repo
+- macOS, Linux, or WSL recommended
+
+**Notes:**
+- If you only bring Claude.ai / Desktop, you can follow the concepts, but the hands-on script-driven build is designed for local coding tools
+- If you can't use employer code with AI tools, use the demo repo instead
 
 ---
 
@@ -46,15 +54,15 @@ No repos to clone. No dependencies to install. Bring a laptop with Claude Code o
 
 **You're leaving with one reusable skill for a real task you do every week.**
 
-Technique-first workshop. Each act layers techniques onto a single skill. The domain is the attendee's choice — we teach the guitar, not the song.
+Technique-first workshop. Each act layers techniques onto one shared skill — Repo Roast. The techniques transfer to any domain. We teach the guitar, not the song.
 
 | Block | Time | Mode | What happens |
 |-------|------|------|-------------|
-| **Open: The problem** | 5 min | Watch | You prompt the same way, for the same tasks, over and over. Show the pain. |
-| **Act 1: Build the foundation** | 20 min | **Build** | Bad skill vs good skill. Attendees pick a domain, write a constrained skill with script calls and their style baked in. |
-| **Act 2: Make it smarter** | 25 min | **Build** + Demo | Add phased workflow + confidence scoring (hands-on). Then transcript reflection demo from stage. |
-| **Act 3: Why this scales** | 20 min | Watch | Eval (skill-reviewer live on an audience skill), composition (WorkOS CLI), portability, Claude Desktop. |
-| **Close: Share & install** | 10 min | **Build** | Install across tools. Push to repo. Pull a friend's. Leave with an artifact. |
+| **Open: The problem** | 5 min | Watch | Show a bad repo roast vs an evidence-based one. Frame the promise. |
+| **Act 1: Build the foundation** | 20 min | **Build** | Attendees start from a Repo Roast starter skill and customize description, constraints, tone, and scripts. |
+| **Act 2: Make it smarter** | 25 min | **Build** | Add phases and per-finding confidence checks. Re-run the same skill and compare output quality. |
+| **Act 3: Why this scales** | 20 min | Watch | Same skill adapting to different audiences, composition via WorkOS CLI, and why eval matters. |
+| **Close: Share & install** | 10 min | **Build** | Compare outputs, install/share the skill, point to handbook for deeper techniques. |
 
 ### What's taught vs what's referenced
 
@@ -63,8 +71,8 @@ Not everything is live curriculum. The [handbook](handbook.md) is the full refer
 | Delivery | Techniques |
 |----------|-----------|
 | **Hands-on (attendees build)** | Constraints > instructions, source of truth, structure, scripts (inline `!` calls), progressive disclosure, confidence scoring |
-| **Stage demo (attendees watch)** | Transcript reflection / memory |
-| **Proof / scale-up (presenter-led)** | Context detection, eval-driven improvement, composition, cross-tool portability, Claude Desktop / Cowork, self-improving systems |
+| **Stage demo / proof (presenters)** | Audience adaptation / context detection, composition in a production system, lightweight eval framing |
+| **Closing / handbook / next steps** | Transcript reflection, memory, hooks, folder-based skills, model-specific tuning, Desktop/Cowork nuances, skill-creator |
 
 For the full technique library with sources, first-person stories, and deep dives, see the [handbook](handbook.md).
 
@@ -81,29 +89,30 @@ The workshop will be recorded for YouTube. Dead air kills recordings. Mitigation
 
 ---
 
-## The Exercise: Technique-First, Domain-Second
+## The Exercise: One Skill, Three Acts
 
-We teach the guitar, not the song. Each act teaches transferable techniques. Attendees apply them to whatever domain fits their work. The skill is a vehicle for learning — the techniques are what they take home.
+### Live Workshop Domain: Repo Roast
 
-### Why Rails Still Matter
+For the live workshop, everyone starts from the same canonical skill: **Repo Roast / Repo Health Check**. This keeps the room synchronized, makes debugging support possible, and ensures the recording has a clear through-line.
 
-- **80 minutes is brutal.** We provide the skeleton and starter domains to prevent decision paralysis.
-- **Debugging from stage requires a shared structure.** Everyone's skill has the same sections (constraints, workflow, self-assessment) even if the domain differs.
-- **The recording needs a through-line.** The YouTube arc is: naive skill → constrained → self-aware → part of a system. That story works regardless of domain.
+Advanced attendees can adapt the same skeleton to another domain after the core build is working, but the live path is shared. For the full skill categories taxonomy (9 categories from Anthropic), see the [handbook](handbook.md#skill-categories-anthropics-taxonomy).
 
-### Starter Domains (Pick One)
+### Why a Shared Domain
 
-We provide 3-4 starter skeletons. Each has the same structure (constraints, workflow, self-assessment) with domain-specific defaults. Attendees pick one and customize, or bring their own domain using the same skeleton. For the full skill categories taxonomy (9 categories from Anthropic), see the [handbook](handbook.md#skill-categories-anthropics-taxonomy).
+- **80 minutes is tight.** A shared starting point prevents decision paralysis and ensures everyone finishes.
+- **Debugging from stage requires a common structure.** Everyone's skill has the same sections (constraints, workflow, self-assessment) even if they customize differently.
+- **The recording needs a through-line.** The YouTube arc is: naive skill → constrained → self-aware → part of a system. That story works when everyone builds the same thing.
+- **The point is the technique, not domain brainstorming.**
 
-| Domain | Why it works | Scripts it would use | Personalization surface |
-|--------|-------------|---------------------|----------------------|
-| **PR preflight** | Technical, everyone ships code. Scripts are essential. | `git diff`, `npm run lint`, `npm test`, `git log` | What to flag vs ignore, severity thresholds, ship/no-ship criteria |
-| **Code review** | Everyone does it. Constraints and confidence scoring are natural. | `git diff origin/main`, `git log --oneline -10` | Review style (terse vs pedagogical), what to flag, severity priorities |
-| **PR descriptions** | Everyone hates writing these. Fast to demo. Clear before/after. | `git diff --stat`, `git log --oneline origin/main..HEAD` | Level of detail, what context to include, tone |
-| **Task breakdown** | Given a ticket, produce implementable subtasks. High value. | `find src/ -name "*.ts"`, `cat package.json` | How granular, what metadata, framework preferences |
-| **Bring your own** | Same skeleton, any domain. | Whatever fits | Everything |
+### Starter File, Not a Blank Page
 
-The stage demo uses ONE domain throughout (TBD — whatever demos fastest and clearest). Attendees follow along in their chosen domain.
+To ensure everyone finishes, attendees start from a prebuilt Repo Roast starter skill rather than a blank page. The workshop is about learning the pattern through customization and iteration, not about typing boilerplate from scratch.
+
+### Minimum Success Criteria
+
+**By end of Act 1:** A skill file with a good description, at least one custom constraint, at least one working script, and one successful run.
+
+**By end of Act 2:** Phases added, per-finding confidence checks added, one re-run with visibly improved output.
 
 ### Act 1: Build the Foundation — Constraints & Structure
 
@@ -121,38 +130,44 @@ That's the same principle behind a good skill. Don't tell the model what to do. 
 
 **Debug it by asking Claude.** After writing the description, have attendees ask Claude: "When would you use the [skill name] skill?" Claude quotes the description back and explains its reasoning. If it can't articulate when to use the skill, the description needs work. If it fires on things it shouldn't, add negative triggers. This is a 30-second exercise that turns description-writing from abstract to testable. When in doubt about whether your skill works, just ask the model — they're surprisingly good at debugging themselves.
 
-**What they start with:** A bad skill — vague, positive instructions, no guardrails.
+**What they start with:** A bad Repo Roast skill plus a starter file for the good version.
 
-**What they build:** A constrained skill with their style and priorities baked in.
+**What they build:** A customized Repo Roast / Repo Health Check skill with evidence-gathering scripts, constraints, tone, and a clear structure.
 
-**The skeleton every domain shares:**
+**The starter skill** (from [domain-decision.md](domain-decision.md)):
 
 ```markdown
-# [Skill Name]
+---
+name: repo-roast
+description: Analyzes repository health by running git and file-system scripts to find stale TODOs, churn hotspots, large files, and documentation gaps. Use when the user asks for a repo assessment, health check, code quality review, or tech debt audit. Do NOT use for simple file lookups, git history questions, or code review of specific changes.
+---
 
-## Context (gathered via scripts)
-[What real data does this skill need before it can act?]
-Current branch: !`git branch --show-current`
-Recent changes: !`git diff --stat origin/main`
-[Add domain-specific scripts: lint output, test results, file listings, etc.]
+# Repo Roast
 
-## Style
-[How should the output sound/feel? What's your approach to this task?]
+## Context
+Stale TODOs: !`grep -rn "TODO\|FIXME\|HACK\|WORKAROUND" . --include="*.*" | head -20`
+Hotspot files: !`git log --pretty=format: --name-only --since="6 months ago" | sort | uniq -c | sort -rn | head -10`
+Largest files: !`git ls-files | xargs wc -l 2>/dev/null | sort -rn | head -10`
+README freshness: !`git log -1 --format="%ar" -- README.md`
+Recent contributors: !`git log --format="%an" --since="3 months ago" | sort | uniq -c | sort -rn | head -5`
 
 ## Constraints
-[What should it NEVER do? What are the known failure modes?]
-- Never...
-- Never...
-- Always...
-
-## Source of Truth
-[What should it read/fetch before acting? Where does ground truth live?]
-Read the following before starting: [URL or file reference]
-If this file conflicts with fetched sources, follow the sources.
+- Never be vague — cite specific files and counts as evidence
+- Every finding must include: what's wrong, evidence, severity, recommendation
+- Never recommend "rewrite from scratch"
+- Maximum 10 findings, ordered by severity
 
 ## Structure
-[What's the output format? What sections, in what order?]
+1. One-line health verdict (with overall score)
+2. Top findings (max 10), each with: issue, evidence, severity, fix
+3. One thing the repo does well
 ```
+
+**Required customizations** (what attendees change):
+- Description — adapt triggers to their context
+- 1–2 constraints — what do THEY never want to see?
+- Tone — blunt roast? Professional assessment? Their call.
+- Optional: one extra script if time allows
 
 **Key teaching moments:**
 
@@ -160,18 +175,11 @@ If this file conflicts with fetched sources, follow the sources.
 - **Constraints > instructions:** "The specificity is the skill." Don't tell the model what to do. Tell it what it must never do. But watch the railroading trap — over-constraining kills adaptability. Tight on fragile operations, loose on creative work. (See [handbook](handbook.md#1-constraints--instructions-degrees-of-freedom) for the full degrees-of-freedom framework.)
 - **Most public skills are shallow** — viral threads with millions of views share names and one-liners, no constraints, no scripts, no phases. That's the gap this workshop fills.
 
-**What they see change:** Run the same prompt with the bad skill and the constrained skill. The difference is immediate — generic noise vs focused output grounded in real data from their actual project.
+**What they see change:** Run the same prompt with the bad skill and the constrained skill. The difference is immediate — "Your code looks pretty good overall" vs "Health score: 4/10. Your largest file is `handler.ts` at 2,847 lines. You have 14 TODO comments, the oldest from March 2023. Your README references `yarn start` but your lockfile is `pnpm-lock.yaml`."
 
-**Where they make it theirs:**
-- Their scripts — what context does the skill need to gather? (`git log`, `npm test`, `ls src/`, custom commands)
-- Their constraints — what do they never want to see?
-- Their style — terse or detailed? Formal or casual?
-- Their source of truth — what docs, repos, or examples should it always reference?
-
-### Act 2: Make It Smarter — Phases + Confidence + Reflection Demo
+### Act 2: Make It Smarter — Phases + Confidence
 
 **Hands-on techniques:** Progressive disclosure, confidence scoring.
-**Stage demo:** Transcript reflection / memory.
 
 **The story that opens this act:**
 
@@ -179,16 +187,14 @@ If this file conflicts with fetched sources, follow the sources.
 
 Another lesson from Case. Early pipeline versions let agents decide their own next steps. They skipped phases, retried excessively, made up their own workflows. The fix: deterministic flow control outside the model, structured self-assessment inside. That's what we're adding now — phases the model follows, and a self-check it runs before presenting. (See: [Case Statement](https://nicknisi.com/posts/case-statement/))
 
-Attendees add two capabilities to the same skill, then watch a demo of a third.
-
 #### Hands-On: Progressive Disclosure
-Instead of one-shotting output, the skill works in phases:
+Instead of one-shotting output, the skill works in phases (from [domain-decision.md](domain-decision.md)):
 
 ```markdown
 ## Workflow
-Phase 1: [Quick assessment / triage / outline]. Stop and present.
-Phase 2: [Full output based on approved Phase 1]. Stop and present.
-Phase 3: [Revise based on feedback. Run constraints checklist]. Present final.
+Phase 1: Run all context scripts. Summarize raw findings. Present counts and hotspots. Stop.
+Phase 2: Categorize findings by type (complexity, coverage, dependencies, documentation, churn). Score severity. Present structured report. Stop.
+Phase 3: Based on feedback, build prioritized recommendations. Run constraints checklist. Present final assessment.
 Do not skip phases. Each phase requires confirmation before proceeding.
 ```
 
@@ -198,36 +204,22 @@ Do not skip phases. Each phase requires confirmation before proceeding.
 
 #### Hands-On: Confidence Scoring
 
-**The real-world design:** The Ideation plugin scores confidence across 5 specific dimensions (problem clarity, goal definition, success criteria, scope boundaries, internal consistency), each 0-20, requiring 95 total points before advancing. When scores fall short, it asks targeted clarifying questions — not open-ended "what do you mean?" but concrete options. (See: [Ideation](https://nicknisi.com/posts/ideation/))
+**The real-world design:** The Ideation plugin scores confidence across 5 specific dimensions, each 0-20, requiring 95 total points before advancing. (See: [Ideation](https://nicknisi.com/posts/ideation/))
 
-For the workshop, we simplify this into a pattern they can adapt to any domain:
+For the workshop, we use repo-specific dimensions (from [domain-decision.md](domain-decision.md)):
 
 ```markdown
 ## Self-Assessment
-After completing your output, rate across these dimensions:
-- Constraint compliance (1-10): Did you violate any constraint?
-- Completeness (1-10): Did you address everything asked for?
-- Confidence (1-10): How sure are you this is correct/good?
+Rate each finding:
+- Evidence quality (1-10): Is this backed by data or inference?
+- Severity accuracy (1-10): Is this actually a problem, or could it be intentional?
+- Actionability (1-10): Can someone act on this recommendation immediately?
 
-If any score is below 7, revise before presenting. Show scores to the user.
-If total is below 21, ask one targeted clarifying question before revising.
+If any finding scores below 6 on evidence quality, drop it or flag as "needs investigation."
+If overall confidence is below 7, state what additional information would help.
 ```
 
-**What they see change:** The model catches its own drift. Weak output gets revised automatically. This is the simplest possible feedback loop — zero infrastructure, dramatic improvement in reliability. And they can make it more sophisticated later: add domain-specific dimensions, raise the threshold, require specific evidence for each score.
-
-#### Stage Demo: Transcript Reflection
-
-This one is shown from stage, not built. It's the "oh wow" moment.
-
-**The real story:** When writing the blog post about building evals, I had Claude review the transcripts from the sessions where I actually built them. The transcripts surfaced anecdotes I'd forgotten — dead ends, surprising failures, moments where the approach changed. Those became the most compelling parts of the post. The conversation was the most honest record of how the work actually went. (See: [Writing My First Evals](https://nicknisi.com/posts/writing-my-first-evals/))
-
-Show this live: an agent transcript from a previous session, then a skill that reads it and extracts decisions, mistakes, and patterns.
-
-Then show Claude Code's auto-memory: every session already teaches the next session something. The tool persists learnings to memory files (`~/.claude/projects/*/memory/`) across sessions — the self-improving system pattern at the individual level. You don't even need a skill for this. It's already happening.
-
-**Why demo, not hands-on:** This technique requires having a past transcript to reflect on. The attendees just started — they don't have one yet. But after running their skill a few times post-workshop, they will. Plant the seed now; they'll harvest it later.
-
-The message: most people treat every AI session as stateless. The unlock is realizing transcripts and memory are a flywheel — work → reflect → extract → apply → better work.
+**What they see change:** The model catches its own drift. Low-evidence findings get dropped automatically. No more speculative noise padding the report.
 
 ### Act 3: Why This Scales — Presenter-Led Payoff
 
@@ -237,73 +229,58 @@ You built the primitive. Here's why it matters beyond today.
 
 > "Trust isn't a feeling. It's a number."
 
-This act is fast-paced, presenter-led. No new hands-on work. The goal: show that the techniques they just learned are the same ones powering production systems. Frame as "here's where this goes," not "here are five more concepts." (See: [Writing My First Evals](https://nicknisi.com/posts/writing-my-first-evals/))
+This act is fast-paced, presenter-led. No new hands-on work. Three proof points only — payoff, not concept pile-up. (See: [Writing My First Evals](https://nicknisi.com/posts/writing-my-first-evals/))
 
-#### Live: Eval on an Audience Skill
+#### 1. Same Skill, Different Audiences
 
-Pull up someone's skill from the room. Run the skill-reviewer on it live. Get structured feedback, show where it's strong and weak.
+The centerpiece of Act 3. Same Repo Roast findings, three audiences, three outputs:
 
-**Then tell the negative-scoring skill story.** This is the moment that makes the room go quiet:
+```markdown
+## Audience Detection
+Determine the audience from the user's request:
+- **Developer** → Roast mode. Be blunt, specific, actionable. Name files. Suggest fixes.
+- **Engineering manager** → Assessment mode. Quantify impact. Frame as business cost.
+- **New teammate** → Orientation mode. Explain the landscape. Be welcoming, not alarming.
+If unclear, ask: "Who's this for — you, your manager, or someone new to the repo?"
+```
 
-> "I built a skill for directory sync and SSO. It looked helpful. It contained accurate information. I was proud of it. Then I ran the eval — same test cases, with and without the skill. The skill made the output *worse*. Consistently. -12% to -20% delta. The skill was teaching correct information but omitting critical context, and the model was scoring lower because of it."
+**Developer:** "Here are the 5 worst hotspots. Start with `handler.ts` — split it into route handlers, auth middleware, and a data layer."
 
-> "If the LLM already knows the answer, your skill is dead weight. If your skill adds noise, it's actively harmful. You can't know which one it is without measuring."
+**Manager:** "The auth module has been modified 47 times in 6 months by 8 different contributors. That level of churn usually signals coordination cost."
 
-Show the production eval framework briefly: 42 test cases, with/without comparison, composite scoring across 7 dimensions, hard gates on regression. Then the scorer bug story — 13 apparent regressions that were actually scorer bugs. Even the eval can be wrong. That's why you calibrate against human judgment.
+**New teammate:** "Welcome. 3 areas healthy, 2 hot spots to know about before diving in."
 
-The message: start with the skill-reviewer today. Graduate to eval when skills become load-bearing. Anthropic themselves acknowledge that "there will be an element of vibes-based assessment" — measurement is the direction, not an absolute. But even lightweight measurement beats pure intuition. A before/after comparison on three test cases is better than "it feels right."
+This is the "at scale" moment within a single skill. Same findings, different delivery.
 
-#### Show: Context Detection
-
-Quick demo of context detection as a technique they can add later. The skill adapts to what it finds — different input types, different environments, different audiences — without being rewritten.
-
-Show the WorkOS CLI doing this at scale: 15 frameworks detected automatically, the right skill activated for each one. Same pattern, production grade.
-
-#### Show: Composition — Skills as Building Blocks
+#### 2. Composition — Skills as Building Blocks in Production
 
 Their skill solves one problem. Skills composed together are a system.
 
-**The full-circle story:** The WorkOS CLI's validation-driven retry loop — where the agent gets typecheck errors fed back to it and self-corrects — was born from an Ideation session. Rambling input → confidence gate → codebase exploration → contract → three-phase spec → implementation. The same techniques from today's workshop (progressive disclosure, confidence scoring, phased workflow) produced the production system we're now showing as proof. (See: [Ideation](https://nicknisi.com/posts/ideation/))
+**The full-circle story:** The WorkOS CLI's validation-driven retry loop — where the agent gets typecheck errors fed back to it and self-corrects — was born from an Ideation session. The same techniques from today (progressive disclosure, confidence scoring, phased workflow) produced the production system we're showing now. (See: [Ideation](https://nicknisi.com/posts/ideation/))
 
 - The WorkOS CLI: framework detection routes to the right installation skill, which uses validation-driven retry loops to self-correct.
 - 15 framework integrations, each a skill composed with others, wired into an agent via the Claude Agent SDK.
 - That's production code, shipping today.
 
-#### Note: Skills Are Folders, Not Just Files
+#### 3. Measurement Matters Once Skills Are Load-Bearing
 
-In the workshop, attendees build a single SKILL.md. But production skills are folders — scripts, reference files, config, assets. On-demand hooks are a power feature: a skill can register session-scoped hooks that only activate when invoked (e.g., `/careful` blocks destructive commands, `/freeze` blocks edits outside a directory). The single-file skill they build today is the seed. The folder pattern is where it grows.
+Keep this short. Tell the negative-scoring skill story:
 
-#### Note: Model-Dependent Behavior
+> "I built a skill for directory sync and SSO. It looked helpful. Then I ran the eval — same test cases, with and without the skill. The skill made the output *worse*. -12% to -20% delta."
 
-A skill that works perfectly on Opus might need more guardrails on Haiku. If attendees plan to share skills across teams using different models or tools, they should test with all target models. Quick awareness note — "works for me" isn't the same as "works everywhere."
+The message: start with the skill-reviewer. Graduate to eval when skills become load-bearing. Even lightweight measurement (before/after on three test cases) beats pure intuition. Anthropic themselves acknowledge vibes still play a role — measurement is the direction, not an absolute.
 
-#### Show: Cross-Tool Portability
+#### Portability (brief note, not a section)
 
-Cross-tool portability is the proven engagement hook — a viral thread listing 20 shallow skills for "Claude, ChatGPT & Gemini" hit 3.2M views. The "write once, run everywhere" promise is what the audience cares about most. Our version is deeper: not just "same file works everywhere" but "same *well-crafted* file works everywhere."
-
-Three layers of scale — the payoff of the title:
-
-1. **Personal scale:** Same skill file running in Claude Code → Cursor → Codex. No changes.
-2. **Team scale:** Push to a repo, teammate pulls it. Works in their tool.
-3. **Production scale:** Skills composed inside agents. Installed via `workos skills install` across all detected agents automatically.
-
-#### Show: Claude Desktop / Cowork — Skills for Everyone
-
-Not everyone on a team writes code.
-
-- Open Claude Desktop. The same skill is there. It works.
-- A non-technical teammate uses a skill without touching a terminal or GitHub.
-- Claude Cowork extends this — skills in a collaborative context, not just solo.
-
-Same skill, from terminal to desktop to team to production.
+The same core skill artifact — description, constraints, structure, scripts, workflow — travels across coding agents and teams. What changes is the execution context: coding tools gather evidence directly from the repo; Desktop/chat tools work from pasted or shared context. Same skill file, different input mode. Don't overclaim "works identically everywhere."
 
 ### Progression Summary
 
 | Act | Mode | Techniques | What visibly changes |
 |-----|------|-----------|---------------------|
 | **1: Build the foundation** | Build | Constraints, source of truth, structure, scripts | Generic noise → focused output grounded in real project data |
-| **2: Make it smarter** | Build + Demo | Phases, confidence scoring, transcript reflection (demo) | One-shot → collaborative, self-correcting. Seeds the memory flywheel. |
-| **3: Why this scales** | Watch | Context detection, eval, composition, portability, Desktop | Single skill → measured, composed, portable, accessible system |
+| **2: Make it smarter** | Build | Phases, per-finding confidence scoring | One-shot → collaborative, self-correcting |
+| **3: Why this scales** | Watch | Audience adaptation, composition, eval | One skill → adapted, composed, measured |
 
 ### The Through-Line (repeat at each transition)
 
@@ -311,10 +288,17 @@ Same skill, from terminal to desktop to team to production.
 
 Say this:
 - At the **open**, when framing the promise
-- At the **start of Act 2**, when they already have a working skill and are about to make it better
+- After the **first successful roast** in Act 1
 - At the **start of Act 3**, reminding them the skill they built IS the thing we're now showing at scale
 - At the **close**, when they install it and share it
 
-### Post-Workshop Accelerator: skill-creator
+### Closing
 
-Mention in the closing: Claude's built-in `skill-creator` skill can generate skills from natural language descriptions. It interviews you, produces a SKILL.md with frontmatter, and runs an evaluation before you install. It's not a replacement for understanding the techniques (constraints, scripts, phases, confidence) — it's an accelerator for applying them faster. "Now that you know what makes a good skill, skill-creator can scaffold the next one in minutes."
+**Compare & share:** Run roasts, compare outputs across the room (opt-in only — roast the repo, not the people). Install the skill. Share it via git.
+
+**What comes next:** Today was about learning the pattern by building one skill well. The next step is adapting it to another recurring task: gather context, add constraints, structure the output, phase the workflow, define what "good" means.
+
+**Post-workshop accelerators:**
+- **skill-creator:** Claude's built-in skill can generate new skills from natural language descriptions. It interviews you, produces a SKILL.md, and runs an evaluation before install. Now that you know the techniques, skill-creator scaffolds the next one in minutes.
+- **Transcript reflection:** After running your skill a few times, review past sessions to see which findings were useful, which were ignored, and what constraints should change. The conversation is the most honest record of how the work went.
+- **The [handbook](handbook.md):** Full technique library, skill categories, pattern archetypes, and companion reading for going deeper.
