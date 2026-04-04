@@ -190,6 +190,11 @@ Be helpful and thorough.
 
 **Good skill (what they build):**
 ```markdown
+---
+name: repo-roast
+description: Analyzes repository health by running git and file-system scripts to find stale TODOs, churn hotspots, large files, and documentation gaps. Use when the user asks for a repo assessment, health check, code quality review, or tech debt audit. Do NOT use for simple file lookups, git history questions, or code review of specific changes.
+---
+
 # Repo Roast
 
 ## Context
