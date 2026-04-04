@@ -117,11 +117,11 @@
   margin: 1em 0;
 }
 
-/* Cover and section layouts */
+/* Cover and section layouts — WorkOS purple */
 .slidev-layout.cover,
 .slidev-layout.intro {
-  background: var(--color-text);
-  color: var(--color-bg);
+  background: var(--color-primary);
+  color: #FFFFFF;
 }
 
 .slidev-layout.cover h1,
@@ -131,7 +131,7 @@
 
 .slidev-layout.cover .opacity-50,
 .slidev-layout.intro .opacity-50 {
-  color: var(--color-text-light);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 /* Section dividers */
