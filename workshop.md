@@ -102,7 +102,9 @@ Negative constraints close specific failure modes. Positive instructions leave t
 
 **The railroading trap:** Constraints are powerful, but over-constraining is a different failure mode. Anthropic internally warns against "railroading Claude" — being so specific that the skill can't adapt to situations you didn't anticipate. The sweet spot: tight constraints on fragile/destructive operations, loose guidance on creative/analytical work. A code review skill needs room to adapt; a database migration skill needs exact steps. If every instruction is a constraint, you've built a script, not a skill.
 
-**Workshop moment:** Show a bloated skill (100+ lines of instructions) vs a tight skill (20 lines of constraints). Run the same task with both. The constraint-based skill wins.
+**Quotable:** "The specificity is the skill." (@rubenhassid) — "I write reports" is useless. "I write weekly reports that start with the headline metric, 3 sections max, next steps as bullets" is a skill. The constraint IS the value. This lands well as a one-liner during the bad-vs-good skill comparison.
+
+**Workshop moment:** Show a bloated skill (100+ lines of instructions) vs a tight skill (20 lines of constraints). Run the same task with both. The constraint-based skill wins. Note: most publicly shared skills (viral threads with millions of views) are shallow — names and one-liners, no constraints, no scripts, no phases. That's the gap this workshop fills.
 
 #### 2. Source of Truth Discipline
 Every skill starts with `WebFetch: [official docs URL]` and includes: "If this file conflicts with fetched docs, follow the docs."
@@ -458,6 +460,8 @@ A skill that works perfectly on Opus might need more guardrails on Haiku. Strong
 
 #### Show: Cross-Tool Portability
 
+Cross-tool portability is the proven engagement hook — a viral thread listing 20 shallow skills for "Claude, ChatGPT & Gemini" hit 3.2M views. The "write once, run everywhere" promise is what the audience cares about most. Our version is deeper: not just "same file works everywhere" but "same *well-crafted* file works everywhere."
+
 Three layers of scale — the payoff of the title:
 
 1. **Personal scale:** Same skill file running in Claude Code → Cursor → Codex. No changes.
@@ -491,6 +495,10 @@ Say this:
 - At the **start of Act 2**, when they already have a working skill and are about to make it better
 - At the **start of Act 3**, reminding them the skill they built IS the thing we're now showing at scale
 - At the **close**, when they install it and share it
+
+### Post-Workshop Accelerator: skill-creator
+
+Mention in the closing: Claude's built-in `skill-creator` skill can generate skills from natural language descriptions. It interviews you, produces a SKILL.md with frontmatter, and runs an evaluation before you install. It's not a replacement for understanding the techniques (constraints, scripts, phases, confidence) — it's an accelerator for applying them faster. "Now that you know what makes a good skill, skill-creator can scaffold the next one in minutes."
 
 ---
 
