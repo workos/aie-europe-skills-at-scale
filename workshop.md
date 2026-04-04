@@ -233,6 +233,18 @@ Do not skip phases. Each phase requires confirmation before proceeding.
 
 **Anti-pattern to mention:** When splitting into reference files later, keep references one level deep from SKILL.md. Deeper nesting loses information.
 
+**Side quest: "We didn't follow our own process"**
+
+Use this while attendees are adding phases and the room is quiet. The story:
+
+> "When we built the checkpoints for this workshop, we wrote all four versions of the skill in one pass — from our planning docs, without running any of them. We authored a skill *about* evidence-based analysis without gathering evidence about whether the skill worked."
+>
+> "The first time we ran it on a real repo, the grep took 84 seconds and returned 60KB of noise — all from test fixture node_modules. The hotspot data was dominated by release bot commits. The confidence scoring threshold was undefined. We had to rewrite every checkpoint."
+>
+> "Even the people teaching the iterative loop defaulted to 'write it all up front.' The pull toward authoring-without-testing is strong. That's why the loop matters — it's a discipline, not just pedagogy."
+
+This validates the workshop's core message and gives an honest, self-deprecating moment that builds trust.
+
 #### Hands-On: Confidence Scoring
 
 **The real-world design:** The Ideation plugin scores confidence across 5 specific dimensions, each 0-20, requiring 95 total points before advancing. (See: [Ideation](https://nicknisi.com/posts/ideation/))

@@ -162,9 +162,9 @@ TIMING: Should hit this slide by ~3:00.
 
 | | Time | Mode | What happens |
 |---|---:|---|---|
-| **Act 1** | 20 min | Build | Constraints, scripts, structure — a working skill |
-| **Act 2** | 25 min | Build | Phases + confidence — a smarter skill |
-| **Act 3** | 20 min | Watch | Audience adaptation, composition, measurement |
+| **Build the foundation** | 20 min | Build | Constraints, scripts, structure — a working skill |
+| **Make it smarter** | 25 min | Build | Phases + confidence — a smarter skill |
+| **Why this scales** | 20 min | Watch | Audience adaptation, composition, measurement |
 | **Close** | 10 min | Build | Compare, install, share |
 
 We teach the guitar, not the song. The techniques transfer to any domain.
@@ -178,10 +178,41 @@ TIMING: Finish the Open by 5:00. Hard stop. Transition to Act 1.
 -->
 
 ---
+
+# Get set up
+
+<div class="grid grid-cols-2 gap-8">
+<div>
+
+```bash
+git clone https://github.com/nicknisi/aie-europe.git
+cd aie-europe
+claude  # or codex
+```
+
+Then: `/repo-roast` on any repo
+
+</div>
+<div class="flex items-center justify-center">
+
+<img src="/qr-workshop-repo.svg" class="w-48 h-48" alt="QR code to clone repo" />
+
+</div>
+</div>
+
+<!--
+"Clone this repo. Start your agent. Run /repo-roast. If you see a health score, you're ready."
+
+Keep this to 90 seconds max. The QR code is for people who prefer scanning to typing.
+
+If someone doesn't have Claude Code or Codex installed, they can still follow along conceptually.
+-->
+
+---
 layout: section
 ---
 
-# Act 1: Build the Foundation
+# Build the Foundation
 
 <div class="text-2xl opacity-70">20 minutes · hands-on</div>
 
@@ -425,7 +456,7 @@ TIMING: Act 1 should wrap by ~25:00.
 layout: section
 ---
 
-# Act 2: Make It Smarter
+# Make It Smarter
 
 <div class="text-2xl opacity-70">25 minutes · hands-on</div>
 
@@ -640,7 +671,7 @@ Repeat the through-line: "The skill you just built IS the thing we're now showin
 layout: section
 ---
 
-# Act 3: Why This Scales
+# Why This Scales
 
 <div class="text-2xl opacity-70">20 minutes · presenter-led</div>
 
