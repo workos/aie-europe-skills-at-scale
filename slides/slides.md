@@ -211,7 +211,9 @@ Recent contributors: !`git log --format="%an" --since="3 months ago"
 ````
 
 <!--
-Walk through this slowly. Three sections they need to understand:
+Walk through this slowly. Four sections they need to understand:
+
+0. DESCRIPTION (not shown here but mention it) — the skill's name and description are what get loaded at startup. Claude picks which skill to activate based on the description alone. "Helps with repos" = never fires. "Analyzes repo health by running git scripts. Use when user asks for health check or code quality review." = fires correctly. 2-minute beat before diving into the body.
 
 1. CONTEXT — scripts. The ! backtick syntax runs shell commands inline. The skill gathers its own evidence. It doesn't guess, it checks.
 
@@ -300,6 +302,8 @@ Positive instructions leave them open.
 This is the first transferable technique. Constraints > instructions.
 
 Models are better at avoiding known-bad patterns than discovering ideal patterns. "Never use absolute positioning" is more enforceable than "use responsive layout."
+
+Anthropic frames this as "degrees of freedom." Think of a narrow bridge with cliffs on both sides — there's only one safe path forward (low freedom, exact scripts). Versus an open field — many routes work (high freedom, heuristic guidance). Most people write high-freedom skills when they should be tighter. Constraints are how you narrow the bridge.
 
 The skills repo at WorkOS encodes 3-7 constraints per topic, all sourced from real eval failures.
 -->
@@ -413,6 +417,8 @@ Without phases, the model one-shots everything. You get a wall of text. No way t
 With phases, it stops after each one. You review Phase 1 — "yeah, focus on the auth module" — and Phase 2 is targeted. Collaborative instead of a dump.
 
 The WorkOS CLI uses this same pattern: detect framework → install → configure → verify. Each step produces output the next step needs.
+
+Anti-pattern to mention: when splitting into multiple files later, keep references one level deep. SKILL.md → reference file is fine. SKILL.md → file → another file = Claude may only partially read the deepest file. All references should link directly from SKILL.md.
 -->
 
 ---
@@ -723,6 +729,8 @@ Progressive disclosure, confidence scoring, phased workflow — the techniques f
 Demo time: show the same skill file working in Claude Code, then mention/show it in another tool. "We didn't change a line."
 
 The point: skills are the substrate, tools are interchangeable.
+
+Quick note to drop here or on the previous slide: a skill that works great on Opus might need tighter constraints on Haiku. If your team uses different models or tools, test with all of them. "Works for me" isn't the same as "works everywhere."
 -->
 
 ---

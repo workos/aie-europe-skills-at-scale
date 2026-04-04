@@ -88,9 +88,11 @@ Ordered from most accessible to most advanced.
 
 ### Tier 1: Fundamentals
 
-#### 1. Constraints > Instructions
+#### 1. Constraints > Instructions (Degrees of Freedom)
 Instead of "write good code," say "never check role slugs directly — always check permissions."
 Negative constraints close specific failure modes. Positive instructions leave them open.
+
+**Mental model — degrees of freedom:** Think of every skill instruction as setting a degree of freedom. High freedom (text-based heuristics) when many approaches are valid. Medium freedom (pseudocode, scripts with parameters) when a preferred pattern exists. Low freedom (exact scripts, no parameters) when operations are fragile and consistency is critical. Anthropic's analogy: a narrow bridge with cliffs on both sides (low freedom — one safe path) vs an open field (high freedom — many paths to success). Most skill authors default to high freedom when they should be tighter. The constraint technique is how you dial freedom down where it matters.
 
 **Source:** The skills repo encodes 3-7 gotchas per topic, all sourced from real eval failures. Example from RBAC: "Role slug checks break in multi-org with custom roles." Each gotcha is a constraint that prevents a specific class of mistake.
 
@@ -151,6 +153,8 @@ Don't dump 10 steps at once. Phase-gate with blocking dependencies: Phase 2 does
 **First-person:** The Ideation plugin is built entirely on this pattern: ramble → confidence gate → codebase exploration → contract → spec → execute. Each phase produces an artifact the next phase needs. You can't skip to the spec without passing the confidence gate. The WorkOS CLI retry loop — a production feature — was born from this pipeline. (See: [Ideation](https://nicknisi.com/posts/ideation/))
 
 **Why it works:** Models lose track of multi-step instructions. By gating each phase, you get verification at each checkpoint and prevent the model from skipping ahead or conflating steps.
+
+**Anti-pattern — deeply nested references:** When splitting content across files, keep references one level deep from SKILL.md. Claude may partially read files referenced from other referenced files (using `head -100` instead of reading completely). SKILL.md → reference file is fine. SKILL.md → file → another file loses information. All reference files should link directly from SKILL.md.
 
 #### 6. Ambiguity Handling
 "Explore before asking. Ask only when ambiguity remains after checking manifests and route/auth entrypoints."
@@ -249,6 +253,8 @@ The stage demo uses ONE domain throughout (TBD — whatever demos fastest and cl
 From building Case — a multi-agent harness for 20+ repos — I learned this the hard way. Early versions gave agents prose instructions for how to behave. Context windows compressed, agents forgot, and they started skipping phases and creating fake evidence. The fix wasn't better instructions. It was mechanical constraints — things agents *can't* ignore because they're structural, not advisory.
 
 That's the same principle behind a good skill. Don't tell the model what to do. Tell it what it must never do, and point it at the real source of truth. (See: [Case Statement](https://nicknisi.com/posts/case-statement/))
+
+**Before they write anything — the description matters:** The skill's name and description are the only things loaded at startup. Claude uses the description to decide whether to activate a skill from potentially 100+ available. A vague description ("helps with repos") means the skill never fires. A good description includes what it does AND when to use it: "Analyzes repository health by running git and file-system scripts. Use when the user asks for a repo assessment, health check, or code quality review." Teach this as a 2-minute beat before they start writing.
 
 **What they start with:** A bad skill — vague, positive instructions, no guardrails.
 
@@ -391,6 +397,10 @@ Their skill solves one problem. Skills composed together are a system.
 - The WorkOS CLI: framework detection routes to the right installation skill, which uses validation-driven retry loops to self-correct.
 - 15 framework integrations, each a skill composed with others, wired into an agent via the Claude Agent SDK.
 - That's production code, shipping today.
+
+#### Note: Model-Dependent Behavior
+
+A skill that works perfectly on Opus might need more guardrails on Haiku. Stronger models can work with high-freedom instructions; smaller models need tighter constraints. If attendees plan to share skills across teams using different models (or across tools with different underlying models), they should test with all target models. This is a quick awareness note, not a hands-on beat — just plant the idea that "works for me" isn't the same as "works everywhere."
 
 #### Show: Cross-Tool Portability
 
