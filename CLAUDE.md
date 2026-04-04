@@ -11,6 +11,7 @@ Workshop repository for **"Skills at Scale"** — an 80-minute hands-on workshop
 - `workshop.md` — **Live curriculum only.** Workshop arc, timing, acts, presenter stories, exercise structure, starter domains, skeletons. Everything that happens in the room minute by minute.
 - `handbook.md` — **Reference/handout for attendees.** Full technique library (12 techniques with sources and first-person stories), skill categories taxonomy (9 from Anthropic), skill pattern archetypes (5), success criteria framework, reference systems, blog post links. Not the live agenda — the take-home companion.
 - `domain-decision.md` — Domain analysis and decision. Locked on **"Repo Roast"** (repo health assessment with scripts). Contains the canonical bad/good skill examples, script sets, constraint templates, and phase/confidence designs.
+- `rehearsal-review.md` — Speaker/rehearsal review from Codex. Delivery risks, timing targets, presenter choreography, fallback lines, pre-bake requirements. Not curriculum — performance guidance.
 - `slides/` — Slidev presentation. Will be reworked from workshop.md. Dark theme, presenter notes on every slide, magic-move animations.
 
 ## Slides Development
