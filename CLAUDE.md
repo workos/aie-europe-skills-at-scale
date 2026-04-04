@@ -8,11 +8,14 @@ Workshop repository for **"Skills at Scale"** — an 80-minute hands-on workshop
 
 ## Project Structure
 
-- `workshop.md` — **Live curriculum only.** Workshop arc, timing, acts, presenter stories, exercise structure, starter domains, skeletons. Everything that happens in the room minute by minute.
+- `GUIDE.md` — **Attendee step-by-step guide.** Setup instructions, numbered steps for each section, catch-up checkpoints. Self-contained — works for live attendees and YouTube viewers.
+- `workshop.md` — **Presenter notes only.** Workshop arc, timing, presenter stories, exercise structure, side quest topics, dead air mitigations. Not for attendees — for Nick and Zack.
 - `handbook.md` — **Reference/handout for attendees.** Full technique library (12 techniques with sources and first-person stories), skill categories taxonomy (9 from Anthropic), skill pattern archetypes (5), success criteria framework, reference systems, blog post links. Not the live agenda — the take-home companion.
 - `domain-decision.md` — Domain analysis and decision. Locked on **"Repo Roast"** (repo health assessment with scripts). Contains the canonical bad/good skill examples, script sets, constraint templates, and phase/confidence designs.
 - `rehearsal-review.md` — Speaker/rehearsal review from Codex. Delivery risks, timing targets, presenter choreography, fallback lines, pre-bake requirements. Not curriculum — performance guidance.
-- `slides/` — Slidev presentation. Will be reworked from workshop.md. Dark theme, presenter notes on every slide, magic-move animations.
+- `checkpoints/` — Skill progression snapshots (0-bad, 1-starter, 2-with-phases, 3-complete). Attendees copy these to catch up without losing customizations.
+- `.claude/skills/repo-roast/` — The working skill file attendees edit during the workshop. Auto-discovered by Claude Code.
+- `slides/` — Slidev presentation. Dark theme, presenter notes on every slide, magic-move animations.
 
 ## Slides Development
 
