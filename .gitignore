@@ -1,4 +1,9 @@
+# Agent skills (installed via plugins, not shipped)
 .agents/
-.claude/
 skills-lock.json
 node_modules/
+
+# Claude local config (user-specific)
+.claude/settings.local.json
+
+# Track .claude/skills/ so attendees get the starter skill on clone
