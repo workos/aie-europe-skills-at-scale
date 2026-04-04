@@ -1,6 +1,6 @@
 ---
 name: repo-roast
-description: Analyzes repository health by running git and file-system scripts to find stale TODOs, churn hotspots, large files, and documentation gaps. Use when the user asks for a repo assessment, health check, code quality review, tech debt audit, or wants to understand the state of a codebase. Also triggers on casual requests like "how's this repo looking", "what's the state of this codebase", "should I be worried about tech debt", or "give me the lay of the land." Do NOT use for simple file lookups, git history questions, or code review of specific changes.
+description: Analyzes repository health by running git and file-system scripts to find stale TODOs, churn hotspots, large files, and documentation gaps. Use when the user asks for a repo assessment, health check, code quality review, tech debt audit, or wants to understand the state of a codebase. Also triggers on casual requests like "how's this repo looking", "what's the state of this codebase", "should I be worried about tech debt", "give me the lay of the land", "can you audit this before I hand it off", or "what should I know before contributing to this repo." Do NOT use for simple file lookups, git history questions, or code review of specific changes.
 ---
 
 # Repo Roast
@@ -28,12 +28,12 @@ If any script returns no output or errors, skip that signal and note "no data av
 - Prioritize by impact, not by how easy the finding was to discover
 
 ## Workflow
-Work through these phases internally before presenting the final report:
+Work through these phases internally before presenting the final report. Internal phasing lets you filter weak findings before presenting, so the user sees only high-confidence results.
 1. Run all context scripts. Gather raw data.
 2. Categorize findings by type (complexity, coverage, dependencies, documentation, churn). Score severity. Run self-assessment. Drop or flag weak findings.
 3. Build prioritized recommendations. Adapt output to the detected audience. Run constraints checklist.
 
-Present the final assessment as one complete report. Only stop for user input if overall confidence is low and you need clarification about the repo's context.
+Present the final assessment as one complete report. Only stop for user input if overall confidence is low (more than half of findings score below 7 on evidence quality) and you need clarification about the repo's context.
 
 ## Self-Assessment
 Rate each finding before presenting:
@@ -65,9 +65,16 @@ If unclear, default to developer mode. If the user says "for my manager" or "for
 4. One thing the repo does well
 5. Suggested next action (the single highest-leverage fix)
 
-**Example finding:**
+**Example finding (developer mode):**
 **Issue:** God file concentrating too many responsibilities
 **Evidence:** `src/bin.ts` — 2,314 lines, modified 18 times in 6 months by 4 contributors
 **Severity:** High
 **Confidence:** Evidence 9/10, Severity 8/10, Actionability 8/10
 **Fix:** Extract the CLI argument parsing (lines 1-200) and command routing (lines 800-1400) into separate modules. Start with command routing — it has the most churn and will reduce merge conflicts.
+
+**Same finding adapted for engineering manager:**
+**Issue:** CLI entrypoint is a coordination bottleneck
+**Evidence:** `src/bin.ts` — 2,314 lines, touched 18 times in 6 months by 4 contributors. At this size and churn rate, most changes to the CLI risk merge conflicts and require understanding the full file.
+**Severity:** High
+**Impact:** Onboarding friction (new contributors must understand 2,300 lines before making changes), merge conflict overhead (4 people editing one file), and incident risk (a bad change anywhere in the file affects all CLI commands).
+**Recommendation:** Prioritize splitting this file in the next sprint. Estimated effort: 1-2 days. Reduces merge conflicts and unblocks parallel work on CLI features.
