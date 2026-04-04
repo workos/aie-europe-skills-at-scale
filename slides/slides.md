@@ -3,7 +3,7 @@ theme: default
 title: "Skills at Scale"
 info: |
   ## Skills at Scale
-  Write once, run in Claude, Codex, Cursor, and your own agents.
+  Portable skills for Claude Code, Codex, Cursor, and your own agents.
 
   An 80-minute hands-on workshop.
 author: Nick Nisi & Zack Proser
@@ -13,7 +13,13 @@ drawings:
   persist: false
 transition: slide-left
 mdc: true
-colorSchema: dark
+colorSchema: light
+fonts:
+  sans: Inter
+  mono: IBM Plex Mono
+  provider: google
+themeConfig:
+  primary: '#6363F1'
 duration: 80min
 timer: countdown
 ---

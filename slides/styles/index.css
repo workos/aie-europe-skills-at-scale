@@ -1,0 +1,171 @@
+/*
+ * Skills at Scale — WorkOS Light Theme
+ *
+ * Brand: WorkOS
+ * Primary: #6363F1
+ * Fonts: Inter (body/headings), IBM Plex Mono (code)
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* Brand colors */
+  --color-primary: #6363F1;
+  --color-primary-light: #8585F5;
+  --color-primary-dark: #4F4FD9;
+
+  /* Surfaces */
+  --color-bg: #FAFAFA;
+  --color-bg-code: #F5F5FA;
+  --color-bg-soft: #F0F0F5;
+
+  /* Text */
+  --color-text: #1A1A1A;
+  --color-text-muted: #6B7280;
+  --color-text-light: #9CA3AF;
+
+  /* Prism/Shiki code theme overrides */
+  --prism-background: var(--color-bg-code);
+}
+
+/* Global slide styling */
+.slidev-layout {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings */
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3,
+.slidev-layout h4 {
+  color: var(--color-text);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.slidev-layout h1 {
+  font-weight: 800;
+}
+
+/* Accent color for links and emphasis */
+.slidev-layout a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.slidev-layout a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* Strong text uses brand purple */
+.slidev-layout strong {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/* Code blocks */
+.slidev-layout pre,
+.slidev-layout code {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+.slidev-layout pre {
+  background: var(--color-bg-code) !important;
+  border: 1px solid #E5E5EF;
+  border-radius: 8px;
+}
+
+/* Inline code */
+.slidev-layout :not(pre) > code {
+  background: var(--color-bg-code);
+  color: var(--color-primary);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* Tables */
+.slidev-layout table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.slidev-layout th {
+  background: var(--color-bg-soft);
+  color: var(--color-text);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.5em 1em;
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.slidev-layout td {
+  padding: 0.5em 1em;
+  border-bottom: 1px solid #E5E5EF;
+}
+
+/* Blockquotes — used for the through-line and story quotes */
+.slidev-layout blockquote {
+  border-left: 4px solid var(--color-primary);
+  padding-left: 1em;
+  color: var(--color-text);
+  font-style: italic;
+  margin: 1em 0;
+}
+
+/* Cover and section layouts */
+.slidev-layout.cover,
+.slidev-layout.intro {
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+.slidev-layout.cover h1,
+.slidev-layout.intro h1 {
+  color: #FFFFFF;
+}
+
+.slidev-layout.cover .opacity-50,
+.slidev-layout.intro .opacity-50 {
+  color: var(--color-text-light);
+}
+
+/* Section dividers */
+.slidev-layout.section {
+  background: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.slidev-layout.section h1 {
+  color: #FFFFFF;
+}
+
+/* Quote layout */
+.slidev-layout.quote {
+  background: var(--color-bg);
+}
+
+.slidev-layout.quote h1 {
+  color: var(--color-primary);
+  font-style: italic;
+  font-weight: 700;
+}
+
+/* v-click fade animation */
+.slidev-vclick-target {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Page number and controls */
+.slidev-nav .slidev-page-indicator {
+  color: var(--color-text-muted);
+}
+
+/* Progress bar */
+.slidev-progress {
+  background: var(--color-primary) !important;
+}
