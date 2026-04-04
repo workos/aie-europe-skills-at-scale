@@ -59,9 +59,9 @@ Technique-first workshop. Each act layers techniques onto one shared skill — R
 | Block | Time | Mode | What happens |
 |-------|------|------|-------------|
 | **Open: The problem** | 5 min | Watch | Show a bad repo roast vs an evidence-based one. Frame the promise. |
-| **Act 1: Build the foundation** | 20 min | **Build** | Attendees start from a Repo Roast starter skill and customize description, constraints, tone, and scripts. |
-| **Act 2: Make it smarter** | 25 min | **Build** | Add phases and per-finding confidence checks. Re-run the same skill and compare output quality. |
-| **Act 3: Why this scales** | 20 min | Watch | Same skill adapting to different audiences, composition via WorkOS CLI, and why eval matters. |
+| **Build the foundation** | 20 min | **Build** | Attendees start from a Repo Roast starter skill and customize description, constraints, tone, and scripts. |
+| **Make it smarter** | 25 min | **Build** | Add phases and per-finding confidence checks. Re-run the same skill and compare output quality. |
+| **Why this scales** | 20 min | Watch | Same skill adapting to different audiences, composition via WorkOS CLI, and why eval matters. |
 | **Close: Share & install** | 10 min | **Build** | Compare outputs, install/share the skill, point to handbook for deeper techniques. |
 
 ### What's taught vs what's referenced
@@ -78,18 +78,25 @@ For the full technique library with sources, first-person stories, and deep dive
 
 ### Dead Air Strategy
 
-The workshop will be recorded for YouTube. Dead air kills recordings. Mitigations:
+The workshop will be recorded for YouTube. Dead air kills recordings. Primary strategy: **narrate the wait and use side quests.** While one presenter helps attendees with questions, the other riffs on supplemental content — this fills dead air AND adds value to the recording.
 
-1. **Pre-baked fallbacks for every live demo.** Record each demo beforehand. If something hangs or breaks, cut to the recording and narrate over it. The audience sees the same result; the video stays clean.
-2. **Narrate the wait.** When the agent is working, don't just watch — talk through what it's doing, why it's making those choices, what the audience should watch for. This is where the teaching happens.
+1. **Narrate the wait.** When the agent is working, don't just watch — talk through what it's doing, why it's making those choices, what the audience should watch for. This is where the teaching happens.
+2. **Side quests during agent runs.** While a demo runs or one presenter helps debug, the other can go deeper on a technique from the handbook, share a war story, or preview what's coming next. Pre-plan 2-3 side quest topics per section.
 3. **Parallel activity during agent runs.** While one demo runs, switch to slides or the attendee exercise. "While this runs, here's what I want you to try." The agent finishes in the background.
 4. **Short loops, not long runs.** Structure demos as quick iterations (10-30 seconds each) rather than one long 3-minute agent run. Each loop teaches one thing.
-5. **Planted questions / co-presenter banter.** Zack and Nick can volley during any wait. Pre-plan 2-3 talking points per demo to fill gaps naturally.
+5. **Pre-baked fallbacks for every live demo.** Record each demo beforehand. If something hangs or breaks, cut to the recording and narrate over it. The audience sees the same result; the video stays clean.
 6. **Timer discipline.** If a demo hasn't completed in 60 seconds, cut to the fallback. Don't hope it finishes.
+
+**Side quest topics by section:**
+- **Open:** "Why most public skills are 4 lines and no constraints" — the viral thread problem
+- **Build the foundation:** "The railroading trap" — when over-constraining kills adaptability
+- **Make it smarter:** "We built this skill without following our own process" — the meta-lesson (see below)
+- **Why this scales:** "The negative-scoring skill story" — when a skill makes output worse
+- **Close:** "skill-creator exists" — the tool that scaffolds the next one
 
 ---
 
-## The Exercise: One Skill, Three Acts
+## The Exercise: One Skill, Built Up
 
 ### Live Workshop Domain: Repo Roast
 
@@ -108,13 +115,31 @@ Advanced attendees can adapt the same skeleton to another domain after the core 
 
 To ensure everyone finishes, attendees start from a prebuilt Repo Roast starter skill rather than a blank page. The workshop is about learning the pattern through customization and iteration, not about typing boilerplate from scratch.
 
+**Delivery:** Attendees clone this workshop repo. The clone gives them `.claude/skills/repo-roast/SKILL.md` — the starter skill is immediately available. The abstract's "no repo to clone" promise is about not needing a specific project codebase to work against, not about zero setup. They analyze their own repos (or the provided demo repo) with the skill they cloned.
+
+**Catch-up mechanism:** Checkpoint files in `checkpoints/` let anyone who falls behind copy the canonical version and keep going: `cp checkpoints/2-with-phases.md .claude/skills/repo-roast/SKILL.md`. No branch switching needed — preserves their customizations unless they explicitly overwrite.
+
+### How Skills Load (teach this early)
+
+Skills are markdown files that coding agents discover automatically. No install, no plugin, no version bumping.
+
+**Claude Code:** Place a `SKILL.md` in `.claude/skills/<name>/` inside any project. Claude loads the description at startup and the full content when invoked. Edit the file, save, re-invoke — changes are live immediately. Attendees invoke with `/repo-roast` or by asking "roast this repo."
+
+**Codex:** Same pattern, different directory: `.agents/skills/<name>/SKILL.md`. The setup script symlinks for Codex compatibility.
+
+**The development loop:**
+```
+edit SKILL.md → save → /repo-roast → see output → edit again
+```
+That's it. No restart, no reload. This is the loop attendees use for the entire workshop.
+
 ### Minimum Success Criteria
 
-**By end of Act 1:** A skill file with a good description, at least one custom constraint, at least one working script, and one successful run.
+**By end of "Build the foundation":** A skill file with a good description, at least one custom constraint, at least one working script, and one successful run.
 
-**By end of Act 2:** Phases added, per-finding confidence checks added, one re-run with visibly improved output.
+**By end of "Make it smarter":** Phases added, per-finding confidence checks added, one re-run with visibly improved output.
 
-### Act 1: Build the Foundation — Constraints & Structure
+### Build the Foundation — Constraints & Structure
 
 **Technique focus:** Constraints > instructions, structure, scripts. (Source of truth discipline is baked into the constraints — "trust the repo over assumptions" — rather than taught as a separate beat.)
 
@@ -183,7 +208,7 @@ Recent contributors: !`git log --format="%an" --since="3 months ago" | sort | un
 
 **What they see change:** Run the same prompt with the bad skill and the constrained skill. The difference is immediate — "Your code looks pretty good overall" vs "Health score: 4/10. Your largest file is `handler.ts` at 2,847 lines. You have 14 TODO comments, the oldest from March 2023. Your README references `yarn start` but your lockfile is `pnpm-lock.yaml`."
 
-### Act 2: Make It Smarter — Phases + Confidence
+### Make It Smarter — Phases + Confidence
 
 **Hands-on techniques:** Progressive disclosure, confidence scoring.
 
@@ -227,7 +252,7 @@ If overall confidence is below 7, state what additional information would help.
 
 **What they see change:** The model catches its own drift. Low-evidence findings get dropped automatically. No more speculative noise padding the report.
 
-### Act 3: Why This Scales — Presenter-Led Payoff
+### Why This Scales — Presenter-Led Payoff
 
 You built the primitive. Here's why it matters beyond today.
 
@@ -239,7 +264,7 @@ This act is fast-paced, presenter-led. No new hands-on work. Three proof points 
 
 #### 1. Same Skill, Different Audiences
 
-The centerpiece of Act 3. Same Repo Roast findings, three audiences, three outputs:
+The centerpiece of this section. Same Repo Roast findings, three audiences, three outputs:
 
 ```markdown
 ## Audience Detection
@@ -294,8 +319,8 @@ The same core skill artifact — description, constraints, structure, scripts, w
 
 Say this:
 - At the **open**, when framing the promise
-- After the **first successful roast** in Act 1
-- At the **start of Act 3**, reminding them the skill they built IS the thing we're now showing at scale
+- After the **first successful roast** in "Build the foundation"
+- At the **start of "Why this scales"**, reminding them the skill they built IS the thing we're now showing at scale
 - At the **close**, when they install it and share it
 
 ### Closing
