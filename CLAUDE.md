@@ -36,9 +36,14 @@ Slides are a single `slides.md` file using Slidev markdown syntax. `---` separat
 
 These are added as working directories via `.claude/settings.local.json` for cross-referencing:
 
-- `../cli/main` — WorkOS CLI (15-framework agent-powered installer, Claude Agent SDK, validation retry loops)
+- `../cli/main` — WorkOS CLI (15-framework agent-powered installer, Claude Agent SDK, validation retry loops). **Primary demo roast target** — real history, real churn, enough complexity for interesting findings. Also the Act 3 composition proof.
 - `../skills` — WorkOS skills plugin (40+ reference files, eval framework, router/dispatcher pattern)
-- `../case` — Case harness (multi-agent orchestration, rubric-based gating, retrospective self-improvement)
+- `../case` — Case harness (multi-agent orchestration, rubric-based gating, retrospective self-improvement). Backup roast target.
+
+## Workshop Repo Plan
+
+- **This repo** is the workshop home: starter skill, slides, handbook. Attendees clone it.
+- **WorkOS CLI (`../cli/main`)** is the demo roast target. Pre-baked outputs are generated from it. It appears twice: once as a roast target in Act 1, once as the production composition proof in Act 3.
 
 ## Research & Notes
 
