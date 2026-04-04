@@ -10,7 +10,8 @@
 
 :root {
   /* Brand colors */
-  --color-primary: #6363F1;
+  --color-primary: #6363F1;          /* decorative: backgrounds, borders, progress bar */
+  --color-primary-text: #4747D0;     /* text: links, bold, inline code (WCAG AA 6.5:1) */
   --color-primary-light: #8585F5;
   --color-primary-dark: #4F4FD9;
 
@@ -51,9 +52,9 @@
   font-weight: 800;
 }
 
-/* Accent color for links and emphasis */
+/* Accent color for links and emphasis — uses darker purple for contrast */
 .slidev-layout a {
-  color: var(--color-primary);
+  color: var(--color-primary-text);
   text-decoration: none;
 }
 
@@ -61,9 +62,9 @@
   color: var(--color-primary-dark);
 }
 
-/* Strong text uses brand purple */
+/* Strong text uses contrast-safe purple */
 .slidev-layout strong {
-  color: var(--color-primary);
+  color: var(--color-primary-text);
   font-weight: 700;
 }
 
@@ -82,7 +83,7 @@
 /* Inline code */
 .slidev-layout :not(pre) > code {
   background: var(--color-bg-code);
-  color: var(--color-primary);
+  color: var(--color-primary-text);
   padding: 0.15em 0.4em;
   border-radius: 4px;
   font-size: 0.9em;
@@ -117,10 +118,10 @@
   margin: 1em 0;
 }
 
-/* Cover and section layouts — WorkOS purple */
+/* Cover and section layouts — darker purple for white text contrast (6.8:1) */
 .slidev-layout.cover,
 .slidev-layout.intro {
-  background: var(--color-primary);
+  background: var(--color-primary-text);
   color: #FFFFFF;
 }
 
@@ -136,7 +137,7 @@
 
 /* Section dividers */
 .slidev-layout.section {
-  background: var(--color-primary);
+  background: var(--color-primary-text);
   color: #FFFFFF;
 }
 
@@ -150,7 +151,7 @@
 }
 
 .slidev-layout.quote h1 {
-  color: var(--color-primary);
+  color: var(--color-primary-text);
   font-style: italic;
   font-weight: 700;
 }
