@@ -28,6 +28,12 @@ timer: countdown
 
 Write once, run in Claude Code, Codex, Cursor, and your own agents
 
+<div class="mt-8 text-lg opacity-70">
+
+You're leaving with one reusable skill for a real task you do every week.
+
+</div>
+
 <div class="abs-br m-6 flex gap-2 text-sm opacity-50">
   <span>Nick Nisi & Zack Proser</span>
   <span>·</span>
@@ -47,28 +53,14 @@ TIMING: Open section is 5 minutes total, hard stop at 4:30.
 -->
 
 ---
-layout: section
----
-
-# The Problem
-
-<!--
-Set the stage fast. Don't linger. The goal is to get to the bad/good comparison ASAP.
--->
-
----
 
 # You've done this before
-
-<v-clicks>
 
 - Open your AI tool
 - Type the same instructions you typed yesterday
 - Get roughly the same output
 - Tweak it the same way you tweaked it last time
 - Repeat tomorrow
-
-</v-clicks>
 
 <!--
 "Every developer using AI tools has this problem. You prompt the same way, for the same tasks, over and over."
@@ -82,8 +74,6 @@ Keep it fast — 60 seconds max. This is setup, not the hook.
 
 # If you've explained it five times, it should be a **file**
 
-<v-clicks>
-
 A **skill** is a markdown file that teaches any AI tool how to do a specific job.
 
 Three things to keep straight:
@@ -95,8 +85,6 @@ Three things to keep straight:
 | **Scripts** | How the skill gathers evidence from the real environment |
 
 No SDK. No build step. No dependencies. Drop it in, it works.
-
-</v-clicks>
 
 <!--
 This is the core definition. Say the three-part distinction now and repeat it throughout.
@@ -209,6 +197,32 @@ If someone doesn't have Claude Code or Codex installed, they can still follow al
 -->
 
 ---
+
+# How skills load
+
+```
+.claude/skills/repo-roast/SKILL.md
+```
+
+Claude loads the **name** and **description** at startup. The full skill loads when invoked.
+
+**The development loop:**
+
+```
+edit SKILL.md → save → /repo-roast → see output → edit again
+```
+
+No restart. No reload. No version bump. This is the loop for the entire workshop.
+
+<!--
+"Skills are just markdown files in a directory. Claude discovers them automatically. You edit, save, and re-invoke. That's it."
+
+"This loop — edit, save, run, observe, fix — is the entire workshop. Every hands-on block is this loop."
+
+Keep to 60 seconds. The attendees need this mental model before they start editing.
+-->
+
+---
 layout: section
 ---
 
@@ -229,6 +243,10 @@ layout: quote
 ---
 
 # "Instructions decay, enforcement persists."
+
+We gave 20+ agents prose instructions. Context windows compressed. Agents forgot. They started skipping phases and fabricating evidence.
+
+The fix wasn't better instructions — it was mechanical constraints.
 
 <!--
 Story time — 30-60 seconds. Punchy.
@@ -311,15 +329,11 @@ Stale TODOs: !`grep -rn "TODO\|FIXME\|HACK" . --include="*.*"
 
 The skill runs the command and injects the output.
 
-<v-clicks>
-
 **Without scripts:** the model guesses about your code
 
 **With scripts:** the model has actual file sizes, actual TODOs, actual churn data
 
 This is what separates a skill from a prompt template.
-
-</v-clicks>
 
 <!--
 "The skill gathers its own context from the real environment. It doesn't guess, it checks."
@@ -342,13 +356,9 @@ Don't turn this into a shell workshop. If someone asks about grep flags, say "yo
 | "Give good advice" | "Never recommend rewrite from scratch" |
 | "Be helpful" | "Every finding needs: issue, evidence, severity, fix" |
 
-<v-click>
-
 Negative constraints close failure modes. Positive instructions leave them open.
 
 > "The specificity is the skill."
-
-</v-click>
 
 <!--
 "Models are better at avoiding known-bad patterns than discovering ideal patterns from scratch."
@@ -366,14 +376,10 @@ The name and description are the **only** things loaded at startup.
 
 Claude picks which skill to activate from potentially 100+ based on description alone.
 
-<v-click>
-
 **Test it:** ask Claude *"When would you use the repo-roast skill?"*
 
 If it can't articulate when to use it, the description needs work.
 If it fires on things it shouldn't, add negative triggers.
-
-</v-click>
 
 <!--
 Keep this beat to 2 minutes max.
@@ -430,17 +436,19 @@ Narrate what you see to fill dead air: "I see someone adding a constraint about 
 
 # Run it
 
-<div class="text-2xl">
-
 Type exactly:
 
 ```
 Roast this repo
 ```
 
-Compare: what did the bad skill say vs yours?
+**What you should see change:**
 
-</div>
+| Bad skill | Your skill |
+|-----------|-----------|
+| "Your codebase looks pretty good overall..." | Specific files, line counts, dates |
+| Generic advice anyone could give | Evidence from YOUR repo's git history |
+| No structure | Score, findings, severity, recommendations |
 
 <!--
 This is the make-or-break moment. First successful roast = workshop has momentum.
@@ -452,6 +460,48 @@ If a script fails: "If your script failed, leave it as-is and keep going. The sk
 Repeat the through-line: "You now have a working skill. You're leaving with one reusable skill for a real task you do every week."
 
 TIMING: "Build the Foundation" should wrap by ~25:00.
+-->
+
+---
+
+# While you work
+
+<div class="grid grid-cols-2 gap-8">
+<div>
+
+### You're doing
+
+- Customize description and triggers
+- Add 1-2 constraints
+- Set your tone
+- Run `/repo-roast` on your repo
+
+</div>
+<div>
+
+### Let's talk about
+
+- Why most viral "skills" are 4 lines with no constraints
+- The railroading trap — when over-constraining kills adaptability
+- What makes scripts fail (and what to do when they do)
+
+</div>
+</div>
+
+<!--
+This is the discussion slide for the recording. Advance to this AFTER the "Run it" instruction.
+
+DISCUSSION GUIDE for presenters while attendees work:
+
+1. "Why most public skills are 4 lines" — "Search Twitter for 'Claude skills' and you'll find threads with millions of views sharing a name, a one-liner, and nothing else. No constraints, no scripts, no phases. That's why we're here — to build the other thing."
+
+2. "The railroading trap" — "Don't over-constrain either. If every line is a 'never do X,' you've built a script, not a skill. Tight on fragile operations (never recommend rewrite from scratch), loose on creative work (let it choose how to phrase findings)."
+
+3. "What makes scripts fail" — "The ! backtick syntax runs in the repo's directory. If the repo doesn't have a README, the freshness script returns nothing. That's fine — the skill should handle missing data, not crash."
+
+Walk the room between discussion points. Narrate what you see: "I see someone adding a constraint about test coverage — that's exactly the kind of thing that makes YOUR skill different from the generic one."
+
+TIMING: This slide stays up for ~8-10 minutes during hands-on.
 -->
 
 ---
@@ -473,6 +523,8 @@ layout: quote
 ---
 
 # "LLMs are good at reasoning about code. They're bad at being state machines."
+
+Agents skipped phases, retried excessively, invented their own workflows. The fix: structure outside, self-assessment inside.
 
 <!--
 Story time — 30-60 seconds.
@@ -602,16 +654,30 @@ Is it? Says who? Based on what?
 </div>
 </div>
 
-<v-click>
-
 Low-evidence findings get dropped automatically. No more speculative noise.
-
-</v-click>
 
 <!--
 "The difference is trust. Without scoring, you're getting opinions. With scoring, the model tells you HOW SURE it is and WHY."
 
 "The model catches its own drift. That's self-correction without infrastructure."
+-->
+
+---
+layout: quote
+---
+
+# "We wrote the skill about evidence-based analysis — without testing it on evidence."
+
+Four skill versions, written in one pass from planning docs. First real test: 84 seconds, 60KB of noise.
+
+<!--
+Brief. 30 seconds max. This sets up the hands-on block.
+
+"When we built the checkpoints for this workshop, we wrote all four skill versions without running any of them. The first test run took 84 seconds and returned 60KB of noise."
+
+"Even the people teaching the iterative loop didn't follow it. The pull toward authoring-without-testing is strong. That's why the loop matters."
+
+The full story is in the 'While you work' discussion slide — you can expand there. This slide is just the hook.
 -->
 
 ---
@@ -653,9 +719,49 @@ TIMING: "Make it smarter" should wrap by ~50:00.
 
 ---
 
-# Compare your outputs
+# While you work
 
-<div class="text-xl">
+<div class="grid grid-cols-2 gap-8">
+<div>
+
+### You're doing
+
+- Add a `## Workflow` section with 2-3 phases
+- Add a `## Self-Assessment` section
+- Run `/repo-roast` again and compare
+
+</div>
+<div>
+
+### Let's talk about
+
+- Internal phases vs user-facing stops — when pauses help vs annoy
+- Why single-number confidence is useless
+- "We built this skill without following our own process"
+
+</div>
+</div>
+
+<!--
+DISCUSSION GUIDE for presenters while attendees work:
+
+1. "Internal vs user-facing phases" — "The complete skill (checkpoint 3) makes phases internal — the user gets one clean report. Checkpoint 2 has explicit stops. Both are valid. Stops are useful when the user needs to steer (which module to focus on). Internal phases are better when the skill should just do its job."
+
+2. "Why single-number confidence is useless" — "Confidence: 7/10 tells you nothing. Evidence: 9, Severity: 5, Actionability: 8 tells you exactly what's weak. Decompose into dimensions that matter for your domain. The Ideation plugin uses 5 dimensions, each 0-20, requiring 95 total to advance."
+
+3. META-LESSON — tell the full story here:
+"When we built the checkpoints for this workshop, we wrote all four versions in one pass — from our planning docs, without running any of them. We authored a skill ABOUT evidence-based analysis without gathering evidence about whether the skill worked."
+
+"The first time we ran it on a real repo, the grep took 84 seconds and returned 60KB of noise. The hotspot data was dominated by release bot commits. The confidence threshold was undefined. We had to rewrite every checkpoint."
+
+"Even the people teaching the iterative loop defaulted to 'write it all up front.' That's why the loop matters."
+
+TIMING: This slide stays up for ~10 minutes during hands-on.
+-->
+
+---
+
+# Compare your outputs
 
 **Before:** One-shot dump — take it or leave it
 
@@ -663,7 +769,11 @@ TIMING: "Make it smarter" should wrap by ~50:00.
 
 Same skill. Same repo. The techniques made the difference.
 
-</div>
+| What to look for | |
+|---|---|
+| Did phases give you a triage before committing? | Steering > accepting |
+| Did confidence scoring drop any findings? | Less noise, more signal |
+| Is the output quality visibly better? | Evidence, not opinions |
 
 <!--
 Quick recap moment. Have a few people share if anyone got a strong before/after.
@@ -694,6 +804,12 @@ layout: quote
 ---
 
 # "Trust isn't a feeling. It's a number."
+
+I built a skill I was proud of. It contained accurate information. It looked helpful.
+
+Then I ran the eval — with and without the skill. **The skill made output worse.** Consistently. -12% to -20% delta.
+
+Correct information, missing context. Measurement caught what vibes couldn't.
 
 <!--
 This one hits hardest. Slow down.
@@ -772,11 +888,47 @@ Brief Desktop note: "In coding tools, the skill gathers evidence via scripts. In
 
 ---
 
+# Try it: two audiences, same skill
+
+<div class="text-lg">
+
+Run your skill twice with different prompts:
+
+```
+Roast this repo — I'm the developer who owns it
+```
+
+```
+Roast this repo — I'm a new teammate joining next week
+```
+
+Same skill. Same data. Watch the output change.
+
+</div>
+
+<div class="mt-4 text-sm opacity-60">
+
+2-3 minutes. No edits needed — just different prompts.
+
+</div>
+
+<!--
+MINI HANDS-ON. 2-3 minutes max. No skill edits required.
+
+"You don't need to change anything in your skill file. Just change the prompt. Watch how the same evidence gets reframed."
+
+This keeps momentum from the build sections. The audience gets to experience the adaptation instead of just hearing about it.
+
+If someone's agent doesn't adapt tone: "That's because the skill doesn't have audience detection yet. The complete skill in checkpoint 3 has it. But even without it, the prompt shapes the output."
+
+TIMING: Keep this tight. 2-3 minutes then move to composition.
+-->
+
+---
+
 # 2. Composition: skills as building blocks
 
 Your skill solves one problem. Skills composed together are a system.
-
-<v-clicks>
 
 **The WorkOS CLI:**
 - Framework detection routes to the right installation skill
@@ -787,8 +939,6 @@ Your skill solves one problem. Skills composed together are a system.
 That's production code, shipping today.
 
 The same techniques you just learned power this system.
-
-</v-clicks>
 
 <!--
 "The CLI's retry loop was born from an Ideation session. Rambling input → confidence gate → codebase exploration → spec → implementation."
@@ -804,8 +954,6 @@ TIMING: ~6 min for this proof point.
 
 # 3. Measurement matters
 
-<v-clicks>
-
 **Start here:** the skill-reviewer — structured feedback, zero infrastructure
 
 **Graduate to this:** eval framework — run WITH and WITHOUT the skill, measure the delta
@@ -815,8 +963,6 @@ The WorkOS skills eval: 42 test cases, hard gates on regression, hallucination r
 **Even lightweight measurement beats pure intuition.**
 
 Three test cases, before and after. That's enough to start.
-
-</v-clicks>
 
 <!--
 Brief. Don't belabor eval methodology.
@@ -846,6 +992,31 @@ Repeat: "You're leaving with one reusable skill for a real task you do every wee
 
 ---
 
+# Share your roast
+
+<div class="text-xl">
+
+**Pair up.** Turn to the person next to you.
+
+1. Show your **health score** and **one favorite finding**
+2. What **constraint or tone choice** made it yours?
+
+<div class="mt-4 text-sm opacity-60">90 seconds. Then we'll pull a few highlights.</div>
+
+</div>
+
+<!--
+PAIR SHARE. 90 seconds, then pull 2-3 highlights from stage.
+
+"Roast the repo, not the people." Say this before they share.
+
+This makes the close feel communal instead of administrative. The room hears variety — different tones, different constraints, different findings — on the same skill structure.
+
+After 90 seconds: "Anyone get a finding that surprised them?" Pull 2-3 from the room. Keep it to 2-3 minutes total.
+-->
+
+---
+
 # What you built
 
 | Step | Technique | What changed |
@@ -854,11 +1025,7 @@ Repeat: "You're leaving with one reusable skill for a real task you do every wee
 | **Make it smarter** | Phases, confidence scoring | One-shot dump → collaborative, self-correcting |
 | **Why this scales** | Audience adaptation, composition, eval | One skill → adapted, composed, measured |
 
-<v-click>
-
 **The progression:** bad skill → better skill → smarter skill → scaled skill
-
-</v-click>
 
 <!--
 Quick recap. Don't belabor — they lived it.
@@ -898,8 +1065,6 @@ If install becomes fiddly: emphasize the artifact over the mechanics. "You have 
 
 # What comes next
 
-<v-clicks>
-
 **This week:** Run your skill on a real repo. See what works.
 
 **Next week:** Every bad output is a new constraint. Add them.
@@ -909,13 +1074,7 @@ If install becomes fiddly: emphasize the artifact over the mechanics. "You have 
 - **Transcript reflection** — your past sessions are data. Mine them for which findings mattered.
 - **Eval** — start with the skill-reviewer. Graduate to full measurement when skills become load-bearing.
 
-</v-clicks>
-
-<v-click>
-
 **The [handbook](handbook.md)** has the full technique library — 12 techniques, 9 skill categories, 5 pattern archetypes.
-
-</v-click>
 
 <!--
 "Today was about learning the pattern by building one skill well. The next step is adapting it to another recurring task."
@@ -934,7 +1093,9 @@ class: text-center
 
 # Skills at Scale
 
-**Workshop resources:** `github.com/nicknisi/aie-europe`
+**You're leaving with one reusable skill for a real task you do every week.**
+
+`github.com/nicknisi/aie-europe`
 
 <div class="mt-8 opacity-70">
 
