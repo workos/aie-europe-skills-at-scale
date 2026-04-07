@@ -878,7 +878,7 @@ Share via git — anyone who clones gets the skill.
 </div>
 
 <!--
-"Install your skill globally. Copy it to the global skills directory — now it's available in every project, not just this one."
+"Reuse your skill beyond this repo. For Claude Code and Codex, copy it to the global skills directory — available in every project. For Cursor, copy it into .cursor/rules/ per project — no global path yet."
 
 "You can use this tomorrow morning."
 
