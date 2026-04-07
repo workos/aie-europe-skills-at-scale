@@ -6,4 +6,10 @@ node_modules/
 # Claude local config (user-specific)
 .claude/settings.local.json
 
+# Skill backups (created by review.sh)
+*.bak
+
+# Wrangler local dev state
+.wrangler/
+
 # Track .claude/skills/ so attendees get the starter skill on clone

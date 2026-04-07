@@ -1,0 +1,11 @@
+name = "skill-share"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+
+[[kv_namespaces]]
+binding = "SKILLS"
+id = "8275ba986edd4b99b057474495464aed"
+
+[vars]
+CLEAR_SECRET = "roast-2026"
+MAX_SKILL_SIZE = "10240"
