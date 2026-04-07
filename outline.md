@@ -1,59 +1,61 @@
 # Skills at Scale — Workshop Outline
 
 > **Status:** Draft for Nick & Zack review
-> **Duration:** 80 minutes
+> **Duration:** 80 minutes (7 + 5 + 20 + 25 + 15 + 8 = 80)
 > **Core message:** Skills are how you make AI reliable. Here's how to write good ones.
+> **Narrative framework:** The Spiral — the same concept (a skill) revisited at increasing depth across blocks. Each pass adds a layer: output → constraints/scripts → phases/confidence → portability. The close returns to the opening.
 
 This outline is the canonical source of truth for the workshop story arc. Slides get generated from this — not the other way around. Each block describes: the point we're making, what's on screen, what the audience does, and Nick/Zack discussion topics for the recording.
 
 ---
 
-## Block 1: The Problem (5 min)
+## Block 1: The Problem + What Skills Are (7 min)
 
-**Point:** AI is powerful but flaky, and you keep re-teaching it.
+**Point:** AI is powerful but flaky, you keep re-teaching it, and skills fix this. Define what a skill is by showing the output difference.
 
-**On screen:** Quick examples of the gap — impressive demo vs. unreliable daily use. The "re-explain your stack every conversation" problem.
+### Opening (2 min)
 
-**Beats:**
-1. Nick & Zack intros, WorkOS, quick credibility — but get it right:
-   - We built two skills that progressively disclose 40+ topics (not "40+ skills")
-   - The WorkOS CLI — Claude Agent SDK under the hood, but the brains are entirely skills-based
-   - A RAG agentic pipeline — skills-based
-   - Case — an agentic harness for DX engineering at WorkOS, largely skills-based
-   - The throughline: skills aren't a side project — they're *how we build everything*
-2. The two pains:
-   - AI is impressive but you can't *depend* on it — hallucinations, ignored instructions, generic output
-   - You keep re-explaining context — your stack, your conventions, your preferences. Every. Single. Time.
-3. Land the answer: "Skills fix this. A skill is a markdown file that encodes what you know — your context, your constraints, your judgment — so the AI is reliable every time."
+**Opening line (Nick):**
+> "Raise your hand if you've used an AI coding tool in the last week."
+> [hands go up]
+> "Keep it up if the first thing you did was re-explain your tech stack."
+> [groans]
+> "Yeah. We're going to fix that."
 
-**Transition to next block:** "Let's look at what that actually means."
+Quick intros: "I'm Nick, this is Zack, we're DX engineers at WorkOS." Then credibility — but honest:
+- We built two skills that progressively disclose 40+ topics
+- The WorkOS CLI — Agent SDK under the hood, brains are entirely skills-based
+- A RAG agentic pipeline, an agentic harness for DX engineering — all skills-based
+- "Skills aren't a side project for us — they're how we build everything."
+- "The weird part? The first versions made things worse."
 
----
+### The two pains (1 min)
 
-## Block 2: What Skills Are (5 min)
+Quick, don't dwell:
+- AI is impressive but you can't *depend* on it — hallucinations, ignored instructions, generic output
+- You keep re-explaining context — your stack, your conventions, your preferences. Every. Single. Time.
 
-**Point:** Define skills concretely. What they are, what they're not, when to write one.
+Land the answer: "Skills fix this. A skill is a markdown file that encodes what you know — your context, your constraints, your judgment — so the AI is reliable every time."
 
-**On screen:**
-- Anatomy of a skill: frontmatter, context (scripts), constraints, structure
-- Bad output vs. good output — same repo, same task. Show the *result* difference before showing the code that produced it.
+### Show, don't explain (3 min)
 
-**Beats:**
-1. Definition: a skill is a markdown file that gives AI context, constraints, and structure for a specific task
-2. Bad output: vague, generic, no evidence, hallucinated findings
-3. Good output: specific, evidence-backed, structured, actionable
+**On screen:** Bad output vs. good output — same repo, same task. Output-first: don't show skill code yet.
+
+1. Bad output: "Your code looks pretty good overall." Vague, generic, hallucinated.
+2. Good output: specific findings, file names, severity, evidence, actionable fixes.
+3. "Which of these would you actually trust?"
 4. Reveal: "The difference is ~30 lines of markdown."
-5. When to write a skill vs. when not to (decision framework — quick)
+5. Quick: when to write a skill vs. when not to (decision framework)
 
-**Ends with:** "Today you're building one. Repo Roast — a repo health assessment. The domain is the vehicle. The patterns are what you're taking home."
+### Introduce the domain (1 min)
 
-> **OPEN QUESTION:** Do we show the actual skill *code* here, or save that for Block 4 when they open the file? Showing output-first creates desire; showing code-first creates understanding. Could do a quick flash of the code without dwelling on it.
+"Today you're building one. Repo Roast — a repo health assessment. The domain is the vehicle. The patterns are what you're taking home."
 
-**Transition to next block:** "Let's get you set up."
+**Transition:** "So what does that markdown file actually look like? Let's get set up and you'll see."
 
 ---
 
-## Block 3: Setup (5 min)
+## Block 2: Setup (5 min)
 
 **Point:** Get everyone running.
 
@@ -71,7 +73,7 @@ This outline is the canonical source of truth for the workshop story arc. Slides
 
 ---
 
-## Block 4: Build the Foundation (20 min)
+## Block 3: Build the Foundation (20 min)
 
 **Point:** Constraints and scripts are how you add determinism and context to AI.
 
@@ -108,14 +110,14 @@ Nick's Next.js installer skill for AuthKit — over-prescribed the steps so heav
 **Topic 2: "Scripts as the turning point."**
 Zack's RAG agentic pipeline — what it produced when the skill was guessing vs. when scripts injected real evidence. Why scripts are the single biggest upgrade to any skill.
 
-**Topic 3: "The Webflow skill."**
-(Nick/Zack to flesh out — what's the story here? What makes it a good stage conversation?)
+**Topic 3: "Zack's blog-writing skill."**
+Zack built a skill that generates blog posts consistent with the WorkOS blog style. Good riff: how do you encode *voice* and *style* as constraints? What's the difference between "write like our blog" (vague) and actual constraints that capture the style? When does the skill help vs. when does it produce on-brand slop?
 
 **Transition to next block:** Quick check — "Did your output get more specific? If it did, you just proved that constraints and evidence work. Now let's make it smarter."
 
 ---
 
-## Block 5: Make It Smarter (25 min)
+## Block 4: Make It Smarter (25 min)
 **Point:** Progressive disclosure and confidence scoring add self-regulation to skills.
 
 ### Teach (5-7 min)
@@ -162,38 +164,27 @@ Attendees enhance their skill:
 ### Nick/Zack Discussion (~5 min, during hands-on)
 
 **Topic 1: "Phase-gating honesty."**
-LLMs can just... skip phases. What actually works? External file references. Explicit stop points. What doesn't work? Telling the model "do not proceed until" when all the context is already loaded. Where's the line between useful structure and false sense of control?
+LLMs can just... skip phases. Tell the real story: which skill did this happen with? What did the output look like when phases were ignored? What fix actually worked — external file references? Explicit stop points? What *doesn't* work? ("Do not proceed" in a single file is a suggestion, not a gate.) Be specific about the failure and the fix. The audience is adding phases right now — they need to know where the limits are.
 
 **Topic 2: "When confidence scoring saved us."**
-A real story where a skill was confidently wrong — the information was accurate but the recommendation was bad because context was missing. How adding confidence dimensions caught it. When self-assessment is theater vs. when it actually changes output quality.
+Nick's ideation skill is the concrete example here. Tell the story: what happened when the skill generated ideas without self-assessment? What did it look like when it confidently recommended something it didn't have context for? How did adding confidence dimensions change the output — did it surface gaps instead of guessing through them? When is self-assessment real vs. theater?
 
 
-**Transition to next block:** "You've now built a skill with constraints, scripts, phases, and confidence scoring. Let's talk about why these patterns matter beyond this one skill."
+**Transition to next block:** "Your skill works here. Does it work *everywhere*?"
 
 ---
 
-## Block 6: Skills Beyond the Editor (15 min)
+## Block 5: Skills Beyond the Editor (15 min)
 
 **Point:** The same skills you just built work outside your editor — in CI pipelines, in agents, in products. That's what "at scale" actually means.
 
 > **Reframe:** "Why This Scales" was vague. The real insight is *portability across contexts* — the same skill that runs in Claude Code also powers the WorkOS CLI, also runs in a CI pipeline, also feeds an agent. One skill, many runtimes. That's the scale story.
 
-### Part 1: Same skill, everywhere (~5 min)
+> **Energy note:** They've been building for 45 minutes. Open with hands-on to keep momentum, THEN talk while they're still buzzing from new output.
 
-The skill you just built works beyond your editor. The same markdown file runs in:
-- **Claude Code, Codex, Cursor** — the editor tools you're building in today
-- **Claude Desktop, Claude for Web** — paste context in, the skill reasons over it (no scripts, but the constraints and structure still work)
-- **Claude Agent SDK** — skills as the brains of programmatic agents (the WorkOS CLI is built this way)
-- **Pi** — skills integrated into product workflows
-- **CI pipelines** — automatic tool calls loading specific skills on every push
+### Part 1: Scripts deep dive + mini-exercise (~7 min)
 
-The point: skills are the *portable unit of knowledge*. The runtime is interchangeable. You're not learning a Claude Code trick — you're learning how to encode expertise that works across the whole ecosystem.
-
-Brief live comparison: show the same skill file loaded in 2-3 different contexts. The file doesn't change. The execution context does.
-
-### Part 2: Scripts deep dive + mini-exercise (~7 min)
-
-Since scripts are foundational and Block 4 only scratched the surface, use this time to go deeper. One more hands-on moment before closing.
+Open with energy. One more hands-on moment before the portability talk.
 
 **Mini-exercise (3-5 min):** "Add one new script to your skill. Pick one that sounds fun."
 
@@ -226,7 +217,20 @@ Present these as a menu on screen — attendees pick whichever one they want:
 
 Each one is copy-pasteable. Add it to your `## Context` section, re-run, see how the new signal changes the roast.
 
-Nick/Zack can riff while people work: what makes a good script, why these are all git-only (portability), which ones they'd actually keep in a production skill.
+Nick/Zack riff while people work: what makes a good script, why these are all git-only (portability), which ones they'd actually keep in a production skill.
+
+### Part 2: Same skill, everywhere (~5 min)
+
+Now that they have a richer skill, show them where else it works. The same markdown file runs in:
+- **Claude Code, Codex, Cursor** — the editor tools you're building in today
+- **Claude Desktop, Claude for Web** — paste context in, the skill reasons over it (no scripts, but the constraints and structure still work)
+- **Claude Agent SDK** — skills as the brains of programmatic agents (the WorkOS CLI is built this way)
+- **[Pi](https://pi.dev)** — skills working inside Pi's interface
+- **CI pipelines** — automatic tool calls loading specific skills on every push
+
+The point: skills are the *portable unit of knowledge*. The runtime is interchangeable. You're not learning a Claude Code trick — you're learning how to encode expertise that works across the whole ecosystem.
+
+Brief live comparison: show the same skill file loaded in 2-3 different contexts. The file doesn't change. The execution context does.
 
 ### Part 3: Measurement — quick hit (~3 min)
 
@@ -236,26 +240,25 @@ Keep this tight. One story, one takeaway.
 - Takeaway: "If you're going to rely on a skill, measure it. Even lightweight."
 - Point to eval framework and skill-reviewer in the handbook for anyone who wants to go deeper
 
-**Transition to close:** "You've built a skill. You've seen it work in your editor. You've seen how the same patterns power real products. Let's wrap up."
+**Transition to close:** Go straight into sharing. No recap sentence — the energy should flow directly into Block 7's "let's see what everyone built."
 ---
 
-## Block 7: Close (10 min)
+## Block 6: Close (8 min)
 
 **Point:** You built something real. Take it home.
 
 **Beats:**
 
-1. **Compare outputs (3 min).** Pair up, show each other your Repo Roast output. What's different? What's better? Optional: run `share.sh` to surface a few to the room.
+1. **Share your roasts (3 min).** Run `share.sh` — pull 2-3 to the projector. Pair up, show each other. What's different? What surprised you? This is the payoff moment. (Endpoint + `.share-config` need to be set up pre-workshop.)
 
-2. **Install your skill (2 min).** Global installation paths for Claude Code, Codex, Cursor. You can use this tomorrow morning.
+2. **Install your skill (2 min).** Global installation paths for Claude Code, Codex, Cursor. "You can use this tomorrow morning."
 
-3. **Where to find skills (2 min).** Plugin registries, GitHub, the WorkOS skills plugin as a reference. You're not alone — there's a growing ecosystem.
+3. **What comes next (2 min).** Where to find skills (plugin registries, GitHub, the WorkOS skills plugin). Skill-creator, transcript reflection, eval, the handbook. One slide, quick hits.
 
-4. **What comes next (2 min).** Skill-creator (build skills faster), transcript reflection (learn from past sessions), eval (measure your skills), the handbook (reference for all 12 techniques).
-
-5. **Close (1 min).** "You learned the patterns that make AI reliable — constraints, scripts, progressive disclosure, confidence scoring, composition, measurement. You built a working skill. Now go build skills for the tasks *you* repeat. That's how AI stops being a toy and starts being a tool."
-
-> **OPEN QUESTION:** The `share.sh` script — worth building? It could be a fun moment (pull 2-3 roasts to the projector). But it's prep work. Is the payoff worth it?
+4. **Close — callback to the opening (1 min).**
+   > "Remember the show of hands? The re-explaining your stack, every conversation? That's what the skill replaces. Tomorrow morning you won't re-explain. The skill already knows."
+   >
+   > "You learned the patterns — constraints, scripts, phases, confidence, portability. Now go build skills for the tasks *you* repeat. That's how AI stops being a toy and starts being a tool."
 
 ---
 
@@ -265,24 +268,30 @@ Documenting decisions so we can revisit if needed:
 
 | Original | Decision | Why |
 |----------|----------|-----|
-| "You've done this before" opening | Replaced with pain-point opening | Felt abrupt, assumed too much |
+| "You've done this before" opening | Replaced with show-of-hands + vulnerability opener | Interactive, establishes pain viscerally, earns trust through honesty |
+| Blocks 1+2 as separate blocks (10 min) | Merged into single Block 1 (7 min) | 15 min of talk before code is too long for a workshop. Saves 3 min. |
 | "We built 40+ skills" credibility claim | Corrected to real story | Two skills disclosing 40+ topics, plus CLI/RAG/Case — more impressive and accurate |
 | Three audiences (dev/manager/new hire) | Cut | Contrived framing — real context detection is about repo/environment adaptation |
 | Demo-first opening | Cut (for now) | Risk of anchoring on domain instead of patterns |
 | "Why This Scales" framing | Reframed as "Skills Beyond the Editor" | "Scales" was vague — the real point is same skills, different runtimes (editor → CLI → CI → agents) |
-| Block 6 fully presenter-led | Added mini script exercise | 15 min of straight talk loses the room; one more hands-on moment before close |
+| Block 5 portability-first ordering | Reordered: script exercise first, then portability talk | Keep energy high after 45 min of building; talk while they're buzzing from new output |
 | "We didn't follow our own process" story | Replaced with generic iteration lesson | Story was incoherent — we didn't write the repo roast. The iteration loop stands on its own. |
 | "Viral 4-line skills" discussion topic | Replaced with over-prescribing story | No real examples of 4-line skills; the Next.js AuthKit story is real and more useful |
 | Progressive disclosure as in-file phases | Reframed with folder structure visual | In-file phases are suggestions, not enforcement — external files are what actually gate context |
+| Block 6 close (10 min) | Trimmed to 8 min with opening callback | Saves 2 min; close now circles back to the show-of-hands opening (Spiral Return) |
+| Generic transitions | Replaced with specific, energy-aware transitions | "Your skill works here. Does it work *everywhere*?" beats "Let's talk about why these patterns matter" |
 
 ---
 
 ## Open Questions Summary
 
-1. **Block 2:** Show skill code or just output in the "what skills are" section?
-2. **Block 4:** Webflow skill topic — what's the story? Nick/Zack to flesh out.
-3. **Block 5:** What's the best way to show the ideation skill's confidence scoring on stage? Live demo? Screenshot?
-4. ~~**Block 6:** What advanced script example to use for the deep dive?~~ Resolved — menu of 5 options (bus factor, commit crimes, zombie branches, 3am commits, README vs reality)
-5. **Block 7:** Build `share.sh` or skip it?
-6. **General:** What is "pi" from the discussion notes? Needs clarification.
-7. **General:** Audience feedback mechanism — any way to get their skills back to the stage?
+1. ~~Show skill code or just output?~~ Resolved — output-first in Block 1. Code comes in Block 3.
+2. ~~Webflow skill topic?~~ Resolved — Zack's blog-writing skill for WorkOS blog style.
+3. **Block 4:** What's the best way to show the ideation skill's confidence scoring on stage? Live demo? Screenshot?
+4. ~~Script deep dive examples?~~ Resolved — menu of 5 options.
+5. ~~Build `share.sh`?~~ Resolved — yes, already built. Keep it.
+6. ~~What is "pi"?~~ Resolved — [pi.dev](https://pi.dev).
+7. **Pre-workshop prep:** Set up share.sh endpoint + `.share-config` before the event.
+8. ~~Opening line?~~ Resolved — show-of-hands + vulnerability opener. See Block 1.
+9. **Block 4 discussion:** Nick and Zack need to prep the specific stories for phase-gating failure and confidence scoring. The topics are defined but the details need to come from real experience, not placeholders.
+10. **Block 5 portability demo:** What does "show the same skill in 2-3 contexts" actually look like on screen? Screenshots? Live tool switch? Pre-recorded clips? Needs visual design decision.
