@@ -274,6 +274,8 @@ claude  # or codex, or cursor
 
 Then: `Roast this repo`
 
+Later, share your skill with us: `./share.sh --name "You"`
+
 </div>
 <div class="flex items-center justify-center">
 
@@ -286,6 +288,8 @@ Then: `Roast this repo`
 "Clone this repo. Run setup.sh — it copies the starter skill into the right directory for your tool. Start your agent. Ask it to roast the repo. If you see a health score, you're ready."
 
 "setup.sh handles the install path differences between tools. You can also run it with --cleanup to remove the skill later."
+
+"You'll also see share.sh in the repo. Later, when you have a skill you're happy with, run that to send it to us. We'll run some of your skills live on this machine."
 
 Keep this to 90 seconds max. The QR code is for people who prefer scanning to typing.
 
@@ -543,12 +547,20 @@ Roast this repo
 | Generic advice anyone could give | Evidence from YOUR repo's git history |
 | No structure | Score, findings, severity, recommendations |
 
+<div class="mt-4 text-sm opacity-60">
+
+Got a good result? Share it: `./share.sh --name "Your Name"`
+
+</div>
+
 <!--
 This is the make-or-break moment. First successful roast = workshop has momentum.
 
 If someone got a great result, show it from stage. If someone's skill broke, troubleshoot live — that's teaching too.
 
 If a script fails: "If your script failed, leave it as-is and keep going. The skill should skip missing signals instead of guessing."
+
+"If you got a result you like, run share.sh to send it to us. We'll pull a few onto the projector during the next section."
 
 Repeat the through-line: "You now have a working skill. You're leaving with one reusable skill for a real task you do every week."
 
@@ -1087,23 +1099,30 @@ Repeat: "You're leaving with one reusable skill for a real task you do every wee
 
 <div class="text-xl">
 
-**Pair up.** Turn to the person next to you.
+**Pair up.** Show your **health score** and **one favorite finding**.
 
-1. Show your **health score** and **one favorite finding**
-2. What **constraint or tone choice** made it yours?
+Then send it to us:
 
-<div class="mt-4 text-sm opacity-60">90 seconds. Then we'll pull a few highlights.</div>
+```bash
+./share.sh --name "Your Name"
+```
+
+We'll run a few live on stage.
+
+<div class="mt-4 text-sm opacity-60">90 seconds to pair, then we pull highlights.</div>
 
 </div>
 
 <!--
-PAIR SHARE. 90 seconds, then pull 2-3 highlights from stage.
+PAIR SHARE + LIVE DEMO. 90 seconds for pairs, then pull 2-3 onto the projector.
 
 "Roast the repo, not the people." Say this before they share.
 
-This makes the close feel communal instead of administrative. The room hears variety — different tones, different constraints, different findings — on the same skill structure.
+"While you're pairing, run share.sh if you haven't already. We'll pull a few skills onto this machine and run them live so the room can see the variety."
 
-After 90 seconds: "Anyone get a finding that surprised them?" Pull 2-3 from the room. Keep it to 2-3 minutes total.
+Use ./review.sh to list submissions, pick 2-3 interesting ones by number, load and run them. The variety — different tones, different constraints, different findings — on the same skill structure is the point.
+
+After 90 seconds: "Anyone get a finding that surprised them?" Pull 2-3 from the room, then run 2-3 shared skills from the projector. Keep it to 4-5 minutes total.
 -->
 
 ---
