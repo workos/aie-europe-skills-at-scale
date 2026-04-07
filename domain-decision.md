@@ -1,27 +1,31 @@
 # Workshop Skill Domain Decision
 
+> **Note:** The workshop structure has evolved since this doc was written. See `outline.md` for the current workshop arc. This doc remains the decision record for *why Repo Roast* and the reference for scripts, constraints, and operational prep.
+
 ## The Full Checklist
 
 Every candidate domain must pass all of these to work as the workshop's canonical skill.
 
-| # | Box | Why it matters |
-|---|-----|---------------|
-| 1 | Technical enough for dev conference | Audience credibility |
-| 2 | Scripts feel essential | Key differentiator of the workshop |
-| 3 | Clear before/after in <30 seconds | Demo quality, YouTube watchability |
-| 4 | Constraints are obvious/relatable | Act 1 personalization |
-| 5 | Confidence scoring maps naturally | Act 2 hands-on |
-| 6 | Phases make sense | Act 2 hands-on |
-| 7 | Every attendee can run it immediately | No setup friction |
-| 8 | Works in Claude Code | Primary build environment |
-| 9 | Works in Cursor / Codex | Cross-tool portability demo |
-| 10 | Works in Claude Desktop / Cowork | The accessibility/scale close |
-| 11 | Useful to non-technical teammates | "Skills for everyone" story |
-| 12 | No AI slop stigma | Audience won't roll their eyes |
-| 13 | Transcript reflection makes sense | Act 2 demo connects |
-| 14 | Eval story connects | Act 3 negative-skill anecdote |
+| # | Box | Why it matters | Used in workshop? |
+|---|-----|---------------|-------------------|
+| 1 | Technical enough for dev conference | Audience credibility | Yes — Block 2-5 |
+| 2 | Scripts feel essential | Key differentiator of the workshop | Yes — Block 4, Block 6 deep dive |
+| 3 | Clear before/after in <30 seconds | Demo quality, YouTube watchability | Yes — Block 2, Block 4 |
+| 4 | Constraints are obvious/relatable | Block 4 personalization | Yes — Block 4 |
+| 5 | Confidence scoring maps naturally | Block 5 hands-on | Yes — Block 5 |
+| 6 | Phases make sense | Block 5 hands-on | Yes — Block 5 |
+| 7 | Every attendee can run it immediately | No setup friction | Yes — Block 3 |
+| 8 | Works in Claude Code | Primary build environment | Yes — Block 3-5 |
+| 9 | Works in Cursor / Codex | Cross-tool portability | Yes — Block 6 portability mention |
+| 10 | Works in Claude Desktop / Web | Portability story | Mentioned briefly — Block 6 |
+| 11 | Useful to non-technical teammates | Portability story | Not a focus — cut from workshop arc |
+| 12 | No AI slop stigma | Audience won't roll their eyes | Yes — throughout |
+| 13 | Transcript reflection makes sense | Reference material | No — moved to handbook only |
+| 14 | Eval story connects | Block 6 measurement quick hit | Yes — Block 6 Part 3 |
 
 ## Scorecard
+
+> Historical: used during domain selection. Repo Roast was chosen. See analysis below.
 
 | Box | PR preflight | Code review | PR descriptions | Release notes | Diff explainer |
 |-----|:-:|:-:|:-:|:-:|:-:|
@@ -34,8 +38,8 @@ Every candidate domain must pass all of these to work as the workshop's canonica
 | 7. Every attendee can run | ⚠️ needs staged changes | ✅ | ⚠️ needs PR | ✅ any repo with history | ✅ |
 | 8. Claude Code | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 9. Cursor / Codex | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **10. Desktop / Cowork** | ❌ | ❌ | ⚠️ | ✅ | ✅ |
-| **11. Non-technical** | ❌ | ❌ | ❌ | ✅ | ✅ |
+| 10. Desktop / Web | ❌ | ❌ | ⚠️ | ✅ | ✅ |
+| 11. Non-technical | ❌ | ❌ | ❌ | ✅ | ✅ |
 | 12. No slop stigma | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 13. Transcript reflection | ⚠️ | ⚠️ | ⚠️ | ✅ | ✅ |
 | 14. Eval connects | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -128,21 +132,46 @@ Combines two ideas:
 
 ### Scripts
 
-Two tiers: a **universal core** that works in any git repo (the live build), and **language-specific add-ons** (optional upgrades attendees can add if relevant).
+Two tiers that evolve through the workshop: a **starter set** (Block 4, checkpoint 1) and an **enhanced set** (Block 5, checkpoint 2). Plus **language-specific add-ons** attendees can optionally add.
 
-#### Universal Core (git-only, works everywhere)
+#### Starter Scripts (checkpoint 1 — Block 4)
+
+Simple, git-only, works everywhere. No filtering beyond basic exclusions.
 
 ```markdown
 ## Context
-Stale TODOs: !`grep -rn "TODO\|FIXME\|HACK\|WORKAROUND" . --include="*.*" | head -20`
-Hotspot files (most churn): !`git log --pretty=format: --name-only --since="6 months ago" | sort | uniq -c | sort -rn | head -10`
-Largest tracked files: !`git ls-files | xargs wc -l 2>/dev/null | sort -rn | head -10`
+Stale TODOs: !`grep -rn "TODO\|FIXME\|HACK\|WORKAROUND" . --include="*.*" --exclude-dir=node_modules --exclude-dir=dist --exclude-dir=.git | head -20`
+Hotspot files: !`git log --pretty=format: --name-only --since="6 months ago" | grep -v '^$' | sort | uniq -c | sort -rn | head -10`
+Largest files: !`git ls-files | xargs wc -l 2>/dev/null | sort -rn | head -10`
 README freshness: !`git log -1 --format="%ar" -- README.md`
 Recent contributors: !`git log --format="%an" --since="3 months ago" | sort | uniq -c | sort -rn | head -5`
-Commit frequency: !`git log --oneline --since="6 months ago" | wc -l`
 ```
 
-These commands work in any git repo regardless of language, framework, or tooling. No `src/`, no `.ts`, no `npm`. Every attendee can run them.
+#### Enhanced Scripts (checkpoint 2 — Block 5)
+
+Smarter filtering (pathspecs, bot exclusion, noise reduction) plus three new signals. Better evidence quality feeds into confidence scoring.
+
+```markdown
+## Context
+Stale TODOs: !`git ls-files -- '*.ts' '*.tsx' '*.js' '*.jsx' '*.py' '*.rb' '*.go' '*.rs' '*.md' ':!tests/fixtures' ':!vendor' | xargs grep -n "TODO\|FIXME\|HACK\|WORKAROUND" 2>/dev/null | head -20`
+Hotspot files: !`git log --pretty=format: --name-only --since="6 months ago" | grep -v '^$' | grep -v -E '(CHANGELOG|pnpm-lock|\.release-please|package\.json$)' | sort | uniq -c | sort -rn | head -10`
+Largest files: !`git ls-files -- ':!tests/fixtures' ':!vendor' ':!*.lock' ':!pnpm-lock.yaml' ':!package-lock.json' | xargs wc -l 2>/dev/null | sort -rn | head -10`
+README freshness: !`git log -1 --format="%ar" -- README.md`
+Recent contributors: !`git log --format="%an" --since="3 months ago" | grep -v '\[bot\]' | sort | uniq -c | sort -rn | head -5`
+Commit frequency: !`git log --oneline --since="6 months ago" | wc -l`
+Test file ratio: !`echo "test files:"; git ls-files | grep -ciE '(test|spec)'; echo "total files:"; git ls-files | wc -l`
+Dependency lockfile: !`found=$(ls -1 package-lock.json pnpm-lock.yaml yarn.lock bun.lockb Gemfile.lock go.sum Cargo.lock poetry.lock requirements.txt 2>/dev/null); echo "${found:-none found}"`
+
+If any script returns no output or errors, skip that signal and note "no data available." Do not guess.
+```
+
+**What changes between starter → enhanced:**
+- TODO grep switches from `grep --include` (BSD/GNU portability issues) to `git ls-files` piped to `xargs grep` (portable, filtered by pathspec)
+- Hotspots filter out CHANGELOG, lockfiles, release-please manifests (noise reduction)
+- Largest files filter out test fixtures, vendor, lockfiles
+- Contributors filter out bot accounts
+- Three new scripts: commit frequency, test file ratio, dependency lockfile detection
+- Error handling note added
 
 #### Language-Specific Add-Ons (optional upgrades)
 
@@ -161,7 +190,7 @@ Dependency freshness: !`go list -m -u all 2>/dev/null | grep "\[" | head -15`
 
 Attendees add the ones that match their stack. The core skill works without them.
 
-### Constraints (Act 1 personalization)
+### Constraints (Block 4 personalization)
 
 Starter constraints attendees can customize:
 
@@ -179,16 +208,28 @@ Personalization surface:
 
 ### How It Flows Through the Workshop
 
-#### Act 1: The Roast (fun, hooks them)
+> See `outline.md` for the full workshop arc. This section documents how the Repo Roast domain maps to each block.
 
-**Bad skill:**
+#### Block 2: Bad vs Good Output (the hook)
+
+**Bad skill output:** "Your code looks pretty good overall."
+
+**Good skill output:** "Health score: 4/10. Your largest file is `handler.ts` at 2,847 lines — it handles auth, routing, AND database queries. You have 14 TODO comments, the oldest from March 2023. Your README was last updated 8 months ago and references `yarn start` but your lockfile is `pnpm-lock.yaml`."
+
+Show the *output* contrast first. Reveal the skill code later in Block 4.
+
+#### Block 4: Build the Foundation (constraints + scripts)
+
+Attendees open the starter skill and customize constraints, description, tone, and optionally scripts. The bad/good skill examples below are the reference material for what they're building toward.
+
+**Bad skill (checkpoint 0):**
 ```markdown
 # Repo Health Check
 Look at this repository and tell me how it's doing.
 Be helpful and thorough.
 ```
 
-**Good skill (what they build):**
+**Good skill (checkpoint 1):**
 ```markdown
 ---
 name: repo-roast
@@ -216,11 +257,9 @@ Recent contributors: !`git log --format="%an" --since="3 months ago" | sort | un
 3. One thing the repo does well
 ```
 
-The before/after is the laugh-then-whoa moment. Bad skill: "Your code looks pretty good overall." Good skill: "Health score: 4/10. Your largest file is `handler.ts` at 2,847 lines — it handles auth, routing, AND database queries. You have 14 TODO comments, the oldest from March 2023. Your README was last updated 8 months ago and references `yarn start` but your lockfile is `pnpm-lock.yaml`."
+#### Block 5: Make It Smarter (phases + confidence)
 
-#### Act 2: The Assessment (substance, makes it smart)
-
-**Phases:**
+**Phases (checkpoint 2):**
 ```markdown
 ## Workflow
 Phase 1: Run all context scripts. Summarize raw findings. Present counts and hotspots. Stop.
@@ -229,7 +268,7 @@ Phase 3: Based on feedback, build prioritized recommendations. Run constraints c
 Do not skip phases. Each phase requires confirmation before proceeding.
 ```
 
-**Confidence scoring:**
+**Confidence scoring (checkpoint 2):**
 ```markdown
 ## Self-Assessment
 Rate each finding:
@@ -241,38 +280,17 @@ If any finding scores below 6 on evidence quality, drop it or flag as "needs inv
 If overall confidence is below 7, state what additional information would help.
 ```
 
-**Reflection demo from stage:** Show how the skill learns which findings you cared about (acted on vs ignored) and recalibrates severity over time. "The last three times I ran this, I ignored the TODO findings. The skill learned to deprioritize them for me."
+#### Block 6: Skills Beyond the Editor
 
-#### Act 3: The Scale Story (context detection is the star)
+The portability story. Same skill file works across the ecosystem:
+- **Editor tools** (Claude Code, Codex, Cursor) — full script execution, evidence-driven
+- **Claude Desktop, Claude for Web** — no scripts, but constraints and structure still shape output from pasted context
+- **Claude Agent SDK, Pi** — skills as the brains of programmatic agents and product workflows
+- **CI pipelines** — automatic skill execution on push
 
-The tone shift IS the context detection demo. Same skill, same findings, different audiences — and the skill adapts its delivery:
+Honest framing: in coding tools, the skill gathers its own evidence via scripts. In Desktop/Web, it works from shared or pasted context. The skill file is the same — the execution context differs. Don't overclaim identical behavior everywhere.
 
-```markdown
-## Audience Detection
-Determine the audience from the user's request:
-- **Developer** → Roast mode. Be blunt, specific, actionable. Name files. Suggest fixes.
-- **Engineering manager / tech lead** → Assessment mode. Quantify impact. Frame as business cost. Build the case for prioritization.
-- **New teammate / onboarding** → Orientation mode. Explain the landscape. Flag areas to be careful around. Be welcoming, not alarming.
-If unclear, ask: "Who's this for — you, your manager, or someone new to the repo?"
-```
-
-**Developer (roast):** "Here are the 5 worst hotspots. Start with `handler.ts` — split it into route handlers, auth middleware, and a data layer."
-
-**Engineering manager (assessment):** "The auth module has been modified 47 times in 6 months by 8 different contributors. That level of churn across that many people usually signals coordination cost and merge friction. Recommend investigating sprint impact and considering a focused cleanup."
-
-**New teammate (orientation):** "Welcome to the repo. 3 areas are healthy, 2 are hot spots you should know about before diving in. The auth module is being actively refactored — check with the team before touching it."
-
-This is the "at scale" moment: same skill, three audiences, three outputs.
-
-#### Desktop / Cowork: Honest Framing
-
-In coding tools (Claude Code, Cursor, Codex), the skill gathers evidence directly via scripts.
-
-In Desktop / Cowork, the scripts won't run — there's no repo context. But the skill is still useful in two ways:
-1. **From shared output:** A developer runs the roast in Claude Code, shares the health report. A manager opens it in Desktop and asks "reframe this for my planning meeting." The skill adapts the same findings for a new audience.
-2. **From pasted context:** Someone pastes a `git log`, a dependency list, or a TODO dump into Desktop. The skill reasons over whatever it's given.
-
-Don't overclaim "same skill works identically everywhere." The honest story: in coding tools, the skill gathers its own evidence. In Desktop, it works from shared or pasted context. Both are valuable. The skill file is the same — the execution context differs.
+Also includes a scripts deep dive with a mini-exercise, and a quick measurement hit (negative-scoring skill story).
 
 ### The Name
 
@@ -280,7 +298,7 @@ Don't overclaim "same skill works identically everywhere." The honest story: in 
 - **Durable artifact:** "Repo Health Check" — professional, what you'd actually keep and reuse
 - **Slides/marketing:** "Repo Roast: A Health Assessment With Attitude"
 
-The roast tone is the wrapper, not the permanent identity. The audience adaptation (roast vs assessment vs orientation) is built into the skill itself — it's not just naming, it's the Act 3 context detection moment.
+The roast tone is the wrapper, not the permanent identity.
 
 ### Operational Notes
 
@@ -290,8 +308,8 @@ Not every attendee will have a meaty repo ready. Prepare:
 - Attendees can use their own repo if they want, or follow along with the demo repo
 - The demo repo should have: some large files, stale TODOs, churn hotspots, an outdated README — enough skeletons to make the roast land
 
-#### Act 1 Scaffolding Strategy
-Act 1 is packed (scripts + constraints + structure + personalization in 20 minutes). Reduce pressure by giving attendees a **starter skill file**, not a blank page:
+#### Block 4 Scaffolding Strategy
+Block 4 is packed (scripts + constraints + structure + personalization in 20 minutes). Reduce pressure by giving attendees a **starter skill file**, not a blank page:
 - Pre-filled with the universal core scripts and default constraints
 - Attendees customize 1-2 constraints, adjust tone, maybe add one script
 - Nobody authors the whole thing from scratch
@@ -309,7 +327,7 @@ Known friction points to test:
 - Hotspot detection may include generated/vendor files — add `--not --path "*/node_modules/*"` or similar exclusions
 
 #### Rehearsal Priorities
-- Time Act 1 aggressively — this is the tightest block
+- Time Block 4 aggressively — this is the tightest block
 - Record fallback demos with the demo repo before the workshop
 - Test the universal script set across macOS and Linux (conference laptops vary)
 - Have the language-specific add-ons ready but don't demo them unless time permits
