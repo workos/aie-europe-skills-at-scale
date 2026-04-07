@@ -54,6 +54,45 @@ TIMING: Open section is 5 minutes total, hard stop at 4:30.
 
 ---
 
+# Who we are
+
+<div class="grid grid-cols-2 gap-12">
+<div class="flex flex-col items-center text-center">
+
+<img src="/nick-nisi.webp" class="w-36 h-36 rounded-full object-cover mb-4" />
+
+### Nick Nisi
+
+**DX Engineer · WorkOS**
+
+- Former co-host, JS Party
+-
+-
+
+</div>
+<div class="flex flex-col items-center text-center">
+
+<img src="/zack-proser.webp" class="w-36 h-36 rounded-full object-cover mb-4" />
+
+### Zack Proser
+
+**DX Engineer · WorkOS**
+
+- <!-- TODO: 2-3 bullet points -->
+-
+-
+
+</div>
+</div>
+
+<!--
+Keep this to 30-60 seconds. Don't read the bullets — the slide establishes credibility, the conversation establishes rapport.
+
+"I'm Nick, this is Zack. We're DX engineers at WorkOS. We build the tools and skills we're about to teach you."
+-->
+
+---
+
 # You've done this before
 
 - Open your AI tool
@@ -74,7 +113,7 @@ Keep it fast — 60 seconds max. This is setup, not the hook.
 
 # If you've explained it five times, it should be a **file**
 
-A **skill** is a markdown file that teaches any AI tool how to do a specific job.
+A **skill** is a markdown file with structure: frontmatter for routing, scripts for evidence, constraints for guardrails. It teaches any AI tool how to do a specific job.
 
 Three things to keep straight:
 
@@ -150,8 +189,8 @@ TIMING: Should hit this slide by ~3:00.
 
 | | Time | Mode | What happens |
 |---|---:|---|---|
-| **Build the foundation** | 20 min | Build | Constraints, scripts, structure — a working skill |
-| **Make it smarter** | 25 min | Build | Phases + confidence — a smarter skill |
+| **Build the foundation** | 20 min | Build | Constraints, scripts, structure. A working skill. |
+| **Make it smarter** | 25 min | Build | Phases + confidence. A smarter skill. |
 | **Why this scales** | 20 min | Watch | Audience adaptation, composition, measurement |
 | **Close** | 10 min | Build | Compare, install, share |
 
@@ -246,7 +285,7 @@ layout: quote
 
 We gave 20+ agents prose instructions. Context windows compressed. Agents forgot. They started skipping phases and fabricating evidence.
 
-The fix wasn't better instructions — it was mechanical constraints.
+The fix wasn't better instructions. It was mechanical constraints.
 
 <!--
 Story time — 30-60 seconds. Punchy.
@@ -397,12 +436,12 @@ TIMING: Should be ready to hand off to attendees by ~11:00.
 
 <div class="text-lg">
 
-Start with the **starter skill file** — customize, don't write from scratch.
+Start with the **starter skill file**. Customize it, don't write from scratch.
 
 **Three required edits:**
-1. **Description** — adapt triggers to your context
-2. **1-2 constraints** — what should it NEVER do?
-3. **Tone** — blunt roast? Professional assessment? Your call.
+1. **Description**: adapt triggers to your context
+2. **1-2 constraints**: what should it NEVER do?
+3. **Tone**: blunt roast? Professional assessment? Your call.
 
 **Optional:** add one extra script if you're ahead.
 
@@ -482,7 +521,7 @@ TIMING: "Build the Foundation" should wrap by ~25:00.
 ### Let's talk about
 
 - Why most viral "skills" are 4 lines with no constraints
-- The railroading trap — when over-constraining kills adaptability
+- The railroading trap: when over-constraining kills adaptability
 - What makes scripts fail (and what to do when they do)
 
 </div>
@@ -602,7 +641,7 @@ No way to steer. No way to focus.
 
 # Technique: Confidence Scoring
 
-The skill grades its own work — and drops what it can't back up.
+The skill grades its own work. What it can't back up, it drops.
 
 ```markdown
 ## Self-Assessment
@@ -688,8 +727,8 @@ The full story is in the 'While you work' discussion slide — you can expand th
 
 Add two sections to your skill:
 
-1. **Workflow** — 2-3 phases with stop points between each
-2. **Self-Assessment** — dimensions that matter for YOUR domain
+1. **Workflow**: 2-3 phases with stop points between each
+2. **Self-Assessment**: dimensions that matter for YOUR domain
 
 Then **run it again** on the same repo. Compare to your first output.
 
@@ -735,7 +774,7 @@ TIMING: "Make it smarter" should wrap by ~50:00.
 
 ### Let's talk about
 
-- Internal phases vs user-facing stops — when pauses help vs annoy
+- Internal phases vs user-facing stops: when do pauses help?
 - Why single-number confidence is useless
 - "We built this skill without following our own process"
 
@@ -763,7 +802,7 @@ TIMING: This slide stays up for ~10 minutes during hands-on.
 
 # Compare your outputs
 
-**Before:** One-shot dump — take it or leave it
+**Before:** One-shot dump. Take it or leave it.
 
 **After:** Phased, self-assessed, collaborative
 
@@ -807,7 +846,7 @@ layout: quote
 
 I built a skill I was proud of. It contained accurate information. It looked helpful.
 
-Then I ran the eval — with and without the skill. **The skill made output worse.** Consistently. -12% to -20% delta.
+Then I ran the eval, with and without the skill. **The skill made output worse.** Consistently. -12% to -20% delta.
 
 Correct information, missing context. Measurement caught what vibes couldn't.
 
@@ -908,7 +947,7 @@ Same skill. Same data. Watch the output change.
 
 <div class="mt-4 text-sm opacity-60">
 
-2-3 minutes. No edits needed — just different prompts.
+2-3 minutes. No edits needed, just different prompts.
 
 </div>
 
@@ -954,9 +993,9 @@ TIMING: ~6 min for this proof point.
 
 # 3. Measurement matters
 
-**Start here:** the skill-reviewer — structured feedback, zero infrastructure
+**Start here:** the skill-reviewer. Structured feedback, zero infrastructure.
 
-**Graduate to this:** eval framework — run WITH and WITHOUT the skill, measure the delta
+**Graduate to this:** eval framework. Run WITH and WITHOUT the skill, measure the delta.
 
 The WorkOS skills eval: 42 test cases, hard gates on regression, hallucination reduction targets.
 
@@ -1070,11 +1109,11 @@ If install becomes fiddly: emphasize the artifact over the mechanics. "You have 
 **Next week:** Every bad output is a new constraint. Add them.
 
 **When ready:**
-- **skill-creator** — Claude generates skills from natural language, runs an eval before install
-- **Transcript reflection** — your past sessions are data. Mine them for which findings mattered.
-- **Eval** — start with the skill-reviewer. Graduate to full measurement when skills become load-bearing.
+- **skill-creator**: Claude generates skills from natural language and runs an eval before install
+- **Transcript reflection**: your past sessions are data. Mine them for which findings mattered.
+- **Eval**: start with the skill-reviewer. Graduate to full measurement when skills become load-bearing.
 
-**The [handbook](handbook.md)** has the full technique library — 12 techniques, 9 skill categories, 5 pattern archetypes.
+**The [handbook](handbook.md)** has the full technique library: 12 techniques, 9 skill categories, 5 pattern archetypes.
 
 <!--
 "Today was about learning the pattern by building one skill well. The next step is adapting it to another recurring task."
