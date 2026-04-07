@@ -405,7 +405,7 @@ If the answer doesn't match your intent, rewrite the description.
 
 # Your turn: build your Repo Roast
 
-Open `.claude/skills/repo-roast/SKILL.md` and customize:
+Open your starter skill file and customize:
 
 <div class="grid grid-cols-2 gap-6 mt-2">
 <div class="space-y-2 text-sm">
@@ -426,7 +426,7 @@ Roast this repo
 
 Compare with the bad output. Better?
 
-**Behind?** `cp checkpoints/1-starter.md .claude/skills/repo-roast/SKILL.md`
+**Behind?** Run `./setup.sh --checkpoint 1` to catch up
 
 </div>
 </div>
@@ -637,7 +637,7 @@ Drop findings below 6 on evidence.
 - Confidence → less noise?
 - Is the output *better*?
 
-**Behind?** `cp checkpoints/2-with-phases.md .claude/skills/repo-roast/SKILL.md`
+**Behind?** Run `./setup.sh --checkpoint 2` to catch up
 
 </div>
 </div>
@@ -848,15 +848,18 @@ TIMING: 3 minutes for sharing.
 <div class="grid grid-cols-2 gap-6">
 <div>
 
-### Make it global
+### Reuse it everywhere
 
 ```bash
-# Claude Code
-cp .claude/skills/repo-roast/SKILL.md ~/.claude/skills/repo-roast/SKILL.md
-# Codex
-cp .agents/skills/repo-roast/SKILL.md ~/.agents/skills/repo-roast/SKILL.md
-# Cursor — copy to project .cursor/rules/
+# Claude Code — global (available in every project)
+cp .claude/skills/repo-roast/SKILL.md \
+  ~/.claude/skills/repo-roast/SKILL.md
+# Codex — global
+cp .agents/skills/repo-roast/SKILL.md \
+  ~/.agents/skills/repo-roast/SKILL.md
 ```
+
+**Cursor:** copy to `.cursor/rules/` in each project (no global path yet)
 
 Share via git — anyone who clones gets the skill.
 

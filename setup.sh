@@ -11,10 +11,11 @@ YELLOW='\033[0;33m'
 NC='\033[0m'
 
 usage() {
-  echo "Usage: $0 [--cleanup]"
+  echo "Usage: $0 [--cleanup] [--checkpoint N]"
   echo ""
-  echo "  (no args)   Symlink the repo-roast skill for your coding agent"
-  echo "  --cleanup   Remove symlinks created by this script"
+  echo "  (no args)        Symlink the repo-roast skill for your coding agent"
+  echo "  --checkpoint N   Copy checkpoint N (0-3) as your active skill"
+  echo "  --cleanup        Remove symlinks created by this script"
   exit 0
 }
 
@@ -92,8 +93,28 @@ install() {
   echo "To remove: $0 --cleanup"
 }
 
+checkpoint() {
+  local num="${1:-}"
+  local map_0="$SCRIPT_DIR/checkpoints/0-bad-skill.md"
+  local map_1="$SCRIPT_DIR/checkpoints/1-starter.md"
+  local map_2="$SCRIPT_DIR/checkpoints/2-with-phases.md"
+  local map_3="$SCRIPT_DIR/checkpoints/3-complete.md"
+
+  local src_var="map_${num}"
+  local src="${!src_var:-}"
+
+  if [ -z "$src" ] || [ ! -f "$src" ]; then
+    echo -e "${RED}Error:${NC} Invalid checkpoint '$num'. Use 0, 1, 2, or 3."
+    exit 1
+  fi
+
+  cp "$src" "$SKILL_SRC/SKILL.md"
+  echo -e "  ${GREEN}Loaded${NC} checkpoint $num -> $SKILL_SRC/SKILL.md"
+}
+
 # Parse args
 case "${1:-}" in
+  --checkpoint) checkpoint "${2:-}" ;;
   --cleanup|--uninstall|--remove) cleanup ;;
   --help|-h) usage ;;
   "") install ;;
