@@ -28,12 +28,6 @@ timer: countdown
 
 Write once, run in Claude Code, Codex, Cursor, and your own agents
 
-<div class="mt-8 text-lg opacity-70">
-
-You're leaving with one reusable skill for a real task you do every week.
-
-</div>
-
 <div class="abs-br m-6 flex gap-2 text-sm opacity-50">
   <span>Nick Nisi & Zack Proser</span>
   <span>·</span>
@@ -44,8 +38,6 @@ You're leaving with one reusable skill for a real task you do every week.
 Presenter A opens. Conversational, not monologue.
 
 "Welcome. 80 minutes. You're going to build one working skill and leave with it installed in your AI tools."
-
-Core promise — say it now: "You're leaving with one reusable skill for a real task you do every week."
 
 Presenter B reacts, sharpens — "And the techniques you learn transfer to any task, not just the one we build today."
 
@@ -93,6 +85,28 @@ Keep this to 30-60 seconds. Don't read the bullets — the slide establishes cre
 
 ---
 
+# Built by WorkOS
+
+<div class="flex items-center gap-8">
+<div class="flex-1">
+
+WorkOS builds developer infrastructure for enterprise features: SSO, SCIM, RBAC, FGA, and auth.
+
+The skills and agent patterns in this workshop were developed while building the **WorkOS CLI** and its 15-framework installer, powered by the Claude Agent SDK.
+
+Everything we teach today ships in production.
+
+</div>
+</div>
+
+<!--
+30 seconds max. This is a sponsor/context slide, not a sales pitch.
+
+"WorkOS is where we work. The patterns we're teaching come from building real developer tools — the CLI, the skills plugin, the agent harness. This isn't theoretical."
+-->
+
+---
+
 # You've done this before
 
 - Open your AI tool
@@ -111,24 +125,28 @@ Keep it fast — 60 seconds max. This is setup, not the hook.
 
 ---
 
-# If you've explained it five times, it should be a **file**
+# What is a skill?
 
-A **skill** is a markdown file with structure: frontmatter for routing, scripts for evidence, constraints for guardrails. It teaches any AI tool how to do a specific job.
-
-Three things to keep straight:
+A **skill** is a markdown file that teaches an AI tool how to do a specific job. It has structure: a description for routing, scripts for gathering evidence, and constraints for guardrails.
 
 | | |
 |---|---|
-| **Skill** | The reusable artifact you author (a `.md` file) |
-| **Tool** | The environment that loads and runs it (Claude Code, Cursor, Codex) |
-| **Scripts** | How the skill gathers evidence from the real environment |
+| **Skill** | A reusable `.md` file you author and share |
+| **Tool** | The agent that loads and runs it (Claude Code, Cursor, Codex) |
+| **Scripts** | Shell commands that gather real data from the environment |
 
-No SDK. No build step. No dependencies. Drop it in, it works.
+**When to write one:** You've repeated the same instructions across sessions, or you want the LLM to follow a specific process every time.
+
+**When not to:** The LLM already does it well enough, or the task changes every time. Not everything needs to be a skill. But when a task is repeatable, the skill makes it reliable.
 
 <!--
-This is the core definition. Say the three-part distinction now and repeat it throughout.
+This is the core definition. Ground the audience before showing examples.
 
 "A skill is just a file. The tool runs it. Scripts give it real data."
+
+"You don't need a skill for everything. But when you find yourself re-explaining the same process — how to review code, how to check repo health, how to onboard — that's when a skill pays off."
+
+"The key insight: the LLM is already good at many things. Skills are for the tasks where you need consistency, evidence, and guardrails."
 
 Don't over-explain portability yet — that's "Why this scales."
 -->
@@ -159,24 +177,37 @@ Pause after the output. Let the room react to how weak it is.
 
 ---
 
-# What a good skill produces
+# What a good skill looks like
 
-> Health score: 4/10. Your largest file is `handler.ts` at 2,847 lines — it handles auth, routing, AND database queries. You have 14 TODO comments, the oldest from March 2023. Your README was last updated 8 months ago and references `yarn start` but your lockfile is `pnpm-lock.yaml`.
+```markdown {maxHeight:'200px'}
+---
+name: repo-roast
+description: Analyzes repository health by running git
+  and file-system scripts. Use for repo assessments
+  or code quality reviews.
+---
+# Repo Roast
+## Context
+Stale TODOs: !`grep -rn "TODO\|FIXME" . --include="*.*" | head -20`
+Largest files: !`git ls-files | xargs wc -l 2>/dev/null
+  | sort -rn | head -10`
+## Constraints
+- Never be vague — cite specific files and counts
+- Maximum 10 findings, ordered by severity
+```
 
 <v-click>
 
-Same repo. Same question. Different skill.
-
-**That's the gap this workshop fills.**
+> Health score: 4/10. `handler.ts` is 2,847 lines handling auth, routing, AND database queries. 14 TODO comments, oldest from March 2023. README references `yarn start` but lockfile is `pnpm-lock.yaml`.
 
 </v-click>
 
 <!--
-This is the laugh-then-whoa moment. Let the audience react.
+Show BOTH the skill and the output. The contrast with the bad skill is the point.
+
+"Description for routing. Scripts for evidence. Constraints for guardrails. And the output is completely different."
 
 "Same repo. Same question. The difference is the skill."
-
-Transition: "Here's the plan for the next 75 minutes."
 
 TIMING: Should hit this slide by ~3:00.
 -->
@@ -206,18 +237,42 @@ TIMING: Finish the Open by 5:00. Hard stop. Transition to setup + Build the Foun
 
 ---
 
+# What we're building: Repo Roast
+
+A skill that audits any git repo's health using real data: stale TODOs, churn hotspots, large files, documentation gaps.
+
+**We all build the same skill** so we can debug from stage and the recording has a clear through-line.
+
+**But make it yours.** We provide baselines and checkpoints. You decide:
+- What constraints matter for your codebase
+- What tone fits your team (blunt roast? professional report?)
+- What extra signals to gather
+
+The techniques are the lesson. The domain is the vehicle. Experiment.
+
+<!--
+"We all build Repo Roast today. That's the vehicle for learning. But the point is the techniques — constraints, scripts, phases, confidence — and those work for any skill."
+
+"We have checkpoints if you fall behind. But don't just copy them — customize. Add a constraint that matters to YOUR team. Change the tone. Add a script for something you actually care about."
+
+"The skill you leave with should be yours, not ours."
+-->
+
+---
+
 # Get set up
 
 <div class="grid grid-cols-2 gap-8">
 <div>
 
 ```bash
-git clone https://github.com/nicknisi/aie-europe.git
+git clone https://github.com/workos/aie-europe.git
 cd aie-europe
-claude  # or codex
+./setup.sh        # installs the starter skill
+claude  # or codex, or cursor
 ```
 
-Then: `/repo-roast` on any repo
+Then: `Roast this repo`
 
 </div>
 <div class="flex items-center justify-center">
@@ -228,7 +283,9 @@ Then: `/repo-roast` on any repo
 </div>
 
 <!--
-"Clone this repo. Start your agent. Run /repo-roast. If you see a health score, you're ready."
+"Clone this repo. Run setup.sh — it copies the starter skill into the right directory for your tool. Start your agent. Ask it to roast the repo. If you see a health score, you're ready."
+
+"setup.sh handles the install path differences between tools. You can also run it with --cleanup to remove the skill later."
 
 Keep this to 90 seconds max. The QR code is for people who prefer scanning to typing.
 
@@ -239,22 +296,28 @@ If someone doesn't have Claude Code or Codex installed, they can still follow al
 
 # How skills load
 
-```
-.claude/skills/repo-roast/SKILL.md
-```
+Every tool discovers skills differently, but the file is the same.
 
-Claude loads the **name** and **description** at startup. The full skill loads when invoked.
+| Tool | Discovery path |
+|---|---|
+| **Claude Code** | `.claude/skills/repo-roast/SKILL.md` |
+| **Codex** | `.agents/skills/repo-roast/SKILL.md` |
+| **Cursor** | `.cursor/rules/repo-roast.md` |
 
-**The development loop:**
+The tool reads the **name** and **description** at startup. The full skill loads when invoked.
+
+**The development loop (same in every tool):**
 
 ```
-edit SKILL.md → save → /repo-roast → see output → edit again
+edit skill → save → invoke → see output → edit again
 ```
 
 No restart. No reload. No version bump. This is the loop for the entire workshop.
 
 <!--
-"Skills are just markdown files in a directory. Claude discovers them automatically. You edit, save, and re-invoke. That's it."
+"The skill file is identical across tools. Only the directory changes. That's what makes skills portable."
+
+"Today we'll use Claude Code or Codex, but the skill you build works in Cursor too — just copy it to the right path."
 
 "This loop — edit, save, run, observe, fix — is the entire workshop. Every hands-on block is this loop."
 
@@ -278,14 +341,12 @@ TIMING: Setup talk before attendees type = 6 min MAX. Hands-on + first run = ~14
 -->
 
 ---
-layout: quote
----
 
-# "Instructions decay, enforcement persists."
+# Lesson from production: instructions decay
 
 We gave 20+ agents prose instructions. Context windows compressed. Agents forgot. They started skipping phases and fabricating evidence.
 
-The fix wasn't better instructions. It was mechanical constraints.
+The fix wasn't better instructions. It was **mechanical constraints**.
 
 <!--
 Story time — 30-60 seconds. Punchy.
@@ -310,35 +371,28 @@ Be helpful and thorough.
 ```markdown
 ---
 name: repo-roast
-description: Analyzes repository health by running git and
-  file-system scripts to find stale TODOs, churn hotspots,
-  large files, and documentation gaps. Use when the user asks
-  for a repo assessment, health check, or code quality review.
-  Do NOT use for simple file lookups or git history questions.
+description: Analyzes repository health by running git
+  and file-system scripts. Use for repo assessments or
+  code quality reviews. Do NOT use for simple file lookups.
 ---
-
 # Repo Roast
 
 ## Context
-Stale TODOs: !`grep -rn "TODO\|FIXME\|HACK" . --include="*.*"
-  --exclude-dir=node_modules --exclude-dir=dist --exclude-dir=.git | head -20`
-Hotspot files: !`git log --pretty=format: --name-only
-  --since="6 months ago" | grep -v '^$' | sort | uniq -c | sort -rn | head -10`
-Largest files: !`git ls-files | xargs wc -l 2>/dev/null
-  | sort -rn | head -10`
+Stale TODOs: !`grep -rn "TODO\|FIXME" . --include="*.*" | head -20`
+Hotspot files: !`git log --pretty=format: --name-only | sort
+  | uniq -c | sort -rn | head -10`
+Largest files: !`git ls-files | xargs wc -l 2>/dev/null | head -10`
 README freshness: !`git log -1 --format="%ar" -- README.md`
-Recent contributors: !`git log --format="%an"
-  --since="3 months ago" | sort | uniq -c | sort -rn | head -5`
 
 ## Constraints
-- Never be vague — cite specific files and counts as evidence
-- Every finding: what's wrong, evidence, severity, recommendation
+- Never be vague — cite specific files and counts
+- Every finding: issue, evidence, severity, fix
 - Never recommend "rewrite from scratch"
 - Maximum 10 findings, ordered by severity
 
 ## Structure
-1. One-line health verdict (with overall score)
-2. Top findings (max 10), each with: issue, evidence, severity, fix
+1. One-line health verdict (with score)
+2. Top findings (max 10) with evidence
 3. One thing the repo does well
 ```
 ````
@@ -558,12 +612,12 @@ Repeat promise: "You're leaving with one reusable skill for a real task you do e
 -->
 
 ---
-layout: quote
----
 
-# "LLMs are good at reasoning about code. They're bad at being state machines."
+# Lesson from production: LLMs make bad state machines
 
-Agents skipped phases, retried excessively, invented their own workflows. The fix: structure outside, self-assessment inside.
+Agents skipped phases, retried excessively, invented their own workflows.
+
+The fix: **structure outside, self-assessment inside.** That's what we're adding now.
 
 <!--
 Story time — 30-60 seconds.
@@ -702,12 +756,12 @@ Low-evidence findings get dropped automatically. No more speculative noise.
 -->
 
 ---
-layout: quote
----
 
-# "We wrote the skill about evidence-based analysis — without testing it on evidence."
+# We didn't follow our own process
 
-Four skill versions, written in one pass from planning docs. First real test: 84 seconds, 60KB of noise.
+We wrote all four skill versions in one pass from planning docs. No testing.
+
+First real run: **84 seconds, 60KB of noise.** Even the people teaching the loop skipped the loop.
 
 <!--
 Brief. 30 seconds max. This sets up the hands-on block.
@@ -839,10 +893,8 @@ TIMING: "Why this scales" runs from ~50:00 to ~70:00.
 -->
 
 ---
-layout: quote
----
 
-# "Trust isn't a feeling. It's a number."
+# A skill that made things worse
 
 I built a skill I was proud of. It contained accurate information. It looked helpful.
 
@@ -1134,7 +1186,7 @@ class: text-center
 
 **You're leaving with one reusable skill for a real task you do every week.**
 
-`github.com/nicknisi/aie-europe`
+`github.com/workos/aie-europe`
 
 <div class="mt-8 opacity-70">
 
