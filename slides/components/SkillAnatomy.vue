@@ -7,7 +7,7 @@ const sections = [
   {
     id: 'frontmatter',
     label: 'Frontmatter',
-    desc: 'Name + description = how the AI finds and routes to your skill',
+    desc: 'How the AI finds and routes to your skill',
     color: '#6363F1',
     lines: [
       { text: '---', dim: true },
@@ -20,7 +20,7 @@ const sections = [
   {
     id: 'context',
     label: 'Context + Scripts',
-    desc: 'Shell commands that inject real evidence — the AI reasons over output, not guesses',
+    desc: 'Shell commands that inject real evidence',
     color: '#0ea5e9',
     lines: [
       { text: '## Context' },
@@ -32,7 +32,7 @@ const sections = [
   {
     id: 'constraints',
     label: 'Constraints',
-    desc: 'Close off failure modes — every unconstrained dimension is where the AI drifts',
+    desc: 'Close off failure modes',
     color: '#f59e0b',
     lines: [
       { text: '## Constraints' },
@@ -45,7 +45,7 @@ const sections = [
   {
     id: 'structure',
     label: 'Structure',
-    desc: 'Shape the output — what the AI delivers and in what order',
+    desc: 'What the AI delivers and in what order',
     color: '#10b981',
     lines: [
       { text: '## Structure' },
@@ -74,10 +74,10 @@ const allLines = computed(() => {
 </script>
 
 <template>
-  <div class="grid grid-cols-5 gap-6 h-full">
+  <div class="grid grid-cols-5 gap-4 max-h-[400px]">
     <!-- Code view -->
-    <div class="col-span-3 bg-gray-50 rounded-xl border border-gray-200 p-4 font-mono text-xs overflow-hidden">
-      <div class="flex items-center gap-1.5 mb-3 pb-2 border-b border-gray-200">
+    <div class="col-span-3 bg-gray-50 rounded-xl border border-gray-200 p-3 font-mono text-[11px] overflow-hidden">
+      <div class="flex items-center gap-1.5 mb-2 pb-1.5 border-b border-gray-200">
         <span class="h-2.5 w-2.5 rounded-full bg-red-400" />
         <span class="h-2.5 w-2.5 rounded-full bg-amber-400" />
         <span class="h-2.5 w-2.5 rounded-full bg-green-400" />
@@ -108,11 +108,11 @@ const allLines = computed(() => {
     </div>
 
     <!-- Labels -->
-    <div class="col-span-2 flex flex-col justify-center space-y-3">
+    <div class="col-span-2 flex flex-col justify-center space-y-2">
       <div
         v-for="(section, i) in sections"
         :key="section.id"
-        class="rounded-lg p-3 transition-all duration-500 border-l-3"
+        class="rounded-lg p-2 transition-all duration-500 border-l-3"
         :class="[
           i <= activeSection ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4',
           i === activeSection ? 'bg-white shadow-md' : 'bg-transparent',
@@ -125,7 +125,7 @@ const allLines = computed(() => {
             {{ section.label }}
           </span>
         </div>
-        <p class="text-xs text-gray-600 leading-relaxed">{{ section.desc }}</p>
+        <p class="text-[11px] text-gray-600 leading-snug">{{ section.desc }}</p>
       </div>
     </div>
   </div>

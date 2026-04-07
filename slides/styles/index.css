@@ -36,6 +36,25 @@
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-y: auto !important;
+}
+
+/* Slidev's slide container can clip content — override */
+.slidev-page .slidev-layout,
+.slidev-slide-container .slidev-layout {
+  overflow-y: auto !important;
+}
+
+/* Subtle scrollbar for overflowing slides */
+.slidev-layout::-webkit-scrollbar {
+  width: 4px;
+}
+.slidev-layout::-webkit-scrollbar-track {
+  background: transparent;
+}
+.slidev-layout::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 2px;
 }
 
 /* Headings */

@@ -31,33 +31,31 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="grid grid-cols-2 gap-6 h-full">
+  <div class="grid grid-cols-2 gap-4 max-h-[420px]">
     <!-- Bad side -->
     <div
-      class="rounded-xl border-2 p-5 transition-all duration-700 flex flex-col"
+      class="rounded-xl border-2 p-3 transition-all duration-700 flex flex-col"
       :class="showBad
         ? 'border-gray-300 bg-gray-50 opacity-100 translate-y-0'
         : 'border-transparent bg-transparent opacity-0 translate-y-4'"
     >
-      <div class="flex items-center gap-2 mb-3">
-        <span class="h-2.5 w-2.5 rounded-full bg-gray-400" />
-        <span class="text-xs font-mono font-semibold text-gray-500 uppercase tracking-wider">Without a skill</span>
+      <div class="flex items-center gap-2 mb-2">
+        <span class="h-2 w-2 rounded-full bg-gray-400" />
+        <span class="text-[10px] font-mono font-semibold text-gray-500 uppercase tracking-wider">Without a skill</span>
       </div>
 
-      <div class="font-mono text-xs text-gray-400 mb-3 bg-gray-100 rounded-lg p-3 border border-gray-200">
+      <div class="font-mono text-[11px] text-gray-400 mb-2 bg-gray-100 rounded-lg p-2 border border-gray-200 leading-snug">
         # Repo Health Check<br/>
         Look at this repository and tell me how it's doing.<br/>
         Be helpful and thorough.
       </div>
 
-      <div class="flex-1 flex items-start">
-        <p class="text-sm text-gray-500 italic leading-relaxed">
-          "{{ badOutput }}"
-        </p>
-      </div>
+      <p class="text-xs text-gray-500 italic leading-snug">
+        "{{ badOutput }}"
+      </p>
 
       <div
-        class="mt-3 text-xs font-semibold text-gray-400 uppercase tracking-wider transition-all duration-500"
+        class="mt-auto pt-2 text-[10px] font-semibold text-gray-400 uppercase tracking-wider transition-all duration-500"
         :class="showVerdict ? 'opacity-100' : 'opacity-0'"
       >
         Generic. No evidence. Useless.
@@ -66,34 +64,34 @@ onMounted(() => {
 
     <!-- Good side -->
     <div
-      class="rounded-xl border-2 p-5 transition-all duration-700 flex flex-col"
+      class="rounded-xl border-2 p-3 transition-all duration-700 flex flex-col"
       :class="showGood
         ? 'border-[#6363F1]/40 bg-[#6363F1]/[0.03] opacity-100 translate-y-0'
         : 'border-transparent bg-transparent opacity-0 translate-y-4'"
     >
-      <div class="flex items-center gap-2 mb-3">
-        <span class="h-2.5 w-2.5 rounded-full bg-[#6363F1] animate-pulse" />
-        <span class="text-xs font-mono font-semibold text-[#6363F1] uppercase tracking-wider">With a skill</span>
+      <div class="flex items-center gap-2 mb-2">
+        <span class="h-2 w-2 rounded-full bg-[#6363F1] animate-pulse" />
+        <span class="text-[10px] font-mono font-semibold text-[#6363F1] uppercase tracking-wider">With a skill</span>
       </div>
 
-      <div class="font-mono text-xs text-gray-400 mb-3 bg-white rounded-lg p-3 border border-[#6363F1]/20">
+      <div class="font-mono text-[11px] text-gray-400 mb-2 bg-white rounded-lg p-2 border border-[#6363F1]/20 leading-snug">
         ~30 lines of markdown: description, scripts, constraints
       </div>
 
-      <div class="flex-1 space-y-2">
+      <div class="space-y-1.5">
         <div
           v-for="(line, i) in goodLines"
           :key="i"
-          class="flex gap-2 text-sm transition-all duration-500"
+          class="flex gap-1.5 transition-all duration-500"
           :class="'translate-y-0 opacity-100'"
         >
-          <span class="font-semibold text-[#6363F1] whitespace-nowrap text-xs mt-0.5">{{ line.label }}:</span>
-          <span :class="line.color" class="text-xs leading-relaxed">{{ line.value }}</span>
+          <span class="font-semibold text-[#6363F1] whitespace-nowrap text-[11px]">{{ line.label }}:</span>
+          <span :class="line.color" class="text-[11px] leading-snug">{{ line.value }}</span>
         </div>
       </div>
 
       <div
-        class="mt-3 text-xs font-semibold text-[#6363F1] uppercase tracking-wider transition-all duration-500"
+        class="mt-auto pt-2 text-[10px] font-semibold text-[#6363F1] uppercase tracking-wider transition-all duration-500"
         :class="showVerdict ? 'opacity-100' : 'opacity-0'"
       >
         Specific. Evidence-backed. Actionable.
