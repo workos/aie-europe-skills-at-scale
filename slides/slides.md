@@ -92,6 +92,20 @@ We eat, sleep, and breathe agentic tooling. Skills are how we make agents reliab
 -->
 
 ---
+class: bg-[#6363F1]
+---
+
+<div class="flex items-center justify-center h-full">
+  <img src="/workos-logo-white.svg" class="w-80" alt="WorkOS" />
+</div>
+
+<!--
+Don't dwell. The logo speaks for itself.
+
+"We're at WorkOS — authentication infrastructure for B2B SaaS."
+-->
+
+---
 
 # Every AI conversation starts from zero
 
