@@ -288,8 +288,8 @@ Transition: "So what does that markdown file actually look like? Let's get set u
 <div>
 
 ```bash
-git clone https://github.com/workos/aie-europe.git
-cd aie-europe && ./setup.sh
+git clone https://github.com/workos/aie-europe-skills-at-scale.git
+cd aie-europe-skills-at-scale && ./setup.sh
 ```
 
 Then: `Roast this repo`
@@ -1114,7 +1114,7 @@ Remember re-explaining your tech stack every conversation?
 <div class="text-lg font-semibold text-[#6363F1]">Now go build skills for the tasks *you* repeat.</div>
 
 <div class="flex justify-center gap-6 mt-6 text-xs text-gray-400">
-  <span>github.com/workos/aie-europe</span>
+  <span>github.com/workos/aie-europe-skills-at-scale</span>
   <span>·</span>
   <span>GUIDE.md</span>
   <span>·</span>
