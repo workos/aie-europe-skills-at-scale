@@ -28,6 +28,8 @@ timer: countdown
 
 Portable skills for Claude Code, Codex, Cursor, and your own agents
 
+<img src="/hero-pixel.png" class="absolute bottom-0 left-0 w-full h-48 object-cover opacity-15" />
+
 <div class="abs-br m-6 flex gap-2 text-sm opacity-50">
   <span>Nick Nisi & Zack Proser</span>
   <span>·</span>
@@ -358,6 +360,8 @@ layout: section
 
 # Build the Foundation
 
+<img src="/section-build-pixel.png" class="absolute bottom-0 left-0 w-full h-36 object-cover opacity-15" />
+
 <div class="text-2xl opacity-70">20 minutes · hands-on</div>
 
 <!--
@@ -531,6 +535,8 @@ layout: section
 ---
 
 # Make It Smarter
+
+<img src="/section-smarter-pixel.png" class="absolute bottom-0 left-0 w-full h-36 object-cover opacity-15" />
 
 <div class="text-2xl opacity-70">25 minutes · hands-on</div>
 
@@ -714,6 +720,8 @@ layout: section
 
 # Skills Beyond the Editor
 
+<img src="/section-beyond-pixel.png" class="absolute bottom-0 left-0 w-full h-36 object-cover opacity-15" />
+
 <div class="text-2xl opacity-70">15 minutes · hands-on + presenter-led</div>
 
 <!--
@@ -818,6 +826,8 @@ layout: section
 ---
 
 # Skills in the Wild
+
+<img src="/section-wild-pixel.png" class="absolute bottom-0 left-0 w-full h-36 object-cover opacity-15" />
 
 <div class="text-2xl opacity-70">5–8 minutes · presenter-led · buffer block</div>
 
