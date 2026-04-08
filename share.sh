@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-SKILL_FILE="$SCRIPT_DIR/.claude/skills/repo-roast/SKILL.md"
+SKILL_DIR="$SCRIPT_DIR/.claude/skills/repo-roast"
 CONFIG_FILE="$SCRIPT_DIR/.share-config"
 
 # Colors
@@ -14,7 +14,7 @@ usage() {
   echo "Usage: $0 [--name \"Your Name\"]"
   echo ""
   echo "  Share your Repo Roast skill with the presenter."
-  echo "  Reads from .claude/skills/repo-roast/SKILL.md"
+  echo "  Bundles all files from .claude/skills/repo-roast/"
   exit 0
 }
 
@@ -28,9 +28,9 @@ if [ -z "$SHARE_URL" ]; then
   exit 1
 fi
 
-# Check skill file
-if [ ! -f "$SKILL_FILE" ]; then
-  echo -e "${RED}Error:${NC} No skill file at $SKILL_FILE"
+# Check skill directory
+if [ ! -f "$SKILL_DIR/SKILL.md" ]; then
+  echo -e "${RED}Error:${NC} No skill file at $SKILL_DIR/SKILL.md"
   echo "  Run ./setup.sh first, then edit your skill."
   exit 1
 fi
@@ -61,17 +61,36 @@ if [ -z "$NAME" ]; then
   exit 1
 fi
 
+# Bundle all skill files into a single text payload
+TMPFILE=$(mktemp)
+trap "rm -f $TMPFILE" EXIT
+
+FILE_COUNT=0
+{
+  # Find all files, exclude .bak, write delimited bundle
+  while IFS= read -r filepath; do
+    relpath="${filepath#"$SKILL_DIR/"}"
+    echo "====FILE:${relpath}===="
+    cat "$filepath"
+    echo ""
+    FILE_COUNT=$((FILE_COUNT + 1))
+  done < <(find "$SKILL_DIR" -type f ! -name '*.bak' | sort)
+  echo "====END_BUNDLE===="
+} > "$TMPFILE"
+
+echo "Bundling $FILE_COUNT file(s) from repo-roast/..."
+
 # Share it
 echo "Sharing your skill..."
 RESPONSE=$(curl -s -w "\n%{http_code}" --max-time 10 -X POST "$SHARE_URL/share" \
   -F "name=$NAME" \
-  -F "skill=@$SKILL_FILE")
+  -F "skill=@$TMPFILE")
 
 HTTP_CODE=$(echo "$RESPONSE" | tail -1)
 BODY=$(echo "$RESPONSE" | sed '$d')
 
 if [ "$HTTP_CODE" = "200" ] || [ "$HTTP_CODE" = "201" ]; then
-  echo -e "${GREEN}Shared!${NC} Your skill is now visible to the presenter."
+  echo -e "${GREEN}Shared!${NC} $FILE_COUNT file(s) now visible to the presenter."
 else
   echo -e "${RED}Failed${NC} (HTTP $HTTP_CODE): $BODY"
   exit 1
