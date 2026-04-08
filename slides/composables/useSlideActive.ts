@@ -1,5 +1,5 @@
 import { computed, watch } from 'vue'
-import { useSlideContext } from '@slidev/client/context'
+import { useSlideContext } from '@slidev/client'
 
 /**
  * Returns a computed boolean that is true when this slide is the current slide.
