@@ -28,6 +28,10 @@ timer: countdown
 
 Portable skills for Claude Code, Codex, Cursor, and your own agents
 
+<div class="flex justify-center mt-4">
+  <img src="/hero-v8.png" class="w-80 rounded-xl shadow-lg" />
+</div>
+
 <div class="abs-br m-6 flex gap-2 text-sm opacity-50">
   <span>Nick Nisi & Zack Proser</span>
   <span>·</span>
@@ -57,7 +61,9 @@ Nick opens. Don't read slides — this is conversational.
 
 ### Nick Nisi
 
-**DX Engineer · WorkOS**
+**DX · WorkOS**
+
+<div class="text-xs text-gray-400 mt-1">WorkOS CLI + AI auto-installer —<br/>provisions your auth infra autonomously</div>
 
 </div>
 <div class="flex flex-col items-center text-center">
@@ -66,14 +72,16 @@ Nick opens. Don't read slides — this is conversational.
 
 ### Zack Proser
 
-**DX Engineer · WorkOS**
+**DX · WorkOS**
+
+<div class="text-xs text-gray-400 mt-1">RAG pipelines, agentic harnesses,<br/>40+ production skills</div>
 
 </div>
 </div>
 
-<div class="mt-8 text-center text-sm text-gray-500">
+<div class="mt-6 text-center text-sm text-gray-500">
 
-Skills aren't a side project for us — they're how we build everything.
+We build AI agents for a living. Skills are how we make them reliable.
 
 </div>
 
@@ -180,7 +188,10 @@ Keep it quick — they'll see all of this when they open the file.
 
 # Today: Repo Roast
 
-A skill that audits any git repo's health using real data.
+<div class="flex items-center gap-4">
+  <img src="/roast-v2.png" class="w-48 rounded-lg" />
+  <span>A skill that audits any git repo's health using real data.</span>
+</div>
 
 <div class="grid grid-cols-3 gap-4 mt-6">
 <div class="p-4 rounded-xl bg-gray-50 border border-gray-200">
@@ -284,6 +295,8 @@ layout: section
 ---
 
 # Build the Foundation
+
+<img src="/build-v3.png" class="w-48 mx-auto my-4 rounded-xl" />
 
 <div class="text-2xl opacity-70">20 minutes · hands-on</div>
 
@@ -490,6 +503,8 @@ layout: section
 
 # Make It Smarter
 
+<img src="/smarter-v2.png" class="w-48 mx-auto my-4 rounded-xl" />
+
 <div class="text-2xl opacity-70">25 minutes · hands-on</div>
 
 <!--
@@ -569,17 +584,17 @@ Concrete example — use this: "I have an ideation skill that brainstorms featur
 
 <div class="grid grid-cols-3 gap-6 mt-8">
 <div class="text-center p-4 rounded-xl bg-gray-50 border border-gray-200">
-<div class="text-3xl mb-2">🔨</div>
+<img src="/icon-build-v2.png" class="w-28 h-28 mx-auto mb-2 rounded" />
 <div class="font-semibold">Build</div>
 <div class="text-xs text-gray-500">Add phases + confidence</div>
 </div>
 <div class="text-center p-4 rounded-xl bg-gray-50 border border-gray-200">
-<div class="text-3xl mb-2">▶️</div>
+<img src="/icon-run-v2.png" class="w-28 h-28 mx-auto mb-2 rounded" />
 <div class="font-semibold">Run</div>
 <div class="text-xs text-gray-500">See what it produces</div>
 </div>
 <div class="text-center p-4 rounded-xl bg-gray-50 border border-gray-200">
-<div class="text-3xl mb-2">🔍</div>
+<img src="/icon-inspect-v2.png" class="w-28 h-28 mx-auto mb-2 rounded" />
 <div class="font-semibold">Be honest</div>
 <div class="text-xs text-gray-500">Is the output better?</div>
 </div>
@@ -690,6 +705,8 @@ layout: section
 
 # Skills Beyond the Editor
 
+<img src="/section-beyond.png" class="w-48 mx-auto my-4 rounded-xl" />
+
 <div class="text-2xl opacity-70">15 minutes · hands-on + presenter-led</div>
 
 <!--
@@ -793,6 +810,149 @@ Transition: go straight into sharing. No recap.
 layout: section
 ---
 
+# Skills in the Wild
+
+<img src="/section-wild.png" class="w-48 mx-auto my-4 rounded-xl" />
+
+<div class="text-2xl opacity-70">5–8 minutes · presenter-led</div>
+
+<!--
+BLOCK 5.5: SKILLS IN THE WILD (5-8 min)
+
+Buffer block. Expand or compress based on the room.
+
+Fast crowd that finished early? Do the live demo. Slow crowd? Show the pre-baked video and move to close.
+
+"You've built a skill that runs shell scripts and reasons over the output. That's the foundation. But the same patterns — constraints, scripts, phases — can do a lot more."
+-->
+
+---
+
+# From text to video — one skill
+
+Same patterns you just learned. Different scripts.
+
+<div class="grid grid-cols-2 gap-6 mt-2">
+<div>
+
+```markdown {maxHeight:'180px'}
+name: animated-image
+description: Generate a minimalist static image
+  from a prompt, then animate it into a short
+  video.
+
+## Steps
+1. Generate static image via Gemini
+2. Animate the image via Veo
+3. Return both files with caption
+
+## Scripts
+!`node scripts/generateImage.mjs "<prompt>"`
+!`node scripts/generateVideo.mjs <image> "<motion>"`
+```
+
+</div>
+<div class="space-y-3 text-sm">
+
+**The skill file is 30 lines of markdown.**
+
+Same structure you just built:
+- Frontmatter → routing
+- Constraints → "minimalist, 3-5 colors, no gradients"
+- Scripts → call Gemini + Veo APIs
+- Phases → generate, then animate
+
+<div class="mt-3 p-3 rounded-lg bg-[#6363F1]/5 border border-[#6363F1]/20">
+
+**Demo:** `Generate and animate a paper boat floating in a glass bowl`
+
+</div>
+
+</div>
+</div>
+
+<!--
+THIS IS THE WOW MOMENT.
+
+Option A (if time + internet): Live demo. Run the skill. The room watches a prompt become an image become a video.
+
+Option B (safe): Show pre-baked output. "We ran this before the talk. Here's what came back."
+
+Pre-baked assets: github.com/zackproser/claude-custom-skills-demo/tree/main/assets
+YouTube fallbacks:
+- https://www.youtube.com/watch?v=nsnl-RTPL6U
+- https://www.youtube.com/watch?v=br81_vMItXs
+
+"Same patterns. Constraints, scripts, phases. The only difference is the scripts call Gemini and Veo instead of git log."
+
+Key point: "This skill was shared via GitHub. A colleague cloned it, ran npm install, and had it working in 2 minutes. That's what portability means in practice."
+-->
+
+---
+
+# Skills at production scale
+
+<div class="grid grid-cols-2 gap-8 mt-4">
+<div>
+
+### WorkOS CLI
+
+15 frameworks, one skill-driven agent
+
+- Claude Agent SDK under the hood
+- **Every decision is a skill** — framework detection, install steps, validation
+- Skills compose: small skills call other skills
+- Same markdown format you've been writing
+
+</div>
+<div>
+
+### The pattern repeats
+
+<div class="space-y-3 mt-2 text-sm">
+<div class="flex items-center gap-2">
+  <span class="h-2 w-2 rounded-full bg-green-500" />
+  <span><strong>Blog writing</strong> — voice + style as constraints</span>
+</div>
+<div class="flex items-center gap-2">
+  <span class="h-2 w-2 rounded-full bg-[#6363F1]" />
+  <span><strong>Code review</strong> — team conventions as evidence</span>
+</div>
+<div class="flex items-center gap-2">
+  <span class="h-2 w-2 rounded-full bg-amber-500" />
+  <span><strong>Image generation</strong> — API calls as scripts</span>
+</div>
+<div class="flex items-center gap-2">
+  <span class="h-2 w-2 rounded-full bg-cyan-500" />
+  <span><strong>CI pipelines</strong> — skills on every push</span>
+</div>
+</div>
+
+<div class="mt-4 p-3 rounded-lg bg-green-50 border border-green-200 text-sm">
+
+The domain changes. The patterns don't.
+
+</div>
+
+</div>
+</div>
+
+<!--
+Keep this tight — 2 minutes max.
+
+"The WorkOS CLI is 15 framework installers powered by skills. Every decision — which framework, which package manager, which auth method — is a skill. They compose: small skills call other skills."
+
+"Blog writing. Code review. Image generation. CI pipelines. The domain changes every time. The patterns — constraints, scripts, phases, confidence — don't."
+
+"That's what 'at scale' means. Not one skill. An ecosystem."
+
+Transition: "Let's see what YOU built."
+-->
+
+---
+layout: section
+---
+
 # Close
 
 <div class="text-2xl opacity-70">8 minutes</div>
@@ -800,7 +960,7 @@ layout: section
 <!--
 BLOCK 6: CLOSE (8 min)
 
-Energy should flow directly from Block 5 into sharing.
+Energy should flow directly from Skills in the Wild into sharing.
 
 "Let's see what everyone built."
 -->
