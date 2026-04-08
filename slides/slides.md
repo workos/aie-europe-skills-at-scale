@@ -380,7 +380,7 @@ layout: section
 <!--
 BLOCK 3: BUILD THE FOUNDATION (20 min)
 
-"Now we build."
+"Now we build. Your skill file is intentionally bare — one script, one constraint, a three-word description. By the end of this block, you'll have a real skill."
 
 Presenter switch: one drives live edits, the other translates for the room.
 
@@ -500,14 +500,13 @@ If the answer doesn't match your intent, rewrite the description.
 <div class="grid grid-cols-2 gap-6 mt-1">
 <div class="space-y-2 text-sm">
 
-1. **Description** — routing rule that matches your intent
-2. **Constraints** — add 1-2 that reflect YOUR judgment
-   - test coverage thresholds, README format, review norms
-   - CI requirements, ignore patterns, naming conventions
-3. **Tone** — roast? professional audit? diplomatic?
-4. **Script** — optionally add one (test ratio, CI check, package manager)
+1. **Description** — replace the vague one with a real routing rule
+2. **Scripts** — add 2-3 from the previous slide (hotspots, largest files, README)
+3. **Constraints** — add 2-3 that reflect YOUR judgment
+   - test coverage, README format, review norms, naming conventions
+4. **Tone** — roast? professional audit? diplomatic?
 
-Then: `Roast this repo` — compare with the bad output.
+Then: `Roast this repo` — compare with your first run.
 
 **Behind?** `./setup.sh --checkpoint 1`
 
@@ -526,11 +525,11 @@ Then: `Roast this repo` — compare with the bad output.
 </div>
 
 <!--
-"Open your skill file. Customize it. Make it yours."
+"Open your skill file. It's intentionally bare — one script, one constraint, a vague description. You're going to build it up."
 
-"Write a description that routes correctly. Add constraints that matter to YOUR team. Pick a tone."
+"Write a real description. Add scripts from the previous slide. Add constraints that matter to YOUR team. Pick a tone."
 
-"Then run it. Compare with what you saw before."
+"Then run it again. Compare with your first run — the one with the thin starter. The difference is what you just built."
 
 Let them work. While they build, riff on the discussion topics:
 

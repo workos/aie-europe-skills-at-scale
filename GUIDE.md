@@ -59,7 +59,7 @@ You should see output with findings, evidence, and a health score. If you do, yo
 
 ## Step 1: Build the Foundation
 
-**Goal:** Customize the starter skill with your own constraints, tone, and scripts.
+**Goal:** Build up a bare-bones skill into a real repo health assessment with scripts, constraints, and tone.
 
 **Time:** ~20 minutes
 
@@ -67,31 +67,36 @@ You should see output with findings, evidence, and a health score. If you do, yo
 
 ### What you're starting with
 
-Open `.claude/skills/repo-roast/SKILL.md` in your editor. You'll see:
-
-- **Frontmatter** (`name`, `description`) — how the agent discovers and decides to use the skill
-- **Context scripts** — shell commands prefixed with `!` that gather real data from the repo
-- **Constraints** — rules the agent must follow (what it must never do)
-- **Structure** — the output format
+Open `.claude/skills/repo-roast/SKILL.md` in your editor. It's intentionally thin — one script, one constraint, a vague description. Run it now and notice how generic the output is. You're about to fix that.
 
 ### Your job
 
-**Customize the description.** The description is how the agent decides whether to use your skill. A vague description means it never fires. Test it: ask your agent "When would you use the repo-roast skill?" If it can't articulate when, the description needs work.
+**1. Write a real description.** The starter says "Analyzes repository health." — too vague. The description is how the agent decides whether to use your skill. Include:
+- What it does: "...by running git and file-system scripts to find stale TODOs, churn hotspots, large files, and documentation gaps"
+- When to trigger: "Use when the user asks for a repo assessment, health check, code quality review, or tech debt audit"
+- When NOT to trigger: "Do NOT use for simple file lookups, git history questions, or code review of specific changes"
 
-**Add 1-2 constraints.** What do YOU never want to see in a health report? Examples:
-- "Never mention test coverage percentages without checking for actual test files"
-- "Never flag files under 500 lines as too large"
-- "Always include the git blame author for the oldest TODO"
+**Test it:** Ask your agent "When would you use the repo-roast skill?" If it can't articulate when, the description needs work.
 
-**Set your tone.** The starter is neutral. Make it yours:
+**2. Add scripts.** The starter has one script (TODO grep). Add 2-3 more to the `## Context` section — each gives the agent real evidence to reason over:
+```markdown
+Hotspot files: !`git log --pretty=format: --name-only --since="6 months ago" | grep -v '^$' | sort | uniq -c | sort -rn | head -10`
+Largest files: !`git ls-files | xargs wc -l 2>/dev/null | sort -rn | head -10`
+README freshness: !`git log -1 --format="%ar" -- README.md`
+Recent contributors: !`git log --format="%an" --since="3 months ago" | sort | uniq -c | sort -rn | head -5`
+```
+
+**3. Add constraints.** The starter has one. Add 2-3 that reflect YOUR judgment:
+- "Every finding must include: what's wrong, evidence, severity, recommendation"
+- "Never recommend rewrite from scratch"
+- "Maximum 10 findings, ordered by severity"
+- "Only make findings backed by observed repo evidence"
+- Or your own: "Never flag files under 500 lines as too large"
+
+**4. Set your tone.** The starter is neutral. Make it yours:
 - Blunt roast? Add: "Be direct and slightly sarcastic. Name names (files, not people)."
 - Professional assessment? Add: "Use formal language suitable for a team lead report."
 - Friendly orientation? Add: "Be welcoming. Frame issues as opportunities, not failures."
-
-**Optional: add a script.** If you want to gather more data, add a line to the Context section:
-```markdown
-Branch count: !`git branch -a | wc -l`
-```
 
 ### Run it
 

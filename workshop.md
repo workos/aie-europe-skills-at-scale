@@ -60,7 +60,7 @@ Technique-first workshop. Each act layers techniques onto one shared skill — R
 |-------|------|------|-------------|
 | **The Problem + What Skills Are** | 7 min | Watch | Show a bad repo roast vs an evidence-based one. Frame the promise. |
 | **Setup** | 8 min | **Build** | Clone, run setup.sh, verify skill loads. Conference WiFi adds latency — budget accordingly. |
-| **Build the Foundation** | 20 min | **Build** | Attendees start from a Repo Roast starter skill and customize description, constraints, tone, and scripts. |
+| **Build the Foundation** | 20 min | **Build** | Attendees start from a bare-bones skeleton and build up: write a real description, add scripts, add constraints, set tone. |
 | **Make It Smarter** | 22 min | **Build** | Add phases and per-finding confidence checks. Re-run, compare, then tune thresholds and re-run again. |
 | **Skills Beyond the Editor** | 15 min | Watch + **Build** | Level-up scripts, portability grid, production scale (WorkOS CLI), measurement matters. |
 | **Skills in the Wild** | 0–6 min | Watch | Buffer block — video demos only. Skip entirely if behind on time. Production scale slide now in Block 5. |
@@ -113,13 +113,13 @@ Advanced attendees can adapt the same skeleton to another domain after the core 
 - **The recording needs a through-line.** The YouTube arc is: naive skill → constrained → self-aware → part of a system. That story works when everyone builds the same thing.
 - **The point is the technique, not domain brainstorming.**
 
-### Starter File, Not a Blank Page
+### Skeleton, Not a Blank Page
 
-To ensure everyone finishes, attendees start from a prebuilt Repo Roast starter skill rather than a blank page. The workshop is about learning the pattern through customization and iteration, not about typing boilerplate from scratch.
+Attendees start from a bare-bones skeleton — not a blank page, but not a finished skill either. One script, one constraint, a vague description. Just enough to run and see output, thin enough that building it up IS the learning. The building is the point: adding each script, each constraint, and watching the output change is how the techniques land.
 
-**Delivery:** Attendees clone this workshop repo. The clone gives them `.claude/skills/repo-roast/SKILL.md` — the starter skill is immediately available. The abstract's "no repo to clone" promise is about not needing a specific project codebase to work against, not about zero setup. They analyze their own repos (or the provided demo repo) with the skill they cloned.
+**Delivery:** Attendees clone this workshop repo. The clone gives them `.claude/skills/repo-roast/SKILL.md` — the skeleton is immediately available and runnable. The abstract's "no repo to clone" promise is about not needing a specific project codebase to work against, not about zero setup. They analyze their own repos (or the provided demo repo) with the skill they cloned.
 
-**Catch-up mechanism:** Checkpoint files in `checkpoints/` let anyone who falls behind copy the canonical version and keep going: `cp checkpoints/2-with-phases.md .claude/skills/repo-roast/SKILL.md`. No branch switching needed — preserves their customizations unless they explicitly overwrite.
+**Catch-up mechanism:** Checkpoint files in `checkpoints/` let anyone who falls behind copy the canonical version and keep going: `cp checkpoints/1-starter.md .claude/skills/repo-roast/SKILL.md` loads a fully built Act 1 skill. `cp checkpoints/2-with-phases.md .claude/skills/repo-roast/SKILL.md` catches up through Act 2. No branch switching needed — preserves their customizations unless they explicitly overwrite.
 
 ### How Skills Load (teach this early)
 
@@ -157,46 +157,39 @@ That's the same principle behind a good skill. Don't tell the model what to do. 
 
 **Debug it by asking Claude.** After writing the description, have attendees ask Claude: "When would you use the [skill name] skill?" Claude quotes the description back and explains its reasoning. If it can't articulate when to use the skill, the description needs work. If it fires on things it shouldn't, add negative triggers. This is a 30-second exercise that turns description-writing from abstract to testable. When in doubt about whether your skill works, just ask the model — they're surprisingly good at debugging themselves.
 
-**What they start with:** A bad Repo Roast skill plus a starter file for the good version.
+**What they start with:** A bare-bones skeleton that runs but produces mediocre output — one script, one constraint, a vague description.
 
-**What they build:** A customized Repo Roast / Repo Health Check skill with evidence-gathering scripts, constraints, tone, and a clear structure.
+**What they build:** A real Repo Roast skill with a routing-quality description, multiple evidence-gathering scripts, meaningful constraints, tone, and clear structure.
 
-**The starter skill** (from [domain-decision.md](domain-decision.md)):
+**The starter skill** (intentionally thin — the building IS the learning):
 
 ```markdown
 ---
 name: repo-roast
-description: Analyzes repository health by running git and file-system scripts to find stale TODOs, churn hotspots, large files, and documentation gaps. Use when the user asks for a repo assessment, health check, code quality review, or tech debt audit. Do NOT use for simple file lookups, git history questions, or code review of specific changes.
+description: Analyzes repository health.
 ---
 
 # Repo Roast
 
 ## Context
-Stale TODOs: !`grep -rn "TODO\|FIXME\|HACK\|WORKAROUND" . --include="*.*" | head -20`
-Hotspot files: !`git log --pretty=format: --name-only --since="6 months ago" | sort | uniq -c | sort -rn | head -10`
-Largest files: !`git ls-files | xargs wc -l 2>/dev/null | sort -rn | head -10`
-README freshness: !`git log -1 --format="%ar" -- README.md`
-Recent contributors: !`git log --format="%an" --since="3 months ago" | sort | uniq -c | sort -rn | head -5`
+Stale TODOs: !`grep -rn "TODO\|FIXME" . --include="*.*" --exclude-dir=node_modules --exclude-dir=.git | head -20`
 
 ## Constraints
 - Never be vague — cite specific files and counts as evidence
-- Every finding must include: what's wrong, evidence, severity, recommendation
-- Never recommend "rewrite from scratch"
-- Maximum 10 findings, ordered by severity
-- Prefer script output over assumptions. If evidence from the repo conflicts with prior knowledge, trust the repo.
-- Only make findings backed by observed repo evidence
 
 ## Structure
-1. One-line health verdict (with overall score)
-2. Top findings (max 10), each with: issue, evidence, severity, fix
+1. One-line health verdict (with overall score out of 10)
+2. Top findings, each with: issue, evidence, severity, fix
 3. One thing the repo does well
 ```
 
-**Required customizations** (what attendees change):
-- Description — adapt triggers to their context
-- 1–2 constraints — what do THEY never want to see?
+**What attendees build up during Act 1:**
+- Description — write a real routing rule with positive triggers, negative triggers, and the "when would you use this?" test
+- Scripts — add 2–3 more (hotspot files, largest files, README freshness — shown on the slides as reference)
+- Constraints — add 2–3 that reflect THEIR judgment (what they never want to see)
 - Tone — blunt roast? Professional assessment? Their call.
-- Optional: one extra script if time allows
+
+The before/after delta should be visible and earned: their first run with the thin starter produces vague output; after building it up, the same prompt produces specific, evidence-based findings.
 
 **Key teaching moments:**
 
@@ -208,7 +201,7 @@ Recent contributors: !`git log --format="%an" --since="3 months ago" | sort | un
 
 **Script failure fallback:** Add to the skill: "If any script returns no output or errors, skip that signal and note 'no data available.' Do not guess." This keeps the skill resilient on sparse repos or edge-case environments.
 
-**What they see change:** Run the same prompt with the bad skill and the constrained skill. The difference is immediate — "Your code looks pretty good overall" vs "Health score: 4/10. Your largest file is `handler.ts` at 2,847 lines. You have 14 TODO comments, the oldest from March 2023. Your README references `yarn start` but your lockfile is `pnpm-lock.yaml`."
+**What they see change:** Run the same prompt before and after building up the skill. The thin starter produces vague output ("Your repo has some TODOs and could use better documentation"). After adding scripts, constraints, and a real description, the same prompt produces: "Health score: 4/10. Your largest file is `handler.ts` at 2,847 lines. You have 14 TODO comments, the oldest from March 2023. Your README references `yarn start` but your lockfile is `pnpm-lock.yaml`." The delta is visible and earned.
 
 ### Make It Smarter — Phases + Confidence
 
