@@ -28,10 +28,10 @@ If any script returns no output or errors, skip that signal and note "no data av
 - Prioritize by impact, not by how easy the finding was to discover
 
 ## Workflow
-Phase 1: Run all context scripts. Summarize raw findings. Present counts and hotspots. Stop.
-Phase 2: Categorize findings by type (complexity, coverage, dependencies, documentation, churn). Score severity. Run self-assessment. Present structured report. Stop.
-Phase 3: Based on feedback, build prioritized recommendations. Run constraints checklist. Present final assessment.
-Do not skip phases. Each phase requires confirmation before proceeding.
+Work through these phases in order. Do not skip phases.
+1. Run all context scripts. Gather raw data. Summarize counts and hotspots.
+2. Categorize findings by type (complexity, coverage, dependencies, documentation, churn). Score severity. Run self-assessment. Drop or flag weak findings.
+3. Build prioritized recommendations. Run constraints checklist. Present final assessment.
 
 ## Self-Assessment
 Rate each finding before presenting:

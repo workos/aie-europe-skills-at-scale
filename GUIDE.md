@@ -21,8 +21,8 @@ A **Repo Roast** skill — a markdown file that teaches any coding agent to anal
 ### 1. Clone the workshop repo
 
 ```bash
-git clone https://github.com/nicknisi/aie-europe.git
-cd aie-europe
+git clone https://github.com/workos/aie-europe-skills-at-scale.git
+cd aie-europe-skills-at-scale
 ```
 
 ### 2. Verify the skill loads
@@ -100,7 +100,7 @@ Save the file, then run `/repo-roast` on your target repo. Compare the output to
 ### If you're behind
 
 ```bash
-cp checkpoints/1-starter.md .claude/skills/repo-roast/SKILL.md
+./setup.sh --checkpoint 1
 ```
 
 ---
@@ -119,13 +119,13 @@ Right now the skill one-shots everything. Add a `## Workflow` section after Cons
 
 ```markdown
 ## Workflow
-Phase 1: Run all context scripts. Summarize raw findings. Present counts and hotspots. Stop.
-Phase 2: Categorize findings by type (complexity, coverage, dependencies, documentation, churn). Score severity. Present structured report. Stop.
-Phase 3: Based on feedback, build prioritized recommendations. Run constraints checklist. Present final assessment.
-Do not skip phases. Each phase requires confirmation before proceeding.
+Work through these phases in order. Do not skip phases.
+1. Run all context scripts. Gather raw data. Summarize counts and hotspots.
+2. Categorize findings by type (complexity, coverage, dependencies, documentation, churn). Score severity. Run self-assessment. Drop or flag weak findings.
+3. Build prioritized recommendations. Run constraints checklist. Present final assessment.
 ```
 
-**What changes:** Instead of dumping everything at once, the skill now stops after presenting raw data. You steer it — "Focus on the large files" or "Skip the TODOs, they're intentional" — before it builds recommendations.
+**What changes:** Instead of dumping everything at once, the skill works through distinct stages — gather, assess, recommend. Each phase builds on the previous one. Combined with self-assessment, weak findings get filtered before reaching the final report.
 
 ### Add confidence scoring
 
@@ -154,20 +154,28 @@ Save and run `/repo-roast` on the same repo. Compare:
 ### If you're behind
 
 ```bash
-cp checkpoints/2-with-phases.md .claude/skills/repo-roast/SKILL.md
+./setup.sh --checkpoint 2
 ```
 
 ---
 
-## Step 3: Why This Scales (presenter-led)
+## Step 3: Skills Beyond the Editor
 
-This section is presenter-led — watch the demos, no new hands-on work.
+**Time:** ~15 minutes (hands-on + presenter-led)
 
-**What you'll see:**
+### Level up your scripts (hands-on, ~5 min)
+
+Pick one advanced script and add it to your `## Context` section. Re-run and see how the new signal changes the roast:
+
+- **Test-to-source ratio:** `!``echo "test files:"; git ls-files | grep -ciE '(test|spec)'; echo "total files:"; git ls-files | wc -l``
+- **Commit frequency:** `!``git log --oneline --since="6 months ago" | wc -l``
+- **Dependency lockfile:** `!``found=$(ls -1 package-lock.json pnpm-lock.yaml yarn.lock bun.lockb Gemfile.lock go.sum Cargo.lock 2>/dev/null); echo "${found:-none found}"``
+
+### Presenter-led demos
 
 1. **Same skill, different audiences.** The same Repo Roast findings reframed for a developer (blunt roast), an engineering manager (business impact), and a new teammate (welcoming orientation). Same data, different delivery — all from one skill.
 
-2. **Composition in production.** The WorkOS CLI uses the same patterns — constraints, scripts, phased workflow, confidence scoring — to power 15 framework integrations. Each framework is a skill composed with others, wired into an agent via the Claude Agent SDK.
+2. **Portability.** The same skill file works in Claude Code, Codex, and Cursor. In Claude Desktop (no shell access), constraints and structure still shape the output even without scripts.
 
 3. **Measurement matters.** When skills become load-bearing, vibes aren't enough. A skill that looks helpful can make output worse. Even lightweight measurement (before/after on three test cases) beats pure intuition.
 
@@ -175,9 +183,13 @@ This section is presenter-led — watch the demos, no new hands-on work.
 
 ## Close: Share & Install
 
-### Compare outputs
+### Share your skill
 
-If you're comfortable, share your roast output with the room. Everyone ran the same skill structure on different repos — the variety is the fun part.
+```bash
+./share.sh --name "Your Name"
+```
+
+This sends your skill to the presenter. We'll pull a few up on the projector — compare with your neighbor. What constraints did you add? What's different?
 
 ### Install permanently
 
@@ -197,9 +209,9 @@ Now `/repo-roast` works in any project, not just this repo.
 
 ### The complete skill
 
-To see the fully evolved version with audience detection, scoring rubric, and internal phased reasoning:
+To see the fully evolved version with audience detection, scoring rubric, and example findings:
 ```bash
-cp checkpoints/3-complete.md .claude/skills/repo-roast/SKILL.md
+./setup.sh --checkpoint 3
 ```
 
 ### What comes next

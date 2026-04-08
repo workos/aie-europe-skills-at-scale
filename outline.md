@@ -1,11 +1,10 @@
 # Skills at Scale — Workshop Outline
 
-> **Status:** Draft for Nick & Zack review
+> **Status:** Superseded — `slides/slides.md` is now the source of truth for the workshop arc and timing. This file is kept as a historical reference for the original block structure and discussion topic planning.
+>
 > **Duration:** 80 minutes (7 + 5 + 20 + 25 + 15 + 8 = 80)
 > **Core message:** Skills are how you make AI reliable. Here's how to write good ones.
 > **Narrative framework:** The Spiral — the same concept (a skill) revisited at increasing depth across blocks. Each pass adds a layer: output → constraints/scripts → phases/confidence → portability. The close returns to the opening.
-
-This outline is the canonical source of truth for the workshop story arc. Slides get generated from this — not the other way around. Each block describes: the point we're making, what's on screen, what the audience does, and Nick/Zack discussion topics for the recording.
 
 ---
 

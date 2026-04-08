@@ -9,14 +9,14 @@ An 80-minute hands-on workshop at **AIE Europe 2026** by Nick Nisi & Zack Proser
 Build one reusable skill — a **Repo Roast** (repo health assessment) — progressively layering techniques across three acts:
 
 1. **Build the foundation** — constraints, scripts (`!` backtick inline execution), structure
-2. **Make it smarter** — phased workflow, confidence scoring, transcript reflection
-3. **Why this scales** — eval, composition, cross-tool portability, Claude Desktop
+2. **Make it smarter** — phased workflow, confidence scoring
+3. **Skills beyond the editor** — advanced scripts, portability, eval, composition
 
 ## Quick Start (Attendees)
 
 ```bash
-git clone https://github.com/workos/aie-europe.git
-cd aie-europe
+git clone https://github.com/workos/aie-europe-skills-at-scale.git
+cd aie-europe-skills-at-scale
 ./setup.sh        # installs the starter skill
 claude             # or codex, or cursor
 ```

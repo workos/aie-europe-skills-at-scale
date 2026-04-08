@@ -58,11 +58,13 @@ Technique-first workshop. Each act layers techniques onto one shared skill — R
 
 | Block | Time | Mode | What happens |
 |-------|------|------|-------------|
-| **Open: The problem** | 5 min | Watch | Show a bad repo roast vs an evidence-based one. Frame the promise. |
-| **Build the foundation** | 20 min | **Build** | Attendees start from a Repo Roast starter skill and customize description, constraints, tone, and scripts. |
-| **Make it smarter** | 25 min | **Build** | Add phases and per-finding confidence checks. Re-run the same skill and compare output quality. |
-| **Why this scales** | 20 min | Watch | Same skill adapting to different audiences, composition via WorkOS CLI, and why eval matters. |
-| **Close: Share & install** | 10 min | **Build** | Compare outputs, install/share the skill, point to handbook for deeper techniques. |
+| **The Problem + What Skills Are** | 7 min | Watch | Show a bad repo roast vs an evidence-based one. Frame the promise. |
+| **Setup** | 5 min | **Build** | Clone, run setup.sh, verify skill loads. |
+| **Build the Foundation** | 20 min | **Build** | Attendees start from a Repo Roast starter skill and customize description, constraints, tone, and scripts. |
+| **Make It Smarter** | 25 min | **Build** | Add phases and per-finding confidence checks. Re-run the same skill and compare output quality. |
+| **Skills Beyond the Editor** | 15 min | Watch + **Build** | Level-up scripts, portability grid, measurement matters. |
+| **Skills in the Wild** | 5-8 min | Watch | Buffer block — video demos, production scale. Skip if behind on time. |
+| **Close** | 8 min | **Build** | Share roasts, install skill globally, point to handbook for deeper techniques. |
 
 ### What's taught vs what's referenced
 
@@ -223,13 +225,13 @@ Instead of one-shotting output, the skill works in phases (from [domain-decision
 
 ```markdown
 ## Workflow
-Phase 1: Run all context scripts. Summarize raw findings. Present counts and hotspots. Stop.
-Phase 2: Categorize findings by type (complexity, coverage, dependencies, documentation, churn). Score severity. Present structured report. Stop.
-Phase 3: Based on feedback, build prioritized recommendations. Run constraints checklist. Present final assessment.
-Do not skip phases. Each phase requires confirmation before proceeding.
+Work through these phases in order. Do not skip phases.
+1. Run all context scripts. Gather raw data. Summarize counts and hotspots.
+2. Categorize findings by type (complexity, coverage, dependencies, documentation, churn). Score severity. Run self-assessment. Drop or flag weak findings.
+3. Build prioritized recommendations. Run constraints checklist. Present final assessment.
 ```
 
-**What they see change:** Output becomes collaborative. They steer after Phase 1 instead of accepting whatever comes out.
+**What they see change:** Output becomes structured instead of a dump. Each phase builds on the previous one — gather, then assess, then recommend. Combined with self-assessment, weak findings get filtered before the final report.
 
 **Anti-pattern to mention:** When splitting into reference files later, keep references one level deep from SKILL.md. Deeper nesting loses information.
 

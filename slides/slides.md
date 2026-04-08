@@ -659,10 +659,10 @@ The first version is never the good version. Every skill we've built went throug
 **Add `## Workflow`**
 
 ```markdown {maxHeight:'120px'}
-Phase 1: Run scripts. Summarize raw findings.
-Phase 2: Categorize by type. Score severity.
-Phase 3: Prioritized recommendations.
-Do not skip phases.
+Work through these phases in order. Do not skip phases.
+1. Run all context scripts. Gather raw data.
+2. Categorize by type. Score severity. Drop weak findings.
+3. Build prioritized recommendations.
 ```
 
 **Add `## Self-Assessment`**

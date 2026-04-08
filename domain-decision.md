@@ -1,6 +1,6 @@
 # Workshop Skill Domain Decision
 
-> **Note:** The workshop structure has evolved since this doc was written. See `outline.md` for the current workshop arc. This doc remains the decision record for *why Repo Roast* and the reference for scripts, constraints, and operational prep.
+> **Note:** The workshop structure has evolved since this doc was written. See `slides/slides.md` for the current workshop arc and timing. This doc remains the decision record for *why Repo Roast* and the reference for scripts, constraints, and operational prep.
 
 ## The Full Checklist
 
