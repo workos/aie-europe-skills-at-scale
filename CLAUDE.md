@@ -14,7 +14,6 @@ Workshop repository for **"Skills at Scale"** — an 80-minute hands-on workshop
 - `handbook.md` — **Reference/handout for attendees.** Full technique library (12 techniques with sources and first-person stories), skill categories taxonomy (9 from Anthropic), skill pattern archetypes (5), success criteria framework, reference systems, blog post links. Not the live agenda — the take-home companion.
 - `domain-decision.md` — Domain analysis and decision. Locked on **"Repo Roast"** (repo health assessment with scripts). Contains the canonical bad/good skill examples, script sets, constraint templates, and phase/confidence designs.
 - `rehearsal-checklist.md` — Timing checkpoints, per-block checklists, trim/never-trim guidance, fallback plans.
-- `outline.md` — **Superseded by `slides/slides.md`.** Historical reference for original block structure and discussion topic planning.
 - `checkpoints/` — Skill progression snapshots (0-bad, 1-starter, 2-with-phases, 3-complete). Attendees use `./setup.sh --checkpoint N` to catch up.
 - `.claude/skills/repo-roast/` — The starter skill file attendees edit during the workshop. Auto-discovered by Claude Code.
 - `slides/` — Slidev presentation. Light theme, presenter notes on every slide, v-click animations.
