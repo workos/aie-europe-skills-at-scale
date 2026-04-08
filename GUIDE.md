@@ -109,7 +109,7 @@ Save the file, then run `/repo-roast` on your target repo. Compare the output to
 
 **Goal:** Add phased workflow and per-finding confidence checks. Re-run and compare.
 
-**Time:** ~25 minutes
+**Time:** ~22 minutes
 
 **Techniques you'll learn:** Progressive disclosure (phases), confidence scoring (self-assessment)
 

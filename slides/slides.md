@@ -151,7 +151,6 @@ Ask for a repo health check and you get: *"Consider adding more tests and improv
 
 "The AI doesn't know what you know. That's the problem. Skills fix it — a markdown file that encodes your context once. Your constraints. Your judgment. You write it once, the AI uses it every time."
 -->
--->
 
 ---
 
@@ -172,7 +171,7 @@ Project context in a file. No more re-explaining per repo. **This works.**
 ### Where it stops
 
 - Tied to one repo
-- Static text — can't run commands
+- No built-in script execution
 - Grows into a kitchen-sink file
 - Doesn't compose or share
 
@@ -552,14 +551,14 @@ layout: section
 
 <img src="/section-smarter-pixel.png" class="absolute inset-0 w-full h-full object-cover opacity-10" />
 
-<div class="text-2xl opacity-70">25 minutes · hands-on</div>
+<div class="text-2xl opacity-70">22 minutes · hands-on</div>
 
 <!--
-BLOCK 4: MAKE IT SMARTER (25 min)
+BLOCK 4: MAKE IT SMARTER (22 min)
 
 "You've got a skill that gives specific, evidence-backed findings. Now let's make it smarter."
 
-TIMING: Teach = 5-7 min. Hands-on = 12-15 min. Discussion = 5 min.
+TIMING: Teach = 5 min. Hands-on = 13 min (8 min first run + 5 min iteration). Discussion/beats = 4 min.
 -->
 
 ---
@@ -665,7 +664,7 @@ The first version is never the good version. Every skill we've built went throug
 
 # Your turn: add phases + confidence
 
-<div class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">12 min hands-on · 5 min discussion</div>
+<div class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">13 min hands-on · 4 min discussion</div>
 
 <div class="grid grid-cols-2 gap-4 mt-1 text-sm">
 <div>
@@ -717,7 +716,15 @@ Then: `Roast this repo` — compare with your last output.
 
 "Then run it again on the same repo. Compare the output. Is it better?"
 
-Let them work. While they build, riff on the discussion topics:
+Let them work. While they build:
+
+⚠️ REQUIRED BEAT (2 min) — "We didn't follow our own process":
+"When we built the checkpoints for this workshop, we wrote all four versions of the skill in one pass — from planning docs, without running any of them. We authored a skill about evidence-based analysis without gathering evidence about whether the skill worked. The first time we ran it, the grep took 84 seconds and returned 60KB of noise from node_modules. Even the people teaching the iterative loop defaulted to 'write it all up front.' That's why the loop matters."
+
+After first run completes (~8 min in):
+"Show of hands: did confidence scoring drop at least one finding from your previous run?" [Let hands go up] "That's the technique working. The skill is filtering its own noise."
+
+ITERATION PROMPT: "Now tune it. Look at your scores. Did you agree with what got dropped? Adjust the threshold — try 7 instead of 6. Add a dimension — maybe 'specificity: does this finding name a file?' Re-run and compare."
 
 Topic 1: Be honest about the limits of phase-gating. Tell the specific story of which skill ignored phases and what the fix was. The audience is adding phases right now — they need to know where the limits are.
 
@@ -741,7 +748,11 @@ layout: section
 <!--
 BLOCK 5: SKILLS BEYOND THE EDITOR (15 min)
 
-Open with energy — one more hands-on moment, THEN the portability talk.
+Open with energy — one more hands-on moment, THEN the portability talk, THEN production scale.
+
+Production scale (WorkOS CLI) slide is now HERE, not in the buffer block. This protects it from being cut.
+
+Order: Level-up scripts (3-5 min) → Portability (2 min) → Production scale (90 sec) → Measurement (3 min)
 
 "Your skill works here. Does it work everywhere?"
 -->
@@ -782,6 +793,65 @@ Let the component animate through the three contexts.
 [Agent SDK panel] "In the Agent SDK, skills are the brains of programmatic agents. The WorkOS CLI is built this way. Pi runs skills too. CI pipelines can load skills on every push."
 
 "Skills are the portable unit of knowledge. The runtime is interchangeable."
+-->
+
+---
+
+# Skills at production scale
+
+<div class="grid grid-cols-2 gap-8 mt-4">
+<div>
+
+### WorkOS CLI
+
+15 frameworks, one skill-driven agent
+
+- Claude Agent SDK under the hood
+- **Every decision is a skill** — framework detection, install steps, validation
+- Skills compose: small skills call other skills
+- Same markdown format you've been writing
+
+</div>
+<div>
+
+### The pattern repeats
+
+<div class="space-y-3 mt-2 text-sm">
+<div class="flex items-center gap-2">
+  <span class="h-2 w-2 rounded-full bg-green-500" />
+  <span><strong>Blog writing</strong> — voice + style as constraints</span>
+</div>
+<div class="flex items-center gap-2">
+  <span class="h-2 w-2 rounded-full bg-[#6363F1]" />
+  <span><strong>Code review</strong> — team conventions as evidence</span>
+</div>
+<div class="flex items-center gap-2">
+  <span class="h-2 w-2 rounded-full bg-amber-500" />
+  <span><strong>Image generation</strong> — API calls as scripts</span>
+</div>
+<div class="flex items-center gap-2">
+  <span class="h-2 w-2 rounded-full bg-cyan-500" />
+  <span><strong>CI pipelines</strong> — skills on every push</span>
+</div>
+</div>
+
+<div class="mt-4 p-3 rounded-lg bg-green-50 border border-green-200 text-sm">
+
+The domain changes. The patterns don't.
+
+</div>
+
+</div>
+</div>
+
+<!--
+Keep this tight — 90 seconds.
+
+"The WorkOS CLI is 15 framework installers powered by skills. Every decision — which framework, which package manager, which auth method — is a skill. They compose: small skills call other skills."
+
+"Blog writing. Code review. Image generation. CI pipelines. The domain changes every time. The patterns — constraints, scripts, phases, confidence — don't."
+
+"That's what 'at scale' means. Not one skill. An ecosystem."
 -->
 
 ---
@@ -832,7 +902,7 @@ Tell the SPECIFIC story: "We built a code review skill. The evidence it gathered
 
 "The handbook has the full eval framework if you want to go deeper."
 
-Transition: go straight into sharing. No recap.
+Transition: "Let's see what skills look like beyond this room." Or if cutting buffer: "Let's see what YOU built."
 -->
 
 ---
@@ -843,15 +913,16 @@ layout: section
 
 <img src="/section-wild-pixel.png" class="absolute inset-0 w-full h-full object-cover opacity-10" />
 
-<div class="text-2xl opacity-70">5–8 minutes · presenter-led · buffer block</div>
+<div class="text-2xl opacity-70">0–6 minutes · presenter-led · buffer block</div>
 
 <!--
-BLOCK 5.5: SKILLS IN THE WILD (5-8 min) — ⚠️ BUFFER BLOCK
+BLOCK 5.5: SKILLS IN THE WILD (0-6 min) — ⚠️ BUFFER BLOCK
 
 This section is OPTIONAL. Skip entirely if behind on time. The workshop lands without it.
+Production scale (WorkOS CLI) has been moved to Block 5 — this block is now purely the video wow moment.
 
-If AHEAD of schedule: do the live demo or play videos. Great wow moment.
-If ON TIME: show one video + the skill file slide. Skip production scale.
+If AHEAD of schedule: play videos + show the skill file. Great wow moment.
+If ON TIME: show one video. Skip the skill file slide.
 If BEHIND: skip straight to Close. Say: "We have a Skills in the Wild section in the slides you can check out later — let's get to sharing."
 
 "You've built a skill that runs shell scripts and reasons over the output. That's the foundation. But the same patterns — constraints, scripts, phases — can do a lot more."
@@ -946,67 +1017,6 @@ YouTube fallbacks:
 "Same patterns. Constraints, scripts, phases. The only difference is the scripts call Gemini and Veo instead of git log."
 
 Key point: "This skill was shared via GitHub. A colleague cloned it, ran npm install, and had it working in 2 minutes. That's what portability means in practice."
--->
-
----
-
-# Skills at production scale
-
-<div class="grid grid-cols-2 gap-8 mt-4">
-<div>
-
-### WorkOS CLI
-
-15 frameworks, one skill-driven agent
-
-- Claude Agent SDK under the hood
-- **Every decision is a skill** — framework detection, install steps, validation
-- Skills compose: small skills call other skills
-- Same markdown format you've been writing
-
-</div>
-<div>
-
-### The pattern repeats
-
-<div class="space-y-3 mt-2 text-sm">
-<div class="flex items-center gap-2">
-  <span class="h-2 w-2 rounded-full bg-green-500" />
-  <span><strong>Blog writing</strong> — voice + style as constraints</span>
-</div>
-<div class="flex items-center gap-2">
-  <span class="h-2 w-2 rounded-full bg-[#6363F1]" />
-  <span><strong>Code review</strong> — team conventions as evidence</span>
-</div>
-<div class="flex items-center gap-2">
-  <span class="h-2 w-2 rounded-full bg-amber-500" />
-  <span><strong>Image generation</strong> — API calls as scripts</span>
-</div>
-<div class="flex items-center gap-2">
-  <span class="h-2 w-2 rounded-full bg-cyan-500" />
-  <span><strong>CI pipelines</strong> — skills on every push</span>
-</div>
-</div>
-
-<div class="mt-4 p-3 rounded-lg bg-green-50 border border-green-200 text-sm">
-
-The domain changes. The patterns don't.
-
-</div>
-
-</div>
-</div>
-
-<!--
-Keep this tight — 2 minutes max.
-
-"The WorkOS CLI is 15 framework installers powered by skills. Every decision — which framework, which package manager, which auth method — is a skill. They compose: small skills call other skills."
-
-"Blog writing. Code review. Image generation. CI pipelines. The domain changes every time. The patterns — constraints, scripts, phases, confidence — don't."
-
-"That's what 'at scale' means. Not one skill. An ecosystem."
-
-Transition: "Let's see what YOU built."
 -->
 
 ---

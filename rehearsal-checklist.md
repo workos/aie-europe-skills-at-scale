@@ -4,8 +4,8 @@
 - **0:00** Title
 - **3:00** `Which would you trust?`
 - **7:00** `Get set up`
-- **12:00** `Build the Foundation`
-- **32:00** `Make It Smarter`
+- **15:00** `Build the Foundation`
+- **35:00** `Make It Smarter`
 - **57:00** `Skills Beyond the Editor`
 - **72:00** `Close`
 - **80:00** End
@@ -34,7 +34,7 @@ Never trim:
 
 ---
 
-## Block 2 — Setup
+## Block 2 — Setup (8 min budgeted — biggest timing risk)
 **Goal:** get people running with minimal stage talk
 
 Checklist:
@@ -44,9 +44,11 @@ Checklist:
 - [ ] `setup.sh` works cleanly
 - [ ] “Health score? You’re ready.” is clear
 - [ ] People know what tool/path they’re using
+- [ ] Budget for conference WiFi clone latency
 
 Fallback:
 - [ ] if setup drags, move helpers into room immediately
+- [ ] if WiFi is slow, have USB fallback with repo tarball
 
 ---
 
@@ -73,7 +75,7 @@ Protect:
 
 ---
 
-## Block 4 — Make It Smarter
+## Block 4 — Make It Smarter (22 min)
 **Goal:** explain phases + confidence without getting abstract
 
 Checklist:
@@ -83,17 +85,22 @@ Checklist:
 - [ ] Ideation example is delivered in 1 tight before/after
 - [ ] `Iteration loop` is a reset, not a lecture
 - [ ] Reach hands-on quickly
+- [ ] ⚠️ "We didn't follow our own process" beat delivered (~2 min after hands-on starts)
+- [ ] Show of hands after first run: "did confidence drop a finding?"
+- [ ] Iteration prompt delivered: tune thresholds, add dimension, re-run
 
 Trim first if long:
 - [ ] extra phase-gating theory
 - [ ] anecdote length
+- [ ] discussion time (cap at 4 min)
 
 Protect:
 - [ ] build/re-run/compare time
+- [ ] iteration loop (tune + re-run)
 
 ---
 
-## Block 5 — Skills Beyond the Editor
+## Block 5 — Skills Beyond the Editor (15 min)
 **Goal:** keep energy high after long hands-on blocks
 
 Checklist:
@@ -102,15 +109,18 @@ Checklist:
 - [ ] `Same skill, everywhere` lands as one thesis:
   - [ ] same markdown
   - [ ] different runtimes
-- [ ] `Measurement matters` stays sharp and short
+- [ ] `Production scale` (WorkOS CLI) stays at 90 sec — moved here from buffer
+- [ ] `Measurement matters` stays sharp and short (3 min)
 - [ ] Block doesn’t turn into another lecture
 
 Trim first if long:
 - [ ] extra portability examples
+- [ ] production scale detail (keep the thesis, cut the examples)
 - [ ] measurement setup
 
 Protect:
 - [ ] one fun script exercise
+- [ ] production scale thesis ("domain changes, patterns don’t")
 - [ ] one crisp measurement takeaway
 
 ---

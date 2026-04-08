@@ -59,11 +59,11 @@ Technique-first workshop. Each act layers techniques onto one shared skill — R
 | Block | Time | Mode | What happens |
 |-------|------|------|-------------|
 | **The Problem + What Skills Are** | 7 min | Watch | Show a bad repo roast vs an evidence-based one. Frame the promise. |
-| **Setup** | 5 min | **Build** | Clone, run setup.sh, verify skill loads. |
+| **Setup** | 8 min | **Build** | Clone, run setup.sh, verify skill loads. Conference WiFi adds latency — budget accordingly. |
 | **Build the Foundation** | 20 min | **Build** | Attendees start from a Repo Roast starter skill and customize description, constraints, tone, and scripts. |
-| **Make It Smarter** | 25 min | **Build** | Add phases and per-finding confidence checks. Re-run the same skill and compare output quality. |
-| **Skills Beyond the Editor** | 15 min | Watch + **Build** | Level-up scripts, portability grid, measurement matters. |
-| **Skills in the Wild** | 5-8 min | Watch | Buffer block — video demos, production scale. Skip if behind on time. |
+| **Make It Smarter** | 22 min | **Build** | Add phases and per-finding confidence checks. Re-run, compare, then tune thresholds and re-run again. |
+| **Skills Beyond the Editor** | 15 min | Watch + **Build** | Level-up scripts, portability grid, production scale (WorkOS CLI), measurement matters. |
+| **Skills in the Wild** | 0–6 min | Watch | Buffer block — video demos only. Skip entirely if behind on time. Production scale slide now in Block 5. |
 | **Close** | 8 min | **Build** | Share roasts, install skill globally, point to handbook for deeper techniques. |
 
 ### What's taught vs what's referenced
@@ -235,9 +235,9 @@ Work through these phases in order. Do not skip phases.
 
 **Anti-pattern to mention:** When splitting into reference files later, keep references one level deep from SKILL.md. Deeper nesting loses information.
 
-**Side quest: "We didn't follow our own process"**
+**Required beat: "We didn't follow our own process" (2 min)**
 
-Use this while attendees are adding phases and the room is quiet. The story:
+Deliver this ~2 min after attendees start adding phases. It's the best story in the deck — don't skip it:
 
 > "When we built the checkpoints for this workshop, we wrote all four versions of the skill in one pass — from our planning docs, without running any of them. We authored a skill *about* evidence-based analysis without gathering evidence about whether the skill worked."
 >
@@ -246,6 +246,10 @@ Use this while attendees are adding phases and the room is quiet. The story:
 > "Even the people teaching the iterative loop defaulted to 'write it all up front.' The pull toward authoring-without-testing is strong. That's why the loop matters — it's a discipline, not just pedagogy."
 
 This validates the workshop's core message and gives an honest, self-deprecating moment that builds trust.
+
+**Show of hands (after first run with confidence scoring):** "Show of hands: did confidence scoring drop at least one finding from your previous run?" Let hands go up. "That's the technique working. The skill is filtering its own noise."
+
+**Iteration prompt (adds ~3 min of meaningful hands-on):** "Now tune it. Look at your scores. Did you agree with what got dropped? Adjust the threshold — try 7 instead of 6. Add a dimension — maybe 'specificity: does this finding name a file?' Re-run and compare."
 
 #### Hands-On: Confidence Scoring
 
@@ -278,7 +282,9 @@ This act is fast-paced, presenter-led. No new hands-on work. Three proof points 
 
 #### 1. Same Skill, Different Audiences
 
-The centerpiece of this section. Same Repo Roast findings, three audiences, three outputs:
+> **Note:** Audience adaptation is covered in the presenter narration on the PortabilityGrid slide and the checkpoint-3 skill file, not as a standalone slide. Keep it to a verbal beat within the portability discussion, not a full demo. If time is generous, expand into examples below.
+
+Same Repo Roast findings, three audiences, three outputs:
 
 ```markdown
 ## Audience Detection
@@ -297,9 +303,9 @@ If unclear, ask: "Who's this for — you, your manager, or someone new to the re
 
 This is the "at scale" moment within a single skill. Same findings, different delivery.
 
-#### 2. Composition — Skills as Building Blocks in Production
+#### 2. Composition — Skills as Building Blocks in Production (now in Block 5 slides, not buffer)
 
-Their skill solves one problem. Skills composed together are a system.
+Their skill solves one problem. Skills composed together are a system. **This slide was moved from the buffer block into Block 5 (Skills Beyond the Editor) so it's never cut for time.**
 
 **The full-circle story:** The WorkOS CLI's validation-driven retry loop — where the agent gets typecheck errors fed back to it and self-corrects — was born from an Ideation session. The same techniques from today (progressive disclosure, confidence scoring, phased workflow) produced the production system we're showing now. (See: [Ideation](https://nicknisi.com/posts/ideation/))
 
