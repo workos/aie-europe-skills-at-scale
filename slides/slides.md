@@ -973,6 +973,28 @@ Play one or both videos. Let the room react.
 
 ---
 
+# Also made by a skill
+
+<div class="flex items-center justify-center mt-4">
+  <video src="/wizard-demo.mp4" controls class="rounded-xl shadow-lg max-h-[400px]" />
+</div>
+
+<div class="mt-4 text-center text-sm text-gray-500">
+
+A Remotion skill generated this video — constraints define the visual style, scripts handle rendering.
+
+</div>
+
+<!--
+Play the video.
+
+"Different skill, same patterns. This was made by a Remotion skill — it takes a prompt, generates React components for each scene, and renders them to video. Constraints define the visual style. Scripts handle the rendering pipeline."
+
+"Image generation, video rendering, CLI walkthroughs — the domain changes, the pattern doesn't."
+-->
+
+---
+
 # From text to video — one skill
 
 Same patterns you just learned. Different scripts.
