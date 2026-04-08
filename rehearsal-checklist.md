@@ -65,13 +65,17 @@ Checklist:
   - [ ] what to change
   - [ ] what to run
 - [ ] Build time is protected
+- [ ] ⚠️ Live demo at end (~25:00): run built-up skill on demo repo, contrast with thin starter output
+- [ ] Pre-baked thin starter output ready for side-by-side
 
 Trim first if long:
 - [ ] philosophy of constraints
+- [ ] discussion topics (cap at 3 min)
 
 Protect:
 - [ ] scripts explanation
 - [ ] hands-on time
+- [ ] live demo at end (validates the technique for the room + recording)
 
 ---
 
@@ -86,17 +90,20 @@ Checklist:
 - [ ] `Iteration loop` is a reset, not a lecture
 - [ ] Reach hands-on quickly
 - [ ] ⚠️ "We didn't follow our own process" beat delivered (~2 min after hands-on starts)
-- [ ] Show of hands after first run: "did confidence drop a finding?"
 - [ ] Iteration prompt delivered: tune thresholds, add dimension, re-run
+- [ ] ⚠️ Live demo at end (~50:00): run phased skill on demo repo, contrast with Act 1 output
+- [ ] Show of hands: "did confidence drop a finding?"
+- [ ] Pre-baked Act 1 output ready for side-by-side
 
 Trim first if long:
 - [ ] extra phase-gating theory
 - [ ] anecdote length
-- [ ] discussion time (cap at 4 min)
+- [ ] discussion time (cap at 2 min)
 
 Protect:
 - [ ] build/re-run/compare time
 - [ ] iteration loop (tune + re-run)
+- [ ] live demo at end (validates phases + confidence for the room + recording)
 
 ---
 

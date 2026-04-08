@@ -203,6 +203,8 @@ The before/after delta should be visible and earned: their first run with the th
 
 **What they see change:** Run the same prompt before and after building up the skill. The thin starter produces vague output ("Your repo has some TODOs and could use better documentation"). After adding scripts, constraints, and a real description, the same prompt produces: "Health score: 4/10. Your largest file is `handler.ts` at 2,847 lines. You have 14 TODO comments, the oldest from March 2023. Your README references `yarn start` but your lockfile is `pnpm-lock.yaml`." The delta is visible and earned.
 
+**Live demo at end of block (2 min):** One presenter runs the built-up skill live on the demo repo while the other narrates the contrast. Pre-bake the thin starter output beforehand. Show side-by-side: "This is what you started with. This is what you just built." This validates the technique for the room and gives the YouTube recording a clear payoff before moving to Act 2.
+
 ### Make It Smarter — Phases + Confidence
 
 **Hands-on techniques:** Progressive disclosure, confidence scoring.
@@ -225,6 +227,8 @@ Work through these phases in order. Do not skip phases.
 ```
 
 **What they see change:** Output becomes structured instead of a dump. Each phase builds on the previous one — gather, then assess, then recommend. Combined with self-assessment, weak findings get filtered before the final report.
+
+**Live demo at end of block (2 min):** One presenter runs the phased + confidence skill live on the demo repo. Pre-bake the Act 1 output for comparison. Show: "Before — specific but dumped all at once. After — phased, with confidence scores, weak findings dropped." Then: "Show of hands: did confidence scoring drop at least one finding?" This validates the technique and gives the recording a clear payoff.
 
 **Anti-pattern to mention:** When splitting into reference files later, keep references one level deep from SKILL.md. Deeper nesting loses information.
 

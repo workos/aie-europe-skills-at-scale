@@ -384,7 +384,7 @@ BLOCK 3: BUILD THE FOUNDATION (20 min)
 
 Presenter switch: one drives live edits, the other translates for the room.
 
-TIMING: Teach concepts = 5 min. Hands-on = 10 min. Discussion while working = 5 min.
+TIMING: Teach concepts = 5 min. Hands-on = 10 min. Discussion while working = 3 min. Live demo + debrief = 2 min.
 -->
 
 ---
@@ -495,7 +495,7 @@ If the answer doesn't match your intent, rewrite the description.
 
 # Your turn: build your Repo Roast
 
-<div class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">10 min hands-on · 5 min discussion</div>
+<div class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">10 min hands-on · 3 min discussion · 2 min live demo</div>
 
 <div class="grid grid-cols-2 gap-6 mt-1">
 <div class="space-y-2 text-sm">
@@ -537,9 +537,17 @@ Topic 1: Nick tells the AuthKit story. The skill was correct but it closed off C
 
 Topic 2: Zack talks about the RAG pipeline before/after scripts. Why scripts are the single biggest upgrade.
 
-Topic 3: How do you encode voice and style? When does it produce on-brand slop?
+TIMING: Check in with room at ~22:00 (7 min into block).
 
-TIMING: Check in with room at ~15:00. "Did your output get more specific? If it did, you just proved that constraints and evidence work. Now let's make it smarter."
+⚠️ LIVE DEMO + DEBRIEF (2 min, at ~25:00):
+One presenter runs the built-up skill live on the demo repo while the other narrates. Show the contrast:
+- Pre-bake the thin starter output beforehand (vague, generic)
+- Run the built-up skill live (specific, evidence-based)
+- Side-by-side if possible: "This is what you started with. This is what you just built."
+
+"That's what constraints and scripts buy you. One script, one constraint → five scripts, real routing, real constraints. Same prompt, completely different output."
+
+"Did your output get more specific? If it did, you just proved that constraints and evidence work. Now let's make it smarter."
 -->
 
 ---
@@ -557,7 +565,7 @@ BLOCK 4: MAKE IT SMARTER (22 min)
 
 "You've got a skill that gives specific, evidence-backed findings. Now let's make it smarter."
 
-TIMING: Teach = 5 min. Hands-on = 13 min (8 min first run + 5 min iteration). Discussion/beats = 4 min.
+TIMING: Teach = 5 min. Hands-on = 13 min (8 min first run + 5 min iteration). Discussion/beats = 2 min. Live demo + debrief = 2 min.
 -->
 
 ---
@@ -663,7 +671,7 @@ The first version is never the good version. Every skill we've built went throug
 
 # Your turn: add phases + confidence
 
-<div class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">13 min hands-on · 4 min discussion</div>
+<div class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">13 min hands-on · 2 min discussion · 2 min live demo</div>
 
 <div class="grid grid-cols-2 gap-4 mt-1 text-sm">
 <div>
@@ -725,11 +733,18 @@ After first run completes (~8 min in):
 
 ITERATION PROMPT: "Now tune it. Look at your scores. Did you agree with what got dropped? Adjust the threshold — try 7 instead of 6. Add a dimension — maybe 'specificity: does this finding name a file?' Re-run and compare."
 
-Topic 1: Be honest about the limits of phase-gating. Tell the specific story of which skill ignored phases and what the fix was. The audience is adding phases right now — they need to know where the limits are.
+Topic 1 (while they work): Be honest about the limits of phase-gating. Tell the specific story of which skill ignored phases and what the fix was.
 
-Topic 2: Tell the ideation skill story. What happened without self-assessment? What changed when confidence dimensions were added?
+TIMING: Check in at ~48:00 (13 min into block).
 
-TIMING: Check in at ~40:00.
+⚠️ LIVE DEMO + DEBRIEF (2 min, at ~50:00):
+One presenter runs the phased + confidence skill live on the demo repo. Show:
+- Act 1 output (pre-baked): specific but dumped all at once
+- Act 2 output (live): phased, with confidence scores, weak findings dropped
+
+"Show of hands: did confidence scoring drop at least one finding?" [Let hands go up] "That's the technique working."
+
+"Before: a dump of everything the skill found. After: structured phases, self-assessment, weak findings filtered. Same data, smarter delivery."
 
 Transition: "Your skill works here. Does it work everywhere?"
 -->
