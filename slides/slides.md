@@ -28,10 +28,6 @@ timer: countdown
 
 Portable skills for Claude Code, Codex, Cursor, and your own agents
 
-<div class="flex justify-center mt-4">
-  <img src="/hero-v8.png" class="w-80 rounded-xl shadow-lg" />
-</div>
-
 <div class="abs-br m-6 flex gap-2 text-sm opacity-50">
   <span>Nick Nisi & Zack Proser</span>
   <span>·</span>
@@ -239,10 +235,9 @@ Keep it quick — they'll see all of this when they open the file.
 
 # Today: Repo Roast
 
-<div class="flex items-center gap-4">
-  <img src="/roast-v2.png" class="w-48 rounded-lg" />
-  <span>A skill that audits any git repo's health using real data.</span>
-</div>
+<img src="/repo-roast.png" class="absolute top-4 right-4 w-40 opacity-80" />
+
+A skill that audits any git repo's health using real data.
 
 <div class="grid grid-cols-3 gap-4 mt-6">
 <div class="p-4 rounded-xl bg-gray-50 border border-gray-200">
@@ -362,8 +357,6 @@ layout: section
 ---
 
 # Build the Foundation
-
-<img src="/section-build.png" class="w-48 mx-auto my-4 rounded-xl" />
 
 <div class="text-2xl opacity-70">20 minutes · hands-on</div>
 
@@ -539,8 +532,6 @@ layout: section
 
 # Make It Smarter
 
-<img src="/section-smarter.png" class="w-48 mx-auto my-4 rounded-xl" />
-
 <div class="text-2xl opacity-70">25 minutes · hands-on</div>
 
 <!--
@@ -620,17 +611,17 @@ Concrete example — use this: "I have an ideation skill that brainstorms featur
 
 <div class="grid grid-cols-3 gap-6 mt-8">
 <div class="text-center p-4 rounded-xl bg-gray-50 border border-gray-200">
-<img src="/icon-build-v3.png" class="w-28 h-28 mx-auto mb-2 rounded" />
+<div class="text-3xl mb-2">🔨</div>
 <div class="font-semibold">Build</div>
 <div class="text-xs text-gray-500">Add phases + confidence</div>
 </div>
 <div class="text-center p-4 rounded-xl bg-gray-50 border border-gray-200">
-<img src="/icon-run-v3.png" class="w-28 h-28 mx-auto mb-2 rounded" />
+<div class="text-3xl mb-2">▶️</div>
 <div class="font-semibold">Run</div>
 <div class="text-xs text-gray-500">See what it produces</div>
 </div>
 <div class="text-center p-4 rounded-xl bg-gray-50 border border-gray-200">
-<img src="/icon-inspect-v3.png" class="w-28 h-28 mx-auto mb-2 rounded" />
+<div class="text-3xl mb-2">🔍</div>
 <div class="font-semibold">Be honest</div>
 <div class="text-xs text-gray-500">Is the output better?</div>
 </div>
@@ -722,8 +713,6 @@ layout: section
 ---
 
 # Skills Beyond the Editor
-
-<img src="/section-beyond.png" class="w-48 mx-auto my-4 rounded-xl" />
 
 <div class="text-2xl opacity-70">15 minutes · hands-on + presenter-led</div>
 
@@ -830,16 +819,16 @@ layout: section
 
 # Skills in the Wild
 
-<img src="/section-wild-v2.png" class="w-64 mx-auto my-4 rounded-xl" />
-
-<div class="text-2xl opacity-70">5–8 minutes · presenter-led</div>
+<div class="text-2xl opacity-70">5–8 minutes · presenter-led · buffer block</div>
 
 <!--
-BLOCK 5.5: SKILLS IN THE WILD (5-8 min)
+BLOCK 5.5: SKILLS IN THE WILD (5-8 min) — ⚠️ BUFFER BLOCK
 
-Buffer block. Expand or compress based on the room.
+This section is OPTIONAL. Skip entirely if behind on time. The workshop lands without it.
 
-Fast crowd that finished early? Do the live demo. Slow crowd? Show the pre-baked video and move to close.
+If AHEAD of schedule: do the live demo or play videos. Great wow moment.
+If ON TIME: show one video + the skill file slide. Skip production scale.
+If BEHIND: skip straight to Close. Say: "We have a Skills in the Wild section in the slides you can check out later — let's get to sharing."
 
 "You've built a skill that runs shell scripts and reasons over the output. That's the foundation. But the same patterns — constraints, scripts, phases — can do a lot more."
 -->
