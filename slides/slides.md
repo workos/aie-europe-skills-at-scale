@@ -51,37 +51,33 @@ Nick opens. Don't read slides — this is conversational.
 -->
 
 ---
+class: bg-[#6363F1]
+---
 
-# Who we are
+<h1 class="!text-white text-center mb-6">Who we are</h1>
 
-<div class="grid grid-cols-2 gap-12">
-<div class="flex flex-col items-center text-center">
-
-<img src="/nick-nisi.webp" class="w-36 h-36 rounded-full object-cover mb-4" />
-
-### Nick Nisi
-
-**DX · WorkOS**
-
-<div class="text-xs text-gray-400 mt-1">WorkOS CLI + AI auto-installer —<br/>provisions your auth infra autonomously</div>
-
+<div class="grid grid-cols-2 gap-8">
+<div class="p-6 rounded-2xl bg-white shadow-lg text-center">
+  <img src="/nick-nisi.webp" class="w-28 h-28 rounded-full object-cover mx-auto mb-3 ring-3 ring-white/50" />
+  <div class="text-2xl font-bold text-gray-900">Nick Nisi</div>
+  <div class="text-sm text-gray-500 mt-1">DX Engineer · Applied AI · WorkOS</div>
 </div>
-<div class="flex flex-col items-center text-center">
-
-<img src="/zack-proser.webp" class="w-36 h-36 rounded-full object-cover mb-4" />
-
-### Zack Proser
-
-**DX · WorkOS**
-
-<div class="text-xs text-gray-400 mt-1">RAG pipelines, agentic harnesses,<br/>40+ production skills</div>
-
+<div class="p-6 rounded-2xl bg-white shadow-lg text-center">
+  <img src="/zack-proser.webp" class="w-28 h-28 rounded-full object-cover mx-auto mb-3 ring-3 ring-white/50" />
+  <div class="text-2xl font-bold text-gray-900">Zack Proser</div>
+  <div class="text-sm text-gray-500 mt-1">DX Engineer · Applied AI · WorkOS</div>
 </div>
 </div>
 
-<div class="mt-6 text-center text-sm text-gray-500">
+<div class="mt-6 text-center text-white/90 text-sm">
 
-We build AI agents for a living. Skills are how we make them reliable.
+Agent harnesses · agentic flows · build systems · integrations · internal tooling · research · talks
+
+</div>
+
+<div class="mt-2 text-center text-base font-semibold text-white">
+
+We eat, sleep, and breathe agentic tooling. Skills are how we make agents reliable.
 
 </div>
 
@@ -456,31 +452,14 @@ Let them work. Switch to discussion topics.
 
 ---
 
-# While you work
+<div class="mt-16 text-center">
+<div class="text-sm uppercase tracking-widest text-gray-400 mb-8">While you work — discussion topics</div>
 
-<div class="space-y-6 mt-4">
-
-<div class="p-4 rounded-xl bg-amber-50 border border-amber-200">
-
-### "When a skill makes the AI dumber"
-Nick's Next.js installer skill for AuthKit — over-prescribed so heavily that Claude got *worse* at Next.js than without the skill. Where's the line between useful constraints and over-prescribing?
-
+<div class="space-y-6 text-2xl text-gray-700">
+<div>"When a skill makes the AI <span class="font-bold text-red-500">dumber</span>"</div>
+<div>"Scripts as the <span class="font-bold text-[#6363F1]">turning point</span>"</div>
+<div>"Encoding <span class="font-bold text-[#6363F1]">voice</span> as constraints"</div>
 </div>
-
-<div class="p-4 rounded-xl bg-sky-50 border border-sky-200">
-
-### "Scripts as the turning point"
-Zack's RAG pipeline — what it produced when guessing vs. when scripts injected real evidence. Why scripts are the single biggest upgrade.
-
-</div>
-
-<div class="p-4 rounded-xl bg-purple-50 border border-purple-200">
-
-### "Encoding voice as constraints"
-Zack's blog-writing skill for the WorkOS blog. The difference between "write like our blog" (vague) and actual constraints that capture style.
-
-</div>
-
 </div>
 
 <!--
@@ -584,17 +563,17 @@ Concrete example — use this: "I have an ideation skill that brainstorms featur
 
 <div class="grid grid-cols-3 gap-6 mt-8">
 <div class="text-center p-4 rounded-xl bg-gray-50 border border-gray-200">
-<img src="/icon-build-v2.png" class="w-28 h-28 mx-auto mb-2 rounded" />
+<img src="/icon-build-v3.png" class="w-28 h-28 mx-auto mb-2 rounded" />
 <div class="font-semibold">Build</div>
 <div class="text-xs text-gray-500">Add phases + confidence</div>
 </div>
 <div class="text-center p-4 rounded-xl bg-gray-50 border border-gray-200">
-<img src="/icon-run-v2.png" class="w-28 h-28 mx-auto mb-2 rounded" />
+<img src="/icon-run-v3.png" class="w-28 h-28 mx-auto mb-2 rounded" />
 <div class="font-semibold">Run</div>
 <div class="text-xs text-gray-500">See what it produces</div>
 </div>
 <div class="text-center p-4 rounded-xl bg-gray-50 border border-gray-200">
-<img src="/icon-inspect-v2.png" class="w-28 h-28 mx-auto mb-2 rounded" />
+<img src="/icon-inspect-v3.png" class="w-28 h-28 mx-auto mb-2 rounded" />
 <div class="font-semibold">Be honest</div>
 <div class="text-xs text-gray-500">Is the output better?</div>
 </div>
@@ -667,24 +646,13 @@ Let them work. Switch to discussion topics.
 
 ---
 
-# While you work
+<div class="mt-20 text-center">
+<div class="text-sm uppercase tracking-widest text-gray-400 mb-8">While you work — discussion topics</div>
 
-<div class="space-y-6 mt-4">
-
-<div class="p-4 rounded-xl bg-amber-50 border border-amber-200">
-
-### "Phase-gating honesty"
-LLMs can just... skip phases. What actually works? External file references. Explicit stop points. What doesn't work? "Do not proceed" when all context is already loaded. Where's the line between useful structure and false sense of control?
-
+<div class="space-y-6 text-2xl text-gray-700">
+<div>"Phase-gating <span class="font-bold text-[#6363F1]">honesty</span>"</div>
+<div>"When confidence scoring <span class="font-bold text-green-600">saved us</span>"</div>
 </div>
-
-<div class="p-4 rounded-xl bg-sky-50 border border-sky-200">
-
-### "When confidence scoring saved us"
-Nick's ideation skill: what happened when it generated ideas without self-assessment? It confidently recommended things it didn't have context for. Adding confidence dimensions surfaced gaps instead of guessing through them.
-
-</div>
-
 </div>
 
 <!--
@@ -812,7 +780,7 @@ layout: section
 
 # Skills in the Wild
 
-<img src="/section-wild.png" class="w-48 mx-auto my-4 rounded-xl" />
+<img src="/section-wild-v2.png" class="w-64 mx-auto my-4 rounded-xl" />
 
 <div class="text-2xl opacity-70">5–8 minutes · presenter-led</div>
 
@@ -824,6 +792,35 @@ Buffer block. Expand or compress based on the room.
 Fast crowd that finished early? Do the live demo. Slow crowd? Show the pre-baked video and move to close.
 
 "You've built a skill that runs shell scripts and reasons over the output. That's the foundation. But the same patterns — constraints, scripts, phases — can do a lot more."
+-->
+
+---
+
+# What a skill can produce
+
+<div class="grid grid-cols-2 gap-6 mt-4">
+<div class="flex flex-col items-center">
+<div class="text-sm font-semibold mb-2 text-gray-500">The Archivist — character animation</div>
+<iframe width="100%" height="220" src="https://www.youtube.com/embed/nsnl-RTPL6U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="rounded-lg"></iframe>
+</div>
+<div class="flex flex-col items-center">
+<div class="text-sm font-semibold mb-2 text-gray-500">Ball on a ramp — minimalist motion</div>
+<iframe width="100%" height="220" src="https://www.youtube.com/embed/br81_vMItXs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="rounded-lg"></iframe>
+</div>
+</div>
+
+<div class="mt-4 text-center text-sm text-gray-500">
+
+Both generated by a single 30-line skill: prompt → static image → animated video
+
+</div>
+
+<!--
+Play one or both videos. Let the room react.
+
+"These were generated by a single skill. Same structure you just built — frontmatter, constraints, scripts, phases. The only difference is the scripts call Gemini and Veo instead of git log."
+
+"Let's look at that skill file."
 -->
 
 ---
