@@ -8,14 +8,19 @@ Workshop repository for **"Skills at Scale"** — an 80-minute hands-on workshop
 
 ## Project Structure
 
+- `README.md` — **Repo landing page.** Quick start for attendees, sharing/review instructions for presenters, worker deployment docs.
 - `GUIDE.md` — **Attendee step-by-step guide.** Setup instructions, numbered steps for each section, catch-up checkpoints. Self-contained — works for live attendees and YouTube viewers.
 - `workshop.md` — **Presenter notes only.** Workshop arc, timing, presenter stories, exercise structure, side quest topics, dead air mitigations. Not for attendees — for Nick and Zack.
 - `handbook.md` — **Reference/handout for attendees.** Full technique library (12 techniques with sources and first-person stories), skill categories taxonomy (9 from Anthropic), skill pattern archetypes (5), success criteria framework, reference systems, blog post links. Not the live agenda — the take-home companion.
 - `domain-decision.md` — Domain analysis and decision. Locked on **"Repo Roast"** (repo health assessment with scripts). Contains the canonical bad/good skill examples, script sets, constraint templates, and phase/confidence designs.
-- `rehearsal-review.md` — Speaker/rehearsal review from Codex. Delivery risks, timing targets, presenter choreography, fallback lines, pre-bake requirements. Not curriculum — performance guidance.
-- `checkpoints/` — Skill progression snapshots (0-bad, 1-starter, 2-with-phases, 3-complete). Attendees copy these to catch up without losing customizations.
-- `.claude/skills/repo-roast/` — The working skill file attendees edit during the workshop. Auto-discovered by Claude Code.
-- `slides/` — Slidev presentation. Dark theme, presenter notes on every slide, magic-move animations.
+- `rehearsal-checklist.md` — Timing checkpoints, per-block checklists, trim/never-trim guidance, fallback plans.
+- `outline.md` — **Superseded by `slides/slides.md`.** Historical reference for original block structure and discussion topic planning.
+- `checkpoints/` — Skill progression snapshots (0-bad, 1-starter, 2-with-phases, 3-complete). Attendees use `./setup.sh --checkpoint N` to catch up.
+- `.claude/skills/repo-roast/` — The starter skill file attendees edit during the workshop. Auto-discovered by Claude Code.
+- `slides/` — Slidev presentation. Light theme, presenter notes on every slide, v-click animations.
+- `setup.sh` — Symlinks the skill for Claude Code / Codex; also handles `--checkpoint N` to load progression snapshots.
+- `share.sh` / `review.sh` — Attendee skill sharing and presenter review scripts (backed by Cloudflare Worker in `worker/`).
+- `worker/` — Cloudflare Worker + KV for the skill-sharing system.
 
 ## Slides Development
 
@@ -30,9 +35,9 @@ Slides are a single `slides.md` file using Slidev markdown syntax. `---` separat
 ## Workshop Design Decisions
 
 - **Technique-first, domain-second.** We teach transferable patterns, not a specific skill domain. The "Repo Roast" is a vehicle for learning.
-- **One skill, three acts.** Attendees build one skill progressively: Act 1 (constraints + scripts), Act 2 (phases + confidence), Act 3 (presenter-led proof of scale).
-- **Scripts are foundational.** The `!` backtick syntax (inline shell execution in skills) is taught in Act 1, not as an add-on. Universal git-only core scripts that work in any repo.
-- **Five techniques hands-on, rest as reference.** Constraints, source of truth, structure, progressive disclosure, confidence scoring are built live. Transcript reflection is demoed from stage. Everything else (eval, composition, portability, Desktop) is presenter-led proof.
+- **One skill, three blocks.** Attendees build one skill progressively: Build the Foundation (constraints + scripts), Make It Smarter (phases + confidence), Skills Beyond the Editor (advanced scripts + portability + measurement).
+- **Scripts are foundational.** The `!` backtick syntax (inline shell execution in skills) is taught in Build the Foundation, not as an add-on. Universal git-only core scripts that work in any repo.
+- **Five techniques hands-on, rest as reference.** Constraints, source of truth, structure, progressive disclosure, confidence scoring are built live. Eval, composition, portability, and audience adaptation are presenter-led proof.
 - **The technique library lives in `handbook.md`**, not in the live curriculum. `workshop.md` references it but stays focused on what happens in the room.
 
 ## Reference Directories
@@ -46,7 +51,7 @@ These are added as working directories via `.claude/settings.local.json` for cro
 ## Workshop Repo Plan
 
 - **This repo** is the workshop home: starter skill, slides, handbook. Attendees clone it.
-- **WorkOS CLI (`../cli/main`)** is the demo roast target. Pre-baked outputs are generated from it. It appears twice: once as a roast target in Act 1, once as the production composition proof in Act 3.
+- **WorkOS CLI (`../cli/main`)** is the demo roast target. Pre-baked outputs are generated from it. It appears twice: once as a roast target in Build the Foundation, once as the production composition proof in Skills in the Wild.
 
 ## Research & Notes
 
