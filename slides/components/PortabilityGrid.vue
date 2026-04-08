@@ -1,5 +1,6 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
+import { useSlideActive } from '../composables/useSlideActive'
 
 const activeIndex = ref(-1)
 const showFile = ref(false)
@@ -35,7 +36,11 @@ const contexts = [
   },
 ]
 
-onMounted(() => {
+useSlideActive(() => {
+  activeIndex.value = -1
+  showFile.value = false
+  showInsight.value = false
+
   setTimeout(() => { showFile.value = true }, 300)
   contexts.forEach((_, i) => {
     setTimeout(() => { activeIndex.value = i }, 900 + i * 1200)

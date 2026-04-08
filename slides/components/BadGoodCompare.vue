@@ -1,5 +1,6 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
+import { useSlideActive } from '../composables/useSlideActive'
 
 const showBad = ref(false)
 const showGood = ref(false)
@@ -16,7 +17,12 @@ const goodOutputLines = [
   { label: 'Bus factor', value: 'src/auth/ — only 1 contributor in 6 months', color: 'text-gray-800' },
 ]
 
-onMounted(() => {
+useSlideActive(() => {
+  showBad.value = false
+  showGood.value = false
+  goodLines.value = []
+  showVerdict.value = false
+
   setTimeout(() => { showBad.value = true }, 400)
   setTimeout(() => { showGood.value = true }, 1600)
 

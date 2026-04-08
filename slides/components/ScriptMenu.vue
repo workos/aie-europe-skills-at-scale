@@ -1,5 +1,6 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
+import { useSlideActive } from '../composables/useSlideActive'
 
 const visibleCount = ref(0)
 const expandedIndex = ref(-1)
@@ -47,7 +48,10 @@ const scripts = [
   },
 ]
 
-onMounted(() => {
+useSlideActive(() => {
+  visibleCount.value = 0
+  expandedIndex.value = -1
+
   scripts.forEach((_, i) => {
     setTimeout(() => { visibleCount.value = i + 1 }, 300 + i * 400)
   })

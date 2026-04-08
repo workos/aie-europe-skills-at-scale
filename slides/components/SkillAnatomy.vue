@@ -1,5 +1,6 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, computed } from 'vue'
+import { useSlideActive } from '../composables/useSlideActive'
 
 const activeSection = ref(-1)
 
@@ -56,7 +57,8 @@ const sections = [
   },
 ]
 
-onMounted(() => {
+useSlideActive(() => {
+  activeSection.value = -1
   sections.forEach((_, i) => {
     setTimeout(() => { activeSection.value = i }, 800 + i * 1400)
   })

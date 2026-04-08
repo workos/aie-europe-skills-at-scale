@@ -1,5 +1,6 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
+import { useSlideActive } from '../composables/useSlideActive'
 
 const activeCondition = ref(-1)
 
@@ -36,7 +37,11 @@ const conditions = [
 const showTree = ref(false)
 const showConditions = ref(false)
 
-onMounted(() => {
+useSlideActive(() => {
+  activeCondition.value = -1
+  showTree.value = false
+  showConditions.value = false
+
   setTimeout(() => { showTree.value = true }, 300)
   setTimeout(() => { showConditions.value = true }, 1000)
   conditions.forEach((_, i) => {
