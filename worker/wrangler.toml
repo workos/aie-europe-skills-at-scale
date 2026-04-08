@@ -7,5 +7,5 @@ binding = "SKILLS"
 id = "8275ba986edd4b99b057474495464aed"
 
 [vars]
-CLEAR_SECRET = "roast-2026"
+CLEAR_SECRET = "roast"
 MAX_SKILL_SIZE = "10240"
