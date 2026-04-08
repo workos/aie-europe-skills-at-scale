@@ -43,6 +43,8 @@ BLOCK 1: THE PROBLEM + WHAT SKILLS ARE (7 min)
 
 Nick opens. Don't read slides — this is conversational.
 
+⚠️ SHOW OF HANDS — this is the beat the closing slide calls back to. Make it land.
+
 "Raise your hand if you've used an AI coding tool in the last week."
 [hands go up]
 "Keep it up if the first thing you did was re-explain your tech stack."
@@ -93,21 +95,25 @@ We eat, sleep, and breathe agentic tooling. Skills are how we make agents reliab
 
 ---
 
-# The problem
+# Every AI conversation starts from zero
 
 <div class="grid grid-cols-2 gap-8 mt-2">
 <div>
 
-### Unreliable
+### You explain yourself. Again.
 
-Hallucinations, ignored instructions, generic output — you can't *depend* on it
+"We use pnpm, not npm. Tests are co-located. The auth module is off-limits. Our READMEs follow this format..."
+
+<div class="text-sm text-gray-400 mt-2">Every. Single. Conversation.</div>
 
 </div>
 <div>
 
-### Amnesia
+### It still gets it wrong
 
-You keep re-explaining your stack, your conventions, your preferences — every conversation
+Ask for a repo health check and you get: *"Consider adding more tests and improving documentation."*
+
+<div class="text-sm text-gray-400 mt-2">No evidence. No specifics. Nothing you can act on.</div>
 
 </div>
 </div>
@@ -116,7 +122,7 @@ You keep re-explaining your stack, your conventions, your preferences — every 
 
 <div class="mt-6 p-4 rounded-xl bg-[#6363F1]/5 border border-[#6363F1]/20 text-center">
 
-**Skills fix this.** A markdown file that encodes your context, constraints, and judgment — so the AI is reliable every time.
+**The AI doesn't know what you know.** Skills encode your context, constraints, and judgment into a markdown file — so you explain yourself once.
 
 </div>
 
@@ -125,15 +131,64 @@ You keep re-explaining your stack, your conventions, your preferences — every 
 <!--
 1 minute max. Quick, don't dwell.
 
-"Every developer using AI tools has these two problems."
+"Every AI conversation starts from zero. You explain your stack. Your conventions. Your preferences. And then you do it again tomorrow."
 
-"First: it's impressive but you can't depend on it. Hallucinations. Ignored instructions. Generic slop."
-
-"Second: you keep re-explaining yourself. Your tech stack. Your conventions. Your preferences. Every new conversation."
+"And even after all that, the output is generic. Ask it to review your repo and it says 'consider adding more tests.' Thanks. Very helpful."
 
 [click]
 
-"Skills fix both. A skill is a markdown file. That's it. It encodes your context, your constraints, your judgment. The AI becomes reliable because the skill tells it what you know."
+"The AI doesn't know what you know. That's the problem. Skills fix it — a markdown file that encodes your context once. Your constraints. Your judgment. You write it once, the AI uses it every time."
+-->
+-->
+
+---
+
+# You might already be doing this
+
+<div class="grid grid-cols-2 gap-8 mt-4">
+<div>
+
+### Project instructions
+
+`CLAUDE.md` · `AGENTS.md` · `.cursorrules`
+
+Project context in a file. No more re-explaining per repo. **This works.**
+
+</div>
+<div>
+
+### Where it stops
+
+- Tied to one repo
+- Static text — can't run commands
+- Grows into a kitchen-sink file
+- Doesn't compose or share
+
+</div>
+</div>
+
+<v-click>
+
+<div class="mt-6 p-4 rounded-xl bg-[#6363F1]/5 border border-[#6363F1]/20 text-center">
+
+**Skills are the next step.** Portable across projects. Executable — scripts inject real data. Composable — small, focused units instead of one giant file.
+
+</div>
+
+</v-click>
+
+<!--
+Quick — 60 seconds max. This is a bridge, not a lecture.
+
+"Some of you are already solving this. CLAUDE.md, AGENTS.md, .cursorrules — project instruction files. They work. They stop the re-explaining problem for that repo."
+
+"But they hit a ceiling. They're stuck in one project. They can't run commands. And they tend to grow into one massive file that tries to do everything."
+
+[click]
+
+"Skills are where it goes next. They're portable — same file works in Claude Code, Codex, Cursor. They're executable — scripts inject real data from the repo. And they compose — small focused units instead of one giant kitchen-sink file."
+
+Transition: "Let me show you the difference that makes."
 -->
 
 ---
@@ -205,7 +260,13 @@ The patterns — not the domain. Constraints, scripts, phases, confidence.
 <div class="p-4 rounded-xl bg-gray-50 border border-gray-200">
 <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Make it yours</div>
 
-We provide baselines + checkpoints. You decide tone, constraints, and signals.
+Baselines + checkpoints provided. You customize: tone, constraints, signals.
+
+<div class="text-xs text-gray-500 mt-2">
+
+e.g. test coverage thresholds · README format standards · review norms · CI requirements · team-specific ignore patterns
+
+</div>
 
 </div>
 </div>
@@ -216,6 +277,8 @@ We provide baselines + checkpoints. You decide tone, constraints, and signals.
 "The domain is the vehicle. The patterns are what you're taking home. Everything you learn — constraints, scripts, phases, confidence — works for any skill, not just this one."
 
 "We have checkpoints if you fall behind. But customize. Add a constraint that matters to YOUR team. Change the tone."
+
+"Maybe you want it to flag repos below a 1:3 test-to-source ratio. Or require co-located tests. Or check that READMEs document env vars and deployment. Or flag PRs merged without approvals. The roast is just the vehicle — your constraints encode YOUR team's standards."
 
 Transition: "So what does that markdown file actually look like? Let's get set up and you'll see."
 -->
@@ -236,6 +299,12 @@ Then: `Roast this repo`
 
 Health score? You're ready.
 
+<div class="mt-2 text-xs text-gray-400">
+
+At the end, you'll share your skill and we'll compare on the projector. Build something worth showing off.
+
+</div>
+
 </div>
 <div class="flex items-center justify-center">
 
@@ -252,6 +321,8 @@ BLOCK 2: SETUP (5 min)
 Nick talks through setup, Zack walks the room helping people who hit issues.
 
 "Start your agent — Claude Code, Codex, or Cursor. Ask it to roast the repo. If you see a health score, you're ready."
+
+"One more thing: at the end, you'll share your skill back to us and we'll pull a few up on the projector. So customize — make it yours. We want to see what you build."
 
 Keep to 90 seconds of talking. The rest is helping people.
 -->
@@ -292,7 +363,7 @@ layout: section
 
 # Build the Foundation
 
-<img src="/build-v3.png" class="w-48 mx-auto my-4 rounded-xl" />
+<img src="/section-build.png" class="w-48 mx-auto my-4 rounded-xl" />
 
 <div class="text-2xl opacity-70">20 minutes · hands-on</div>
 
@@ -414,28 +485,32 @@ If the answer doesn't match your intent, rewrite the description.
 
 # Your turn: build your Repo Roast
 
-Open your starter skill file and customize:
+<div class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">10 min hands-on · 5 min discussion</div>
 
-<div class="grid grid-cols-2 gap-6 mt-2">
+<div class="grid grid-cols-2 gap-6 mt-1">
 <div class="space-y-2 text-sm">
 
 1. **Description** — routing rule that matches your intent
 2. **Constraints** — add 1-2 that reflect YOUR judgment
+   - test coverage thresholds, README format, review norms
+   - CI requirements, ignore patterns, naming conventions
 3. **Tone** — roast? professional audit? diplomatic?
 4. **Script** — optionally add one (test ratio, CI check, package manager)
 
+Then: `Roast this repo` — compare with the bad output.
+
+**Behind?** `./setup.sh --checkpoint 1`
+
 </div>
-<div class="space-y-2 text-sm">
+<div>
 
-Then run it:
+<div class="text-xs uppercase tracking-widest text-gray-400 mb-3">While you work — discussion topics</div>
 
-```
-Roast this repo
-```
-
-Compare with the bad output. Better?
-
-**Behind?** Run `./setup.sh --checkpoint 1` to catch up
+<div class="space-y-3 text-sm text-gray-700">
+<div>"When a skill makes the AI <span class="font-bold text-red-500">dumber</span>"</div>
+<div>"Scripts as the <span class="font-bold text-[#6363F1]">turning point</span>"</div>
+<div>"Encoding <span class="font-bold text-[#6363F1]">voice</span> as constraints"</div>
+</div>
 
 </div>
 </div>
@@ -447,29 +522,11 @@ Compare with the bad output. Better?
 
 "Then run it. Compare with what you saw before."
 
-Let them work. Switch to discussion topics.
--->
+Let them work. While they build, riff on the discussion topics:
 
----
+Topic 1: Nick tells the AuthKit story. The skill was correct but it closed off Claude's actual strengths. Where's the line between useful constraints and over-prescribing?
 
-<div class="mt-16 text-center">
-<div class="text-sm uppercase tracking-widest text-gray-400 mb-8">While you work — discussion topics</div>
-
-<div class="space-y-6 text-2xl text-gray-700">
-<div>"When a skill makes the AI <span class="font-bold text-red-500">dumber</span>"</div>
-<div>"Scripts as the <span class="font-bold text-[#6363F1]">turning point</span>"</div>
-<div>"Encoding <span class="font-bold text-[#6363F1]">voice</span> as constraints"</div>
-</div>
-</div>
-
-<!--
-Nick/Zack discussion while attendees work. For the YouTube recording.
-
-These are real conversations, not lectures. Riff naturally.
-
-Topic 1: Nick tells the AuthKit story. The skill was correct but it closed off Claude's actual strengths.
-
-Topic 2: Zack talks about the RAG pipeline before/after scripts.
+Topic 2: Zack talks about the RAG pipeline before/after scripts. Why scripts are the single biggest upgrade.
 
 Topic 3: How do you encode voice and style? When does it produce on-brand slop?
 
@@ -482,7 +539,7 @@ layout: section
 
 # Make It Smarter
 
-<img src="/smarter-v2.png" class="w-48 mx-auto my-4 rounded-xl" />
+<img src="/section-smarter.png" class="w-48 mx-auto my-4 rounded-xl" />
 
 <div class="text-2xl opacity-70">25 minutes · hands-on</div>
 
@@ -498,22 +555,22 @@ TIMING: Teach = 5-7 min. Hands-on = 12-15 min. Discussion = 5 min.
 
 # Progressive disclosure
 
-Break the skill's work into phases. Each phase loads different context.
+Don't dump everything at once. Load context only when the task needs it.
 
 <FolderTree />
 
 <!--
-Let the component animate through the phases.
+Let the component animate through the conditions.
 
-"Progressive disclosure means the skill doesn't dump everything at once. It works in phases."
+"Progressive disclosure means: only load what the task actually needs."
 
-[Phase 1 highlights] "Phase 1 gathers raw data — runs the scripts, collects counts."
+[scoring highlights] "Need to score findings? Load the scoring rubric. Otherwise the model never sees it."
 
-[Phase 2 highlights] "Phase 2 categorizes and scores — only if Phase 1 found something worth categorizing."
+[scripts highlights] "Need to gather evidence? Load the git scripts reference."
 
-[Phase 3 highlights] "Phase 3 builds recommendations — only for the high-severity findings."
+[recommendations highlights] "Need to write recommendations? Load the templates."
 
-"Key insight: this only truly works when phases reference external files. If everything's in one file, the model sees it all at once. In-file phases are suggestions. External files are real gates."
+"This only truly works with external file references. If everything's in one file, the model sees it all at once — there's no gate. External files are real gates. The model only loads what the condition triggers."
 -->
 
 ---
@@ -597,9 +654,9 @@ The first version is never the good version. Every skill we've built went throug
 
 # Your turn: add phases + confidence
 
-Add two sections to your skill, then re-run.
+<div class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">12 min hands-on · 5 min discussion</div>
 
-<div class="grid grid-cols-2 gap-4 mt-2 text-sm">
+<div class="grid grid-cols-2 gap-4 mt-1 text-sm">
 <div>
 
 **Add `## Workflow`**
@@ -621,17 +678,25 @@ Rate each finding:
 Drop findings below 6 on evidence.
 ```
 
+Then: `Roast this repo` — compare with your last output.
+
+**Behind?** `./setup.sh --checkpoint 2`
+
 </div>
 <div>
 
-**Run it:** `Roast this repo`
+<div class="text-xs uppercase tracking-widest text-gray-400 mb-3">While you work — discussion topics</div>
 
-**Compare with your last output:**
-- Phases → conversation instead of dump?
-- Confidence → less noise?
-- Is the output *better*?
+<div class="space-y-3 text-sm text-gray-700">
+<div>"Phase-gating <span class="font-bold text-[#6363F1]">honesty</span>"</div>
+<div>"When confidence scoring <span class="font-bold text-green-600">saved us</span>"</div>
+</div>
 
-**Behind?** Run `./setup.sh --checkpoint 2` to catch up
+<div class="mt-3 text-xs text-gray-500">
+
+**Compare:** Phases → conversation instead of dump? Confidence → less noise? Is the output *better*?
+
+</div>
 
 </div>
 </div>
@@ -641,22 +706,7 @@ Drop findings below 6 on evidence.
 
 "Then run it again on the same repo. Compare the output. Is it better?"
 
-Let them work. Switch to discussion topics.
--->
-
----
-
-<div class="mt-20 text-center">
-<div class="text-sm uppercase tracking-widest text-gray-400 mb-8">While you work — discussion topics</div>
-
-<div class="space-y-6 text-2xl text-gray-700">
-<div>"Phase-gating <span class="font-bold text-[#6363F1]">honesty</span>"</div>
-<div>"When confidence scoring <span class="font-bold text-green-600">saved us</span>"</div>
-</div>
-</div>
-
-<!--
-Nick/Zack discussion while attendees work. For the YouTube recording.
+Let them work. While they build, riff on the discussion topics:
 
 Topic 1: Be honest about the limits of phase-gating. Tell the specific story of which skill ignored phases and what the fix was. The audience is adding phases right now — they need to know where the limits are.
 
@@ -1048,11 +1098,13 @@ layout: center
 
 # Skills at Scale
 
+<img src="/closing.png" class="absolute top-0 left-0 w-full h-full object-cover opacity-10" />
+
 <div class="max-w-lg mx-auto text-center space-y-4">
 
 <div class="text-lg text-gray-600">
 
-Remember the show of hands?
+Remember re-explaining your tech stack every conversation?
 
 **That's what the skill replaces.** Tomorrow you won't re-explain. The skill already knows.
 
@@ -1073,9 +1125,9 @@ Remember the show of hands?
 </div>
 
 <!--
-The Spiral Return. Callback to the opening.
+The Spiral Return. Callback to the opening show-of-hands beat.
 
-"Remember the show of hands? Re-explaining your stack every conversation? That's what the skill replaces."
+"Remember at the start — all those hands that went up for re-explaining your stack every conversation? That's what the skill replaces."
 
 "Tomorrow morning, you won't re-explain. The skill already knows."
 

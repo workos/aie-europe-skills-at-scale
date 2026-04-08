@@ -40,3 +40,17 @@ This document contains notes I'm taking while I go through the workshop. These a
 - ~~fix: quote section intros~~ ✅ Converted all 4 to story/lesson slides
 - ~~fix: slide 12, Slidev long output truncation~~ ✅ Condensed from 34 to 26 lines
 - ~~add: early introduction of the skill we're building + customization emphasis~~ ✅
+
+## New Notes
+
+- Give examples of how attendees might customize this skill - they could stress importance of specific tests, specific. The script could do things like check that you're following specific testing formats, doing specific review guidelines or README formats. Workflows are granular or set up in a certain way 
+  reviews, etc. - let's brainstorm
+- combine talk topics and workshop tasks on the same slide. Make sure the slide also has an allotted time displayed so
+  we know how long to pause for.
+- Slide 16 - The phases don't make sense. How would you progressively disclose different pieces of the steps? It should
+be instead: "If you need to do this, then load this file. If you need to do this other thing, load this other file."
+Let's codify that into a realistic example in this slide
+- In some slides we talk about using the `cp` command directly to copy checkpoint files and in others we talk about setting that up and being able to do that. Can we consolidate onto a single way of doing that? 
+- We don't really mention in the slides about doing the share scripts. I think that should be highlighted. Should be on all of the phases or just the second and third one? Upon further review I see that we're doing it at the end and maybe that's a better solution anyway. We should mention that we're going to do that in the beginning and people should prepare. That way we build excitement and encourage participation 
+- We also need to combine slides 19 and 20 
+- The last slide talks about remembering the show of hands. Did we have them show hands at some point? That should be more clearly called out if so or we should remove it from the last slide 
